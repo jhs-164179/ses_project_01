@@ -15,19 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-<<<<<<< HEAD
 
 # 임시 홈
 from datapg import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("",views.datapg_pg, name='home'), # 임시 링크(차트 페이지로)
     path('data_pg/', include('datapg.urls')),
-=======
-
-urlpatterns = [
-    path("admin/", admin.site.urls),
     path('', include('main.urls')),
->>>>>>> 6b2557e854e4fa59cf2639e0caf19060ea5d1d11
 ]
