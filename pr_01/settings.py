@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "main.apps.MainConfig",
+    "datapg.apps.DatapgConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -55,7 +56,7 @@ ROOT_URLCONF = "pr_01.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates'],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -77,7 +78,12 @@ WSGI_APPLICATION = "pr_01.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "OPTIONS" : {'read_default_file' : str(BASE_DIR / 'my.cnf')},
+        "OPTIONS" : {"read_default_file" : str(BASE_DIR/"my.cnf"),}
+        # "NAME" : "pr_01",
+        # "USER" : "root",
+        # "PASSWORD" : '1234',
+        # "PORT" : '3306',
+        # "HOST" : 'localhost',
     }
 }
 
