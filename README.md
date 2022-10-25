@@ -3,7 +3,7 @@
 ## 프로젝트 공지사항
 ### 코드 작성 규칙
 
-템플릿, static(이미지, css, js...) 파일은 templates/ 각자 앱 or static/ 각자 앱 폴더에 일괄저장  
+템플릿, static(이미지, css, js...) 파일은 "templates/앱 이름" or "static/앱 이름" 폴더에 일괄저장  
 
 링크 작성할 때 하드코딩 피하기
 
