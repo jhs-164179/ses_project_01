@@ -1,0 +1,519 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>데이터 페이지</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS (구형 페이지 지원용)-->
+	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/linearicons/style.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/chartist/css/chartist-custom.css' %}">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<!-- SUB CSS (탭 수직정렬) -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.vertical-tabs.min.css' %}">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon.png' %}">
+</head>
+
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="brand">
+				<a href="index.html"><img src="{% static 'img/logo-dark.png' %}" alt="Klorofil Logo" class="img-responsive logo"></a>
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+				<form class="navbar-form navbar-left">
+					<div class="input-group">
+						<input type="text" value="" class="form-control" placeholder="Search dashboard...">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
+					</div>
+				</form>
+				<div class="navbar-btn navbar-btn-right">
+					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+				</div>
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+								<i class="lnr lnr-alarm"></i>
+								<span class="badge bg-danger">5</span>
+							</a>
+							<ul class="dropdown-menu notifications">
+								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>System space is almost full</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-danger"></span>You have 9 unfinished tasks</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Monthly report is available</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-warning"></span>Weekly meeting in 1 hour</a></li>
+								<li><a href="#" class="notification-item"><span class="dot bg-success"></span>Your request has been approved</a></li>
+								<li><a href="#" class="more">See all notifications</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Basic Use</a></li>
+								<li><a href="#">Working With Data</a></li>
+								<li><a href="#">Security</a></li>
+								<li><a href="#">Troubleshooting</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'img/user.png' %}" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
+								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+							</ul>
+						</li>
+						<!-- <li>
+							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+
+		<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
+						<li><a href="charts.html" class="active"><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
+						<li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
+						<li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
+						<li>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse ">
+								<ul class="nav">
+									<li><a href="page-profile.html" class="">Profile</a></li>
+									<li><a href="page-login.html" class="">Login</a></li>
+									<li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
+								</ul>
+							</div>
+						</li>
+						<li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
+						<li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
+						<li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
+		
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<!-- 페이지 타이틀 -->
+					<h3 class="page-title">데이터 분석</h3>
+
+					<!-- 페이지 상단 -->
+					<div class="row">
+						<!-- 지도(카카오 맵 API) -->
+						<div class="col-md-6">
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">전기차 현황</h3>
+								</div>
+								<div class="panel-body">
+									<div id="map" style="width:540px; height:600px; margin:auto;"></div>
+								</div>
+								<!-- 탭별로 전국/지역 별 전기차 대수 순위별로 표시 -->
+								<div class="panel-footer" style="height: 150px;">
+									<div class="row">
+										<div class="col-xs-3"> <!-- required for floating -->
+											<!-- Nav tabs -->
+											<ul class="nav nav-tabs tabs-left">
+												<li class="active"><a href="#national" data-toggle="tab">전기차<br>(전국)</a></li>
+												<li class="dropdown">
+													<a href="#" id="myTabDrop2" class="dopdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents2">전기차<span class="caret"></span><br>(지역)</a>
+													<ul class="dropdown-menu" aria-labelledby="myTabDrop2" id="myTabDrop1-contents2">
+														<li><a href="#dropdown1-2" data-toggle="tab">수도권</a></li>
+														<li><a href="#dropdown2-2" data-toggle="tab">강원도</a></li>
+														<li><a href="#dropdown3-2" data-toggle="tab">충청도</a></li>
+														<li><a href="#dropdown4-2" data-toggle="tab">전라도</a></li>
+														<li><a href="#dropdown5-2" data-toggle="tab">경상도</a></li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+										
+										<div class="col-xs-9">
+											<!-- Tab panes -->
+											<div class="tab-content">
+											  	<div class="tab-pane active" id="national">
+													<div class="row">
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<li>1. 수도권&ensp;50000대&nbsp;(50%)</li>
+																<li style="margin: 10px 0px">2. 경상도&ensp;20000대&nbsp;(20%)</li>
+																<li style="margin: 10px 0px">3. 전라도&ensp;18000대&nbsp;(18%)</li>
+															</ol>
+														</div>
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<li style="margin: 0px 0px">4. 충청도&ensp;7000대&nbsp;(7%)</li>
+																<li style="margin: 10px 0px">5. 강원도&ensp;5000대&nbsp;(5%)</li>
+															</ol>
+														</div>
+													</div>
+												</div>
+											  	<div class="tab-pane" id="dropdown1-2">
+													<div class="row">
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<!-- 수도권 -->
+																<li>1. 서울&ensp;30000대&nbsp;(60%)</li>
+																<li style="margin: 10px 0px">2. 인천&ensp;15000대&nbsp;(30%)</li>
+																<li style="margin: 10px 0px">3. 성남&ensp;2000대&nbsp;(4%)</li>
+															</ol>
+														</div>
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<li style="margin: 0px 0px">4. 광주&ensp;1500대&nbsp;(3%)</li>
+																<li style="margin: 10px 0px">5. 수원&ensp;800대&nbsp;(1.6%)</li>
+																<li style="margin: 10px 0px">6. 파주&ensp;700대&nbsp;(1.4%)</li>
+															</ol>
+														</div>
+													</div>
+												</div>
+											  	<div class="tab-pane" id="dropdown2-2">
+													<div class="row">
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<!-- 강원도 -->
+																<li>1. 강릉&ensp;30000대&nbsp;(60%)</li>
+																<li style="margin: 10px 0px">2. 춘천&ensp;15000대&nbsp;(30%)</li>
+																<li style="margin: 10px 0px">3. 삼척&ensp;2000대&nbsp;(4%)</li>
+															</ol>
+														</div>
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<li style="margin: 0px 0px">4. 동해&ensp;1500대&nbsp;(3%)</li>
+																<li style="margin: 10px 0px">5. 원주&ensp;800대&nbsp;(1.6%)</li>
+																<li style="margin: 10px 0px">6. 양양&ensp;700대&nbsp;(1.4%)</li>
+															</ol>
+														</div>
+													</div>
+												</div>
+											  	<div class="tab-pane" id="dropdown3-2">
+													<div class="row">
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<!-- 충청도 -->
+																<li>1. 대전&ensp;30000대&nbsp;(60%)</li>
+																<li style="margin: 10px 0px">2. 세종&ensp;15000대&nbsp;(30%)</li>
+																<li style="margin: 10px 0px">3. 천안&ensp;2000대&nbsp;(4%)</li>
+															</ol>
+														</div>
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<li style="margin: 0px 0px">4. 청주&ensp;1500대&nbsp;(3%)</li>
+																<li style="margin: 10px 0px">5. 아산&ensp;800대&nbsp;(1.6%)</li>
+																<li style="margin: 10px 0px">6. 서산&ensp;700대&nbsp;(1.4%)</li>
+															</ol>
+														</div>
+													</div>
+												</div>
+											  	<div class="tab-pane" id="dropdown4-2">
+													<div class="row">
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<!-- 전라도 -->
+																<li>1. 광주&ensp;30000대&nbsp;(60%)</li>
+																<li style="margin: 10px 0px">2. 전주&ensp;15000대&nbsp;(30%)</li>
+																<li style="margin: 10px 0px">3. 나주&ensp;2000대&nbsp;(4%)</li>
+															</ol>
+														</div>
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<li style="margin: 0px 0px">4. 담양&ensp;1500대&nbsp;(3%)</li>
+																<li style="margin: 10px 0px">5. 목포&ensp;800대&nbsp;(1.6%)</li>
+																<li style="margin: 10px 0px">6. 해남&ensp;700대&nbsp;(1.4%)</li>
+															</ol>
+														</div>
+													</div>
+												</div>
+											  	<div class="tab-pane" id="dropdown5-2">
+													<div class="row">
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<!-- 경상도 -->
+																<li>1. 부산&ensp;30000대&nbsp;(60%)</li>
+																<li style="margin: 10px 0px">2. 울산&ensp;15000대&nbsp;(30%)</li>
+																<li style="margin: 10px 0px">3. 대구&ensp;2000대&nbsp;(4%)</li>
+															</ol>
+														</div>
+														<div class="col-xs-6">
+															<ol style="list-style: none; padding-left: 0px;">
+																<li style="margin: 0px 0px">4. 경주&ensp;1500대&nbsp;(3%)</li>
+																<li style="margin: 10px 0px">5. 상주&ensp;800대&nbsp;(1.6%)</li>
+																<li style="margin: 10px 0px">6. 울릉도&ensp;700대&nbsp;(1.4%)</li>
+															</ol>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- 그래프(bar + line) -->
+						<div class="col-md-6">
+							<div class="panel-group">
+								<h3 style="text-align: center; margin-top:0px; margin-bottom: 15px;">주 타겟층</h3>
+								<div class="panel">
+									<div class="panel-heading">
+										<h3 class="panel-title">연령별 차량 등록 대수</h3>
+									</div>
+									<div class="panel-body">
+										<div id="demo-bar-chart" class="ct-chart"></div>
+									</div>
+								</div>
+								<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">품질향상이 필요한 전기차 인프라</h3>
+								<div class="panel">
+									<div class="panel-heading">
+										<h3 class="panel-title">전기차 민원</h3>
+									</div>
+									<div class="panel-body">
+										<div id="demo-line-chart" class="ct-chart"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+
+					<!-- 페이지 하단 -->
+					<div class="row">
+						<!-- 그래프(area) -->
+						<div class="col-md-5">
+							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">충전소 문제점</h3>
+							<div class="panel" style="margin-left: 20px;">
+								<div class="panel-heading">
+									<h3 class="panel-title">충전소 현황 데이터</h3>
+								</div>
+								<div class="panel-body">
+									<div id="demo-area-chart" class="ct-chart"></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- 그래프(multiple) -->
+						<div class="col-md-7">
+							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">전기차 보조금 예측</h3>
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">예측 모델 결과</h3>
+								</div>
+								<div class="panel-body">
+									<div id="multiple-chart" class="ct-chart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END MAIN CONTENT -->
+		</div>
+		<!-- END MAIN -->
+
+		<!-- 페이지 하단 copyright -->
+		<div class="clearfix"></div>
+		<footer>
+			<div class="container-fluid">
+				<p class="copyright">Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a></p>
+			</div>
+		</footer>
+		<!-- 페이지 하단 copyright END -->
+	</div>
+	<!-- END WRAPPER -->
+	
+	<!-- Javascript -->
+	<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'vendor/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+	<script src="{% static 'vendor/chartist/js/chartist.min.js' %}"></script>
+	<script src="{% static 'scripts/klorofil-common.js' %}"></script>
+	
+	
+	<!-- 카카오 맵 api -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e033816e8f4fac437e466060be505bae&libraries=clusterer"></script>
+	<script>
+		var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+			center : new kakao.maps.LatLng(36.0694, 127.7891), // 지도의 중심좌표 
+			level : 13 // 지도의 확대 레벨 
+			
+		});
+		// 마우스 휠로 확대 축소하는 기능 제거
+		map.setZoomable(false);
+
+		// 지도 타입 변경 기능 추가
+		var mapTypeControl = new kakao.maps.MapTypeControl();
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT)
+
+		// 지도 줌 기능 추가
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT)
+
+		// 원 생성(서울)
+		var circle = new kakao.maps.Circle({
+			center: new kakao.maps.LatLng(37.5447,126.9884), // 원 중심 설정
+			radius: 50000, // 원 반지름 설정 (단위:미터)
+			strokeWeight: 1, // 테두리 선의 굵기 설정
+			strokeColor: '#75B8FA', // 테두리 선의 색 설정
+			strokeOpacity: 1, // 테두리 선의 투명도 설정
+			fillColor: '#75B8FA', // 채우기 색 설정
+			fillOpacity: 0.3 // 채우기 투명도 설정
+		});
+
+		circle.setMap(map);
+
+		// 원 생성(광주)
+		var circle2 = new kakao.maps.Circle({
+			center: new kakao.maps.LatLng(35.1506,126.821), // 원 중심 설정
+			radius: 20000, // 원 반지름 설정 (단위:미터)
+			strokeWeight: 1, // 테두리 선의 굵기 설정
+			strokeColor: '#9B111E', // 테두리 선의 색 설정
+			strokeOpacity: 1, // 테두리 선의 투명도 설정
+			fillColor: '#9B111E', // 채우기 색 설정
+			fillOpacity: 0.3 // 채우기 투명도 설정
+		});
+
+		circle2.setMap(map);
+
+
+	</script>
+	<script>
+		
+	$(function() {
+		var options;
+
+		var data = {
+			labels: ['20대', '30대', '40대', '50대', '60대'],
+			series: [
+				[90, 240, 350, 500, 210],
+			]
+		};
+
+		var data_minwon = {
+			labels: ['충전시설', '구매지원', '정책건의', '차량성능', '운행지원'],
+			series: [
+				[500, 140, 70, 50, 21],
+			]
+		};
+
+		var data_charger = {
+			labels: ['수리중', '구매지원', '정책건의', '차량성능', '운행지원'],
+			series: [
+				[500, 140, 70, 50, 21],
+			]
+		};
+
+
+		// line chart
+		options = {
+			height: "275px",
+			showPoint: true,
+			axisX: {
+				showGrid: false
+			},
+			lineSmooth: false,
+		};
+
+		new Chartist.Line('#demo-line-chart', data_minwon, options);
+
+		// bar chart
+		options = {
+			height: "275px",
+			axisX: {
+				showGrid: false
+			},
+		};
+
+		new Chartist.Bar('#demo-bar-chart', data, options);
+
+
+		// area chart
+		options = {
+			height: "270px",
+			showArea: true,
+			showLine: false,
+			showPoint: false,
+			axisX: {
+				showGrid: false
+			},
+			lineSmooth: false,
+		};
+
+		new Chartist.Line('#demo-area-chart', data_charger, options);
+
+
+		// multiple chart
+		var data_support = {
+			labels: ['2018','2019', '2020', '2021', '2022','2023'],
+			series: [{
+				name: 'series-real',
+				data: [1000, 1200, 1300, 1400, 1500],
+			}, {
+				name: 'series-prediction',
+				data: [1500, 1400, 700, 600, 650, 300],
+			}]
+		};
+
+		var options = {
+			fullWidth: true,
+			lineSmooth: false,
+			height: "270px",
+			low: 0,
+			high: 'auto',
+			series: {
+				'series-projection': {
+					showArea: true,
+					showPoint: false,
+					showLine: false
+				},
+			},
+			axisX: {
+				showGrid: false,
+
+			},
+			axisY: {
+				showGrid: false,
+				onlyInteger: true,
+				offset: 0,
+			},
+			chartPadding: {
+				left: 20,
+				right: 20
+			}
+		};
+
+		new Chartist.Line('#multiple-chart', data_support, options);
+
+	});
+	</script>
+</body>
+
+</html>
