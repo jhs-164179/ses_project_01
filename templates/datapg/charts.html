@@ -22,6 +22,47 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon.png' %}">
+
+	<!-- 구글 charts api -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		// Load the Visualization API and the corechart package
+		google.charts.load('current', {'packages':['corechart']});
+
+		// Set a callback to run when the Google Visualization API is loaded
+		google.charts.setOnLoadCallback(drawChart);
+
+		// Callback that creates and populates a data table,
+		// instantiates the pie chart, passes in the data and draws it
+		function drawChart() {
+			// Create the data table
+			var data_g = new google.visualization.DataTable();
+			data_g.addColumn('string','Topping');
+			data_g.addColumn('number','Slices');
+			data_g.addRows([
+				['Mushrooms',3],
+				['Onions',1],
+				['Olives',1],
+				['Zucchini',1],
+				['Pepperoni',2]
+			]);
+
+			// Set chart options
+			var options_g = {
+				'width':500,
+				'height':300,
+				annotations: {
+					textStyle: {
+						fontFamily:"Source Sans Pro",
+					}
+				}
+			};
+
+			// Instantiate and draw our chart, passing in some options
+			var chart = new google.visualization.ColumnChart(document.getElementById('demo-line-chart'));
+			chart.draw(data_g,options_g);
+		}
+	</script>
 </head>
 
 <body>
@@ -297,7 +338,7 @@
 										<h3 class="panel-title">연령별 차량 등록 대수</h3>
 									</div>
 									<div class="panel-body">
-										<div id="demo-bar-chart" class="ct-chart"></div>
+										<div id="demo-bar-chart"></div>
 									</div>
 								</div>
 								<!-- 전기차 관련 민원 통계 -->
@@ -307,7 +348,7 @@
 										<h3 class="panel-title">전기차 민원</h3>
 									</div>
 									<div class="panel-body">
-										<div id="demo-line-chart" class="ct-chart"></div>
+										<div id="demo-line-chart" class="ct-chart-line"></div>
 									</div>
 								</div>
 							</div>
@@ -372,11 +413,12 @@
 	<script src="{% static 'scripts/klorofil-common.js' %}"></script>
 	
 	
+	
 	<!-- 카카오 맵 api -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e033816e8f4fac437e466060be505bae&libraries=clusterer"></script>
 	<script>
 		var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-			center : new kakao.maps.LatLng(36.0694, 127.7891), // 지도의 중심좌표 
+			center : new kakao.maps.LatLng(35.936, 127.811), // 지도의 중심좌표 
 			level : 13 // 지도의 확대 레벨 
 			
 		});
@@ -391,6 +433,30 @@
 		var zoomControl = new kakao.maps.ZoomControl();
 		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT)
 
+		// 글자 생성(수도권)
+		var content_seoul = '<h4><p style="color:black; font-weight:bold; text-align:center;">수도권 50000대(50%)</p></h4>'
+
+		var position_q = new kakao.maps.LatLng(37.5447,126.9884)
+
+		var customOverlay = new kakao.maps.CustomOverlay({
+			position: position_q,
+			content: content_seoul,
+			
+		});
+		customOverlay.setMap(map);
+
+		// 글자 생성(전남)
+		var content_jeon = '<h5><p style="color:black; font-weight:bold; text-align:center;">전라도 18000대(18%)</p></h5>'
+
+		var position_j = new kakao.maps.LatLng(35.1506,126.821)
+
+		var customOverlay = new kakao.maps.CustomOverlay({
+			position: position_j,
+			content: content_jeon,
+			
+		});
+		customOverlay.setMap(map);
+
 		// 원 생성(서울)
 		var circle = new kakao.maps.Circle({
 			center: new kakao.maps.LatLng(37.5447,126.9884), // 원 중심 설정
@@ -399,7 +465,7 @@
 			strokeColor: '#75B8FA', // 테두리 선의 색 설정
 			strokeOpacity: 1, // 테두리 선의 투명도 설정
 			fillColor: '#75B8FA', // 채우기 색 설정
-			fillOpacity: 0.3 // 채우기 투명도 설정
+			fillOpacity: 0.7 // 채우기 투명도 설정
 		});
 
 		circle.setMap(map);
@@ -409,25 +475,33 @@
 			center: new kakao.maps.LatLng(35.1506,126.821), // 원 중심 설정
 			radius: 20000, // 원 반지름 설정 (단위:미터)
 			strokeWeight: 1, // 테두리 선의 굵기 설정
-			strokeColor: '#9B111E', // 테두리 선의 색 설정
+			strokeColor: '#DB4455', // 테두리 선의 색 설정
 			strokeOpacity: 1, // 테두리 선의 투명도 설정
-			fillColor: '#9B111E', // 채우기 색 설정
-			fillOpacity: 0.3 // 채우기 투명도 설정
+			fillColor: '#DB4455', // 채우기 색 설정
+			fillOpacity: 0.7 // 채우기 투명도 설정
 		});
-
 		circle2.setMap(map);
+		
+		
 
 
 	</script>
+
+	
+
+
+
+	<!-- Chartist api -->
 	<script>
 		
 	$(function() {
 		var options;
 		// 연령별 차량 등록 대수 데이터
 		var data = {
-			labels: ['20대', '30대', '40대', '50대', '60대'],
+			labels: ['10대','20대', '30대', '40대', '50대', '60대','70대','80대 이상'],
 			series: [
-				[90, 240, 350, 500, 210],
+				[7356, 381712, 2134715, 3895544, 4502550,3596346,1152680,219346],
+				[3586, 200044,888047,1456040,1722621,1124880,246193,59012],
 			]
 		};
 		// 전기차 민원 데이터
@@ -448,18 +522,21 @@
 
 		// line chart
 		options = {
+			fullWidth: true,
 			height: "295px",
-			showPoint: true,
+			showPoint: false,
 			axisX: {
 				showGrid: false
 			},
 			lineSmooth: false,
 		};
 
-		new Chartist.Line('#demo-line-chart', data_minwon, options);
+		// new Chartist.Line('#demo-line-chart', data_minwon, options);
+	
 
 		// bar chart
 		options = {
+			fullWidth: true,
 			height: "295px",
 			axisX: {
 				showGrid: false
