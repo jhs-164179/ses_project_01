@@ -1,0 +1,103 @@
+<script>
+	// window.oncontextmenu = function() {
+	// 	alert('복사 방지를 위해 마우스 우클릭이 금지되어 있습니다.');
+	// 	return false;
+	// }
+
+	function drsearch() {
+		if (window.event.keyCode == 13) {
+    		search();
+    	}
+		return false;
+	}
+
+    function search() { //검색어 입력 후 이동하는 기능 구현
+        let input_word = document.getElementById("s_input").value;
+        if (input_word == "" || input_word == " " || input_word.replaceAll(" ", "") == "") {
+            alert('검색어를 입력해 주세요.');
+            return false;
+        }
+		window.open("https://www.google.com/search?q=" + input_word);
+    }
+
+</script>
+
+    <!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top" style="height: 50px;">
+			<div class="navbar-btn" style="padding: 0px 15px 0px 15px;">
+				<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+			</div>
+			<div class="brand" style="height:50px; padding: 11px 15px 11px 15px;">
+				<a style="font-size:20px;">전기자동차</a>
+			</div>
+			<div class="container-fluid">
+				<!-- 로그인과 같이 보안이 중요한 경우에는 POST를 사용해야 하나 단순 검색과 같은 기능 구현시에는 GET을 사용해도 괜찮음 -->
+				<!-- 검색창 -->
+				<form method="get" action="" class="navbar-form navbar-right" style="padding: 0px 35px 0px 15px;" onsubmit="return false;">
+                    {% csrf_token %}
+					<div class="input-group">
+						<input type="text" value="" id="s_input" class="form-control" placeholder="검색할 게시글 제목 입력" onkeypress="drsearch()"> <!--검색어 입력 후 엔터 시에도 검색 되게끔 수정-->
+						<span class="input-group-btn"><button type="button" class="btn btn-primary" value="" id="s_button" onclick="search();">검색</button></span> <!--검색기능 onclick 이벤트 구현-->
+					</div>
+				</form>
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right" style="margin-top: 0px; margin-bottom: 0px;">
+						<li class="dropdown">
+							<!-- 로그인 안내 기능 -->
+							<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span>님 환영합니다.</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href=""><i class="lnr lnr-user"></i> <span>로그인 OR 회원정보</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
+								<li><a href=""><i class="lnr lnr-exit"></i> <span>회원가입 OR 로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+								<!-- <li><a href=""><i class="lnr lnr-envelope"></i> <span></span></a></li> -->
+								<!-- <li><a href=""><i class="lnr lnr-cog"></i> <span></span></a></li> -->
+
+							</ul>
+						</li>
+						<li class="dropdown"">
+							<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span>메뉴</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu" style="left:0; right:0">
+								<li><a href="{% url 'main:index' %}">홈</a></li>
+								<li><a href="">전기차2</a></li>
+								<li><a href="">전기차3</a></li>
+								<li><a href="">전기차4</a></li>
+							</ul>
+						</li>
+						<!-- <li>
+							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+		<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar" style="padding-top: 35px;">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="{% url 'main:index' %}" class="active"><i class="lnr lnr-home"></i> <span>홈</span></a></li>
+						<li><a href="" class="active"><i class="lnr lnr-user"></i> <span>로그인 OR 회원정보</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+						<li><a href="" class="active"><i class="lnr lnr-exit"></i> <span>회원가입 OR 로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+						<!-- <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li> -->
+						<!-- <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>분석</span></a></li> -->
+						<!-- <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li> -->
+						<!-- <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li> -->
+						<li>
+							<a href="#subPages" data-toggle="collapse" class="active"><i class="lnr lnr-file-empty"></i> <span>메뉴</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse ">
+								<ul class="nav">
+									<li><a href="" class=""><i class="lnr lnr-dice"></i> <span>통계</span></a></li>
+									<li><a href="" class=""><i class="lnr lnr-chart-bars"></i> <span>분석</span></a></li>
+									<!-- <li><a href="page-profile.html" class="">Profile</a></li> -->
+									<!-- <li><a href="page-login.html" class="">Login</a></li> -->
+									<!-- <li><a href="page-lockscreen.html" class="">Lockscreen</a></li> -->
+								</ul>
+							</div>
+						</li>
+						<!-- <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li> -->
+						<!-- <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li> -->
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
