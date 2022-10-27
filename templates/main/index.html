@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-	<title>전기자동차 </title>
+	<title>전기 자동차 분석 서비스</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -15,316 +15,194 @@
 	<link rel="stylesheet" href="{% static 'vendor/chartist/css/chartist-custom.css' %}">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'css/nicepage.css' %}">
+	<link rel="stylesheet" href="{% static 'css/Home.css' %}">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
 	<link rel="stylesheet" href="{% static 'css/demo.css' %}">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/car-icon.png' %}">
 </head>
+<style>
+	.main {
+		/*background-color: beige;*/
+		background-image:url("{% static 'img/eccar.jpg' %}");
+		background-size:cover;
+		
+	}
+
+	.box_four {
+		border: 1px solid transparent;
+    	border-radius: 4px;
+	}
+
+</style>
+
 
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
-		<!-- NAVBAR -->
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="brand">
-				<a href="" style="font-size: 20px;">전기자동차</a>
-			</div>
-			<div class="container-fluid">
-				<!-- <div class="navbar-btn">
-					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
-				</div> -->
-				<form class="navbar-form navbar-right">
-					<div class="input-group">
-						<input type="text" value="" class="form-control" placeholder="검색할 내용을 입력하세요.">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary">검색</button></span>
-					</div>
-				</form>
-
-				<div id="navbar-menu">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>메뉴</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">전기차1</a></li>
-								<li><a href="#">전기차2</a></li>
-								<li><a href="#">전기차3</a></li>
-								<li><a href="#">전기차4</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<!-- 로그인 안내 기능 -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>님 환영합니다.</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>회원정보</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li>
-								<!-- <li><a href="#"><i class="lnr lnr-envelope"></i> <span></span></a></li> -->
-								<!-- <li><a href="#"><i class="lnr lnr-cog"></i> <span></span></a></li> -->
-
-							</ul>
-						</li>
-						<!-- <li>
-							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-						</li> -->
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<!-- END NAVBAR -->
-		<!-- LEFT SIDEBAR -->
-		<div id="sidebar-nav" class="sidebar">
-			<div class="sidebar-scroll">
-				<nav>
-					<ul class="nav">
-						<li><a href="index.html" class="active"><i class="lnr lnr-home"></i> <span>홈</span></a></li>
-						<!-- <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li> -->
-						<!-- <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>분석</span></a></li> -->
-						<!-- <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li> -->
-						<!-- <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li> -->
-						<li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>메뉴</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages" class="collapse ">
-								<ul class="nav">
-									<li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>통계</span></a></li>
-									<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>분석</span></a></li>
-									<!-- <li><a href="page-profile.html" class="">Profile</a></li> -->
-									<!-- <li><a href="page-login.html" class="">Login</a></li> -->
-									<!-- <li><a href="page-lockscreen.html" class="">Lockscreen</a></li> -->
-								</ul>
-							</div>
-						</li>
-						<!-- <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li> -->
-						<!-- <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li> -->
-					</ul>
-				</nav>
-			</div>
-		</div>
-		<!-- END LEFT SIDEBAR -->
-		<!-- MAIN -->
-		<div class="main">
-			<!-- MAIN CONTENT -->
-			<div class="main-content">
-				<div class="container-fluid">
-					<!-- OVERVIEW -->
-					<div class="panel panel-headline">
-						<div class="panel-heading">
-							<h3 class="panel-title" style="text-align: center;">전기자동차 통계 현황</h3>
-							<!-- <p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p> -->
-						</div>
-						<div class="panel-body">
-							<!-- <div class="row">
-								<div class="col-md-3">
-									<div class="metric">
-										<span class="icon"><i class="fa fa-download"></i></span>
-										<p>
-											<span class="number">1,252</span>
-											<span class="title">Downloads</span>
-										</p>
+		{% include 'main/menubar.html' %}
+		<div class="main" style="background-color:powderblue; padding-top:50px">
+			<!-- <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+				<img src="{% static 'img/eccar0.png' %}" class="u-align-left u-expanded-width-xs u-image u-left-0 u-image-1" data-image-width="600" data-image-height="480" style="margin : 10px">
+			</div> -->
+			<h1 style="text-align:center; color: white"><b>전기 자동차 분석 서비스</b></h1>
+			<section class="u-clearfix u-section-1" id="carousel_b297" style="min-height:max-content;">
+				<div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1" style="margin:0px;">
+					<div class="u-layout">
+						<div class="u-layout-col">
+							<div class="u-size-30">
+								<div class="u-layout-row">
+									<!-- 1 -->
+						  			<div class="u-container-style u-layout-cell u-left-cell u-size-30 alert-info alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"> <!--rgb(120, 120, 180)-->
+										<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
+											<h2 class="u-text u-text-default u-text-1">자료 조사</h2>
+											<ul class="u-custom-list u-spacing-13 u-text u-text-2">
+										  	<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>
+										  	<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>					
+											<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>						
+											</ul>
+											<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
+											  확인하기
+										  	</a>
+										</div>
+						  			</div>
+									<!-- 2 -->
+						  			<div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-30 alert-success alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"> <!--rgb(210, 100, 100)-->
+										<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
+							  				<h2 class="u-text u-text-default u-text-1">데이터 분석</h2>
+							  				<ul class="u-custom-list u-spacing-13 u-text u-text-2">
+											<li>
+								  				<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+								  				</div>Lectus urna duis convallis.&nbsp;
+											</li>
+											<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>				
+											<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>							
+							  				</ul>
+							  				<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
+												확인하기
+											</a>
+										</div>
 									</div>
 								</div>
-								<div class="col-md-3">
-									<div class="metric">
-										<span class="icon"><i class="fa fa-shopping-bag"></i></span>
-										<p>
-											<span class="number">203</span>
-											<span class="title">Sales</span>
-										</p>
-									</div>
+					  		</div>
+							<div class="u-size-30">
+								<div class="u-layout-row">
+									<!-- 3 -->
+							  		<div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 alert-warning alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"><!--rgb(210, 210, 170)-->
+										<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
+											<h2 class="u-text u-text-default u-text-1">수요 예측</h2>
+											<ul class="u-custom-list u-spacing-13 u-text u-text-2">
+										  	<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>
+										  	<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>
+											<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>											
+											</ul>
+											<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
+											  확인하기
+										  </a>
+										</div>
+							  		</div>
+									<!-- 4 -->
+							  		<div class="u-container-style u-image u-layout-cell u-right-cell u-size-30 alert-danger alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"> <!--rgb(170, 210, 170)-->
+										<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
+											<h2 class="u-text u-text-default u-text-1">개선점 제시</h2>
+											<ul class="u-custom-list u-spacing-13 u-text u-text-2">
+										  	<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>
+										  	<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>
+											<li>
+												<div class="u-list-icon u-text-white">
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>											
+											</ul>
+											<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
+											  확인하기
+										  </a>
+										</div>
+							  		</div>
 								</div>
-								<div class="col-md-3">
-									<div class="metric">
-										<span class="icon"><i class="fa fa-eye"></i></span>
-										<p>
-											<span class="number">274,678</span>
-											<span class="title">Visits</span>
-										</p>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="metric">
-										<span class="icon"><i class="fa fa-bar-chart"></i></span>
-										<p>
-											<span class="number">35%</span>
-											<span class="title">Conversions</span>
-										</p>
-									</div>
-								</div>
-							</div> -->
-							<div class="row">
-								<div class="col-md-12">
-									<div id="headline-chart" class="ct-chart"></div>
-								</div>
-								<!-- <div class="col-md-3">
-									<div class="weekly-summary text-right">
-										<span class="number">2,315</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 12%</span>
-										<span class="info-label">Total Sales</span>
-									</div>
-									<div class="weekly-summary text-right">
-										<span class="number">$5,758</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
-										<span class="info-label">Monthly Income</span>
-									</div>
-									<div class="weekly-summary text-right">
-										<span class="number">$65,938</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
-										<span class="info-label">Total Income</span>
-									</div>
-								</div> -->
-							</div>
-						</div>
-					</div>
-					<!-- END OVERVIEW -->
-					<div class="row">
-						<div class="col-md-6">
-							<!-- RECENT PURCHASES -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title" style="text-align: center;">구매 수요 현황</h3>
-									<div class="right">
-										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-									</div>
-								</div>
-								<div class="panel-body no-padding">
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th>일련번호</th>
-												<th>차명</th>
-												<th>가격</th>
-												<th>날짜</th>
-												<th>상태</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>763648</a></td>
-												<td>Steve</td>
-												<td>$122</td>
-												<td>Oct 21, 2016</td>
-												<td><span class="label label-success">COMPLETED</span></td>
-											</tr>
-											<tr>
-												<td>763649</a></td>
-												<td>Amber</td>
-												<td>$62</td>
-												<td>Oct 21, 2016</td>
-												<td><span class="label label-warning">PENDING</span></td>
-											</tr>
-											<tr>
-												<td>763650</a></td>
-												<td>Michael</td>
-												<td>$34</td>
-												<td>Oct 18, 2016</td>
-												<td><span class="label label-danger">FAILED</span></td>
-											</tr>
-											<tr>
-												<td>763651</a></td>
-												<td>Roger</td>
-												<td>$186</td>
-												<td>Oct 17, 2016</td>
-												<td><span class="label label-success">SUCCESS</span></td>
-											</tr>
-											<tr>
-												<td>763652</a></td>
-												<td>Smith</td>
-												<td>$362</td>
-												<td>Oct 16, 2016</td>
-												<td><span class="label label-success">SUCCESS</span></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="panel-footer">
-									<div class="row">
-
-																				<div class="col-md-6"></div><div class="col-md-6 text-right"><a href="#" class="btn btn-primary">상세 보기</a></div>
-									</div>
-								</div>
-							</div>
-							<!-- END RECENT PURCHASES -->
-						</div>
-						<div class="col-md-6">
-							<!-- MULTI CHARTS -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title" style="text-align: center;">실제 수요 및 전망</h3>
-									<div class="right">
-										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-									</div>
-								</div>
-								<div class="panel-body">
-									<div id="visits-trends-chart" class="ct-chart"></div>
-								</div>
-							</div>
-							<!-- END MULTI CHARTS -->
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<!-- TASKS -->
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title" style="text-align: center;">전기자동차 구입 시 고려 사항</h3>
-									<div class="right">
-										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-									</div>
-								</div>
-								<div class="panel-body">
-									<ul class="list-unstyled task-list">
-										<li>
-											<p>Updating Users Settings <span class="label-percent">23%</span></p>
-											<div class="progress progress-xs">
-												<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width:23%">
-													<span class="sr-only">23% Complete</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<p>Load &amp; Stress Test <span class="label-percent">80%</span></p>
-											<div class="progress progress-xs">
-												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-													<span class="sr-only">80% Complete</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<p>Data Duplication Check <span class="label-percent">100%</span></p>
-											<div class="progress progress-xs">
-												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-													<span class="sr-only">Success</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<p>Server Check <span class="label-percent">45%</span></p>
-											<div class="progress progress-xs">
-												<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-													<span class="sr-only">45% Complete</span>
-												</div>
-											</div>
-										</li>
-										<li>
-											<p>Mobile App Development <span class="label-percent">10%</span></p>
-											<div class="progress progress-xs">
-												<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-													<span class="sr-only">10% Complete</span>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<!-- END TASKS -->
+						  	</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- END MAIN CONTENT -->
+			</section>
+			<div style="color:transparent;">.</div>
+			<div><h1 style="text-align:center; color: white"><b>메뉴 이동하기</b></h1></div>
+			<div class="u-clearfix u-gutter-30 u-layout-wrap u-layout-wrap-1">
+				<div class="u-layout" style="margin : 5px">
+				  	<div class="u-layout-row">
+						<div class="u-align-center u-container-style u-layout-cell u-left-cell u-palette-1-base u-size-20 u-layout-cell-1" style="border: 10px solid transparent; border-radius: 35px;">
+						  	<a href="">
+							  	<div class="u-container-layout u-valign-middle u-container-layout-1">
+									<h3 class="u-text u-text-body-alt-color u-text-1">제목1</h3>
+									<p class="u-text u-text-body-alt-color u-text-2" style="padding:10px">Donec volutpat, purus et tempus convallis, odio quam consectetur nulla, sit amet auctor augue ligula ac ipsum. Curabitur elementum...</p>
+							  	</div>
+						  	</a>
+					  	</div>							
+						<div class="u-align-center u-container-style u-layout-cell u-palette-2-base u-size-20 u-layout-cell-2" style="border: 10px solid transparent; border-radius: 35px;">
+						  	<a href="">
+							  	<div class="u-container-layout u-valign-middle u-container-layout-2">
+									<h3 class="u-text u-text-body-alt-color u-text-3">제목2</h3>
+									<p class="u-text u-text-body-alt-color u-text-4" style="padding:10px">Donec volutpat, purus et tempus convallis, odio quam consectetur nulla, sit amet auctor augue ligula ac ipsum. Curabitur elementum...</p>
+							  	</div>
+						  	</a>
+						</div>
+						<div class="u-align-center u-container-style u-layout-cell u-palette-3-base u-right-cell u-size-20 u-layout-cell-3" style="border: 10px solid transparent; border-radius: 35px;">
+						  	<a href="">								
+							  	<div class="u-container-layout u-valign-middle u-container-layout-3">
+									<h3 class="u-text u-text-body-alt-color u-text-5">제목3</h3>
+									<p class="u-text u-text-body-alt-color u-text-6" style="padding:10px">Donec volutpat, purus et tempus convallis, odio quam consectetur nulla, sit amet auctor augue ligula ac ipsum. Curabitur elementum...</p>
+								</div>
+						  	</a>	
+					  	</div>
+				  	</div>
+			  	</div>
+		  	</div>			
 		</div>
-		<!-- END MAIN -->
 		<div class="clearfix"></div>
 		<footer>
 			<!-- <div class="container-fluid">
@@ -341,124 +219,6 @@
 	<script src="{% static 'vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
 	<script src="{% static 'vendor/chartist/js/chartist.min.js' %}"></script>
 	<script src="{% static 'scripts/klorofil-common.js' %}"></script>
-	<script>
-	$(function() {
-		var data, options;
-
-		// headline charts
-		data = {
-			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-			series: [
-				[23, 29, 24, 40, 25, 24, 35],
-				[14, 25, 18, 34, 29, 38, 44],
-			]
-		};
-
-		options = {
-			height: 300,
-			showArea: true,
-			showLine: false,
-			showPoint: false,
-			fullWidth: true,
-			axisX: {
-				showGrid: false
-			},
-			lineSmooth: false,
-		};
-
-		new Chartist.Line('#headline-chart', data, options);
-
-
-		// visits trend charts
-		data = {
-			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-			series: [{
-				name: 'series-real',
-				data: [200, 380, 350, 320, 410, 450, 570, 400, 555, 620, 750, 900],
-			}, {
-				name: 'series-projection',
-				data: [240, 350, 360, 380, 400, 450, 480, 523, 555, 600, 700, 800],
-			}]
-		};
-
-		options = {
-			fullWidth: true,
-			lineSmooth: false,
-			height: "270px",
-			low: 0,
-			high: 'auto',
-			series: {
-				'series-projection': {
-					showArea: true,
-					showPoint: false,
-					showLine: false
-				},
-			},
-			axisX: {
-				showGrid: false,
-
-			},
-			axisY: {
-				showGrid: false,
-				onlyInteger: true,
-				offset: 0,
-			},
-			chartPadding: {
-				left: 20,
-				right: 20
-			}
-		};
-
-		new Chartist.Line('#visits-trends-chart', data, options);
-
-
-		// visits chart
-		data = {
-			labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-			series: [
-				[6384, 6342, 5437, 2764, 3958, 5068, 7654]
-			]
-		};
-
-		options = {
-			height: 300,
-			axisX: {
-				showGrid: false
-			},
-		};
-
-		new Chartist.Bar('#visits-chart', data, options);
-
-
-		// real-time pie chart
-		var sysLoad = $('#system-load').easyPieChart({
-			size: 130,
-			barColor: function(percent) {
-				return "rgb(" + Math.round(200 * percent / 100) + ", " + Math.round(200 * (1.1 - percent / 100)) + ", 0)";
-			},
-			trackColor: 'rgba(245, 245, 245, 0.8)',
-			scaleColor: false,
-			lineWidth: 5,
-			lineCap: "square",
-			animate: 800
-		});
-
-		var updateInterval = 3000; // in milliseconds
-
-		setInterval(function() {
-			var randomVal;
-			randomVal = getRandomInt(0, 100);
-
-			sysLoad.data('easyPieChart').update(randomVal);
-			sysLoad.find('.percent').text(randomVal);
-		}, updateInterval);
-
-		function getRandomInt(min, max) {
-			return Math.floor(Math.random() * (max - min + 1)) + min;
-		}
-
-	});
-	</script>
 </body>
 
 </html>
