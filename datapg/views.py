@@ -4,5 +4,3 @@ from django.shortcuts import render
 def chart_page(req):
     return render(req, 'datapg/charts.html')
 
-def test_page(req):
-    return render(req, 'datapg/testtt.html')
