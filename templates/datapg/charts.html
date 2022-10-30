@@ -25,7 +25,7 @@
 
 	<!-- 구글 charts api -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" style="font-family: inherit;">
 		// Load the Visualization API and the corechart package
 		google.charts.load('current', {'packages':['corechart']});
 
@@ -51,16 +51,22 @@
 			var options_g = {
 				'width':500,
 				'height':300,
-				annotations: {
-					textStyle: {
-						fontFamily:"Source Sans Pro",
-					}
-				}
+				// annotations: {
+				// 	textStyle: {
+				// 		fontFamily:"inherit",
+				// 	}
+				// }
 			};
 
 			// Instantiate and draw our chart, passing in some options
 			var chart = new google.visualization.ColumnChart(document.getElementById('demo-line-chart'));
+			var chart2 = new google.visualization.ColumnChart(document.getElementById('demo-bar-chart'));
+			var chart3 = new google.visualization.ColumnChart(document.getElementById('demo-area-chart'));
+			var chart4 = new google.visualization.ColumnChart(document.getElementById('multiple-chart'));
 			chart.draw(data_g,options_g);
+			chart2.draw(data_g,options_g);
+			chart3.draw(data_g,options_g);
+			chart4.draw(data_g,options_g);
 		}
 	</script>
 </head>
@@ -92,7 +98,7 @@
 								</div>
 								<div class="panel-body">
 									<!-- 카카오 맵 API -->
-									<div id="map" style="width:540px; height:600px; margin:auto;"></div>
+									<div id="map" style="width:100%; height:600px; margin:auto;"></div>
 								</div>
 								<!-- 탭별로 전국/지역 별 전기차 대수 순위별로 표시 -->
 								<div class="panel-footer" style="height: 150px;">
@@ -455,7 +461,7 @@
 			},
 		};
 
-		new Chartist.Bar('#demo-bar-chart', data, options);
+		// new Chartist.Bar('#demo-bar-chart', data, options);
 
 
 		// area chart
@@ -470,7 +476,7 @@
 			lineSmooth: false,
 		};
 
-		new Chartist.Line('#demo-area-chart', data_charger, options);
+		// new Chartist.Line('#demo-area-chart', data_charger, options);
 
 
 		// 전기차 보조금 예측 데이터
@@ -514,7 +520,7 @@
 			}
 		};
 
-		new Chartist.Line('#multiple-chart', data_support, options);
+		// new Chartist.Line('#multiple-chart', data_support, options);
 
 	});
 	</script>
