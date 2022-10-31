@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'board.apps.BoardConfig',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -76,7 +77,7 @@ WSGI_APPLICATION = "pr_01.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "OPTIONS" : {'read_default_file' : str(BASE_DIR / 'my.cnf')},
+        "OPTIONS" : {'read_default_file' : str(BASE_DIR / 'hong.cnf')},
     }
 }
 
