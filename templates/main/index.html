@@ -4,35 +4,38 @@
 <html lang="en">
 
 <head>
+	<!-- 제목 -->
 	<title>전기 자동차 분석 서비스</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<!-- VENDOR CSS -->
-	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
-	<link rel="stylesheet" href="{% static 'vendor/linearicons/style.css' %}">
-	<link rel="stylesheet" href="{% static 'vendor/chartist/css/chartist-custom.css' %}">
-	<!-- MAIN CSS -->
+	<!-- CSS 템플릿 -->
+	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"> ,<!-- bootstrap -->
+	<link rel="stylesheet" href="{% static 'css/carlendar.css' %}"> <!-- 달력 CSS -->
 	<link rel="stylesheet" href="{% static 'css/main.css' %}">
 	<link rel="stylesheet" href="{% static 'css/nicepage.css' %}">
 	<link rel="stylesheet" href="{% static 'css/Home.css' %}">
-	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-	<link rel="stylesheet" href="{% static 'css/demo.css' %}">
-	<!-- GOOGLE FONTS -->
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/car-icon.png' %}">
+	<!-- 폰트 -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
-	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/car-icon.png' %}">
+	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	<link rel="stylesheet" href="{% static 'css/demo.css' %}">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/linearicons/style.css' %}">
+	<link rel="stylesheet" href="{% static 'vendor/chartist/css/chartist-custom.css' %}">
 </head>
 <style>
-	.main {
-		/*background-color: beige;*/
-		background-image:url("{% static 'img/eccar.jpg' %}");
-		background-size:cover;
-		
+	.main {/* 배경 이미지 설정 */
+		background-color: beige;
+		/* background-image:url("{% static 'img/eccar.jpg' %}");
+		background-size:cover; */	
 	}
-
+	
 	.box_four {
 		border: 1px solid transparent;
     	border-radius: 4px;
@@ -44,130 +47,130 @@
 <body>
 	<!-- WRAPPER -->
 	<div id="wrapper">
-		{% include 'main/menubar.html' %}
-		<div class="main" style="background-color:powderblue; padding-top:50px">
+		{% include 'main/menubar.html' %} <!-- 메뉴바 import -->
+		<div class="main" style="background-color:#eeeeee; padding-top:50px"> <!-- 메인 스타일 설정 -->
 			<!-- <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
 				<img src="{% static 'img/eccar0.png' %}" class="u-align-left u-expanded-width-xs u-image u-left-0 u-image-1" data-image-width="600" data-image-height="480" style="margin : 10px">
 			</div> -->
-			<div class="main-content">
-				<div class="container-fluid">
-					<h1 style="text-align:center; color: white"><b>전기 자동차 분석 서비스</b></h1>
-					<section class="u-clearfix u-section-1" id="carousel_b297" style="min-height:max-content;">
-						<div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1" style="margin:0px;">
-							<div class="u-layout">
-								<div class="u-layout-col">
-									<div class="u-size-30">
-										<div class="u-layout-row">
-											<!-- 1 -->
-											<div class="u-container-style u-layout-cell u-left-cell u-size-30 alert-info alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"> <!--rgb(120, 120, 180)-->
-												<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
-													<h2 class="u-text u-text-default u-text-1">자료 조사</h2>
-													<ul class="u-custom-list u-spacing-13 u-text u-text-2">
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>					
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>						
-													</ul>
-													<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
-													확인하기
-													</a>
-												</div>
-											</div>
-											<!-- 2 -->
-											<div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-30 alert-success alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"> <!--rgb(210, 100, 100)-->
-												<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
-													<h2 class="u-text u-text-default u-text-1">데이터 분석</h2>
-													<ul class="u-custom-list u-spacing-13 u-text u-text-2">
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>				
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>							
-													</ul>
-													<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
-														확인하기
-													</a>
-												</div>
-											</div>
+			<h1 style="text-align:center; color: black"><b>전기 자동차 분석 서비스</b></h1> <!-- 상단 소주제 -->
+			<section class="u-clearfix u-section-1" id="carousel_b297" style="min-height:max-content;"> <!-- 상단 박스 상자 4개 영역 -->
+				<div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1" style="margin:0px;"> <!-- 상단 박스 상자 4개 개체 -->
+					<div class="u-layout"> 
+						<div class="u-layout-col">
+							<div class="u-size-30"> <!--1, 2번 (상단) 상자 영역 -->
+								<div class="u-layout-row"> <!--1, 2번 (상단) 상자 개체 -->
+									<!-- 1번(왼쪽 위) 상자 -->
+						  			<div class="u-container-style u-layout-cell u-left-cell u-size-30 alert-info alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"> <!--rgb(120, 120, 180)-->
+										<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
+											<h2 class="u-text u-text-default u-text-1">자료 조사</h2> <!--1번 상자 제목-->
+											<ul class="u-custom-list u-spacing-13 u-text u-text-2">
+										  	<li>
+												<div class="u-list-icon u-text-white"> <!-- 1번 상자 내용 1 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>
+										  	<li>
+												<div class="u-list-icon u-text-white"> <!-- 1번 상자 내용 2 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>					
+											<li>
+												<div class="u-list-icon u-text-white"> <!-- 1번 상자 내용 3 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>						
+											</ul>
+											<!-- 1번 상자 버튼 -->
+											<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
+											  확인하기
+										  	</a>
+										</div>
+						  			</div>
+									<!-- 2번(오른쪽 위) 상자 -->
+						  			<div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-30 alert-success alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"> <!--rgb(210, 100, 100)-->
+										<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
+							  				<h2 class="u-text u-text-default u-text-1">데이터 분석</h2> <!-- 2번 상자 제목 -->
+							  				<ul class="u-custom-list u-spacing-13 u-text u-text-2">
+											<li>
+								  				<div class="u-list-icon u-text-white"> <!-- 2번 상자 내용 1 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+								  				</div>Lectus urna duis convallis.&nbsp;
+											</li>
+											<li>
+												<div class="u-list-icon u-text-white"> <!-- 2번 상자 내용 2 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>				
+											<li>
+												<div class="u-list-icon u-text-white"> <!-- 2번 상자 내용 3 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>							
+							  				</ul>
+											<!-- 2번 상자 버튼 -->
+							  				<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
+												확인하기
+											</a>
 										</div>
 									</div>
-									<div class="u-size-30">
-										<div class="u-layout-row">
-											<!-- 3 -->
-											<div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 alert-warning alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"><!--rgb(210, 210, 170)-->
-												<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
-													<h2 class="u-text u-text-default u-text-1">수요 예측</h2>
-													<ul class="u-custom-list u-spacing-13 u-text u-text-2">
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>											
-													</ul>
-													<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
-													확인하기
-												</a>
-												</div>
-											</div>
-											<!-- 4 -->
-											<div class="u-container-style u-image u-layout-cell u-right-cell u-size-30 alert-danger alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"> <!--rgb(170, 210, 170)-->
-												<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
-													<h2 class="u-text u-text-default u-text-1">개선점 제시</h2>
-													<ul class="u-custom-list u-spacing-13 u-text u-text-2">
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>
-													<li>
-														<div class="u-list-icon u-text-white">
-															<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
-														</div>Lectus urna duis convallis.&nbsp;
-													</li>											
-													</ul>
-													<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
-													확인하기
-												</a>
-												</div>
-											</div>
+								</div>
+					  		</div>
+							<div class="u-size-30">
+								<div class="u-layout-row">
+									<!-- 3번 (왼쪽 아래) 상자 -->
+							  		<div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 alert-success alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"><!--rgb(210, 210, 170)-->
+										<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
+											<h2 class="u-text u-text-default u-text-1">수요 예측</h2> <!-- 3번 상자 제목 -->
+											<ul class="u-custom-list u-spacing-13 u-text u-text-2">
+										  	<li>
+												<div class="u-list-icon u-text-white"> <!-- 3번 상자 내용 1 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>
+										  	<li>
+												<div class="u-list-icon u-text-white"> <!-- 3번 상자 내용 2 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>
+											<li>
+												<div class="u-list-icon u-text-white"> <!-- 3번 상자 내용 3 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>											
+											</ul>
+											<!-- 3번 상자 버튼 -->
+											<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
+											  확인하기
+										  </a>
 										</div>
-									</div>
+							  		</div>
+									<!-- 4번 (오른쪽 아래) 상자 -->
+							  		<div class="u-container-style u-image u-layout-cell u-right-cell u-size-30 alert-info alert-dismissible" style="border:10px solid transparent; border-radius: 35px;"> <!--rgb(170, 210, 170)-->
+										<div class="u-container-layout u-valign-middle u-container-layout-2" style="color : black">
+											<h2 class="u-text u-text-default u-text-1">개선점 제시</h2> <!-- 4번 상자 제목 -->
+											<ul class="u-custom-list u-spacing-13 u-text u-text-2">
+										  	<li>
+												<div class="u-list-icon u-text-white"> <!-- 4번 상자 내용 1 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>
+										  	<li>
+												<div class="u-list-icon u-text-white"> <!-- 4번 상자 내용 2 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>
+											<li>
+												<div class="u-list-icon u-text-white"> <!-- 4번 상자 내용 3 -->
+													<svg class="u-svg-content" viewBox="0 0 512 512" id="svg-227a" style="font-size: 1em; margin: -1em;"><path d="m433.1 67.1-231.8 231.9c-6.2 6.2-16.4 6.2-22.6 0l-99.8-99.8-78.9 78.8 150.5 150.5c10.5 10.5 24.6 16.3 39.4 16.3 14.8 0 29-5.9 39.4-16.3l282.7-282.5z" fill="black"></path></svg>
+												</div>Lectus urna duis convallis.&nbsp;
+										  	</li>											
+											</ul>
+											<!-- 4번 상자 버튼 -->
+											<a href="{% url 'main:index' %}" class="u-active-palette-1-dark-3 u-border-none u-btn u-btn-round u-radius-2 u-btn-1" style="padding:10px 20px; background-color: #41B314;">
+											  확인하기
+										  </a>
+										</div>
+							  		</div>
 								</div>
 							</div>
 						</div>
@@ -175,50 +178,84 @@
 				</div>
 			</div>
 			<div style="color:transparent;">.</div>
-			<div><h1 style="text-align:center; color: white"><b>메뉴 이동하기</b></h1></div>
-			<div class="u-clearfix u-gutter-30 u-layout-wrap u-layout-wrap-1">
-				<div class="u-layout" style="margin : 5px">
-				  	<div class="u-layout-row">
-						<div class="u-align-center u-container-style u-layout-cell u-left-cell u-palette-1-base u-size-20 u-layout-cell-1" style="border: 10px solid transparent; border-radius: 35px;">
+			<div><h1 style="text-align:center; color: black"><b>메뉴 이동하기</b></h1></div> <!-- 하단 소주제 -->
+			<div class="u-clearfix u-gutter-30 u-layout-wrap u-layout-wrap-1"> <!-- 하단 박스 상자 3개 영역 -->
+				<div class="u-layout" style="margin : 5px"> <!-- 하단 박스 상자 3개 개체 -->
+				  	<!-- <div class="u-layout-row"> -->
+						<div class="row">
+						<div class="col-md-3">
+						<!-- 하단 박스 왼쪽 개체 -->
+						<div class="u-align-center u-container-style u-layout-cell u-left-cell u-palette-1-base u-size-20 u-layout-cell-1"
+						style="border: 10px solid transparent; border-radius: 35px; background-color: #fcf8e3">
 						  	<a href="">
 							  	<div class="u-container-layout u-valign-middle u-container-layout-1">
-									<h3 class="u-text u-text-body-alt-color u-text-1">제목1</h3>
-									<p class="u-text u-text-body-alt-color u-text-2" style="padding:10px">Donec volutpat, purus et tempus convallis, odio quam consectetur nulla, sit amet auctor augue ligula ac ipsum. Curabitur elementum...</p>
+									<h3 class="u-text u-text-body-alt-color u-text-1" style="color:black !important;">제목1</h3> <!-- 하단 박스 왼쪽 제목 -->
+									<!-- 하단 박스 왼쪽 내용 -->
+									<p class="u-text u-text-body-alt-color u-text-2" style="padding:10px; color:black !important;">Donec volutpat, purus et tempus convallis, odio quam consectetur nulla, sit amet auctor augue ligula ac ipsum. Curabitur elementum...</p>
 							  	</div>
 						  	</a>
-					  	</div>							
-						<div class="u-align-center u-container-style u-layout-cell u-palette-2-base u-size-20 u-layout-cell-2" style="border: 10px solid transparent; border-radius: 35px;">
+					  	</div>
+						</div>
+						<div class="col-md-3">
+						<!-- 하단 박스 가운데 개체 -->							
+						<div class="u-align-center u-container-style u-layout-cell u-palette-2-base u-size-20 u-layout-cell-2"
+						style="border: 10px solid transparent; border-radius: 35px; background-color: #fcf8e3">
 						  	<a href="">
 							  	<div class="u-container-layout u-valign-middle u-container-layout-2">
-									<h3 class="u-text u-text-body-alt-color u-text-3">제목2</h3>
-									<p class="u-text u-text-body-alt-color u-text-4" style="padding:10px">Donec volutpat, purus et tempus convallis, odio quam consectetur nulla, sit amet auctor augue ligula ac ipsum. Curabitur elementum...</p>
+									<h3 class="u-text u-text-body-alt-color u-text-3" style="color:black !important;">제목2</h3> <!-- 하단 박스 가운데 제목 -->
+									<!-- 하단 박스 가운데 내용 -->
+									<p class="u-text u-text-body-alt-color u-text-4" style="padding:10px; color:black !important;">Donec volutpat, purus et tempus convallis, odio quam consectetur nulla, sit amet auctor augue ligula ac ipsum. Curabitur elementum...</p>
 							  	</div>
 						  	</a>
 						</div>
-						<div class="u-align-center u-container-style u-layout-cell u-palette-3-base u-right-cell u-size-20 u-layout-cell-3" style="border: 10px solid transparent; border-radius: 35px;">
+						</div>
+						<div class="col-md-3">
+						<!-- 하단 박스 오른쪽 개체 -->
+						<div class="u-align-center u-container-style u-layout-cell u-palette-3-base u-right-cell u-size-20 u-layout-cell-3"
+						style="border: 10px solid transparent; border-radius: 35px; background-color: #fcf8e3">
 						  	<a href="">								
 							  	<div class="u-container-layout u-valign-middle u-container-layout-3">
-									<h3 class="u-text u-text-body-alt-color u-text-5">제목3</h3>
-									<p class="u-text u-text-body-alt-color u-text-6" style="padding:10px">Donec volutpat, purus et tempus convallis, odio quam consectetur nulla, sit amet auctor augue ligula ac ipsum. Curabitur elementum...</p>
+									<h3 class="u-text u-text-body-alt-color u-text-5" style="color:black !important;">제목3</h3> <!-- 하단 박스 오른쪽 제목 -->
+									<!-- 하단 박스 오른쪽 내용 -->
+									<p class="u-text u-text-body-alt-color u-text-6" style="padding:10px ;color:black !important;">Donec volutpat, purus et tempus convallis, odio quam consectetur nulla, sit amet auctor augue ligula ac ipsum. Curabitur elementum...</p>
 								</div>
 						  	</a>	
-					  	</div>
+					  	</div>	
+					</div>
+					<div class="col-md-3">
+						<!-- 하단 박스 오른쪽 개체 -->
+						<div class="u-align-center u-container-style u-layout-cell u-palette-3-base u-right-cell u-size-20 u-layout-cell-3"
+						style="border: 10px solid transparent; border-radius: 35px; background-color: #fcf8e3">
+						  	<a href="">								
+							  	<div class="u-container-layout u-valign-middle u-container-layout-3">
+									<h3 class="u-text u-text-body-alt-color u-text-5" style="color:black !important;">제목3</h3> <!-- 하단 박스 오른쪽 제목 -->
+									<!-- 하단 박스 오른쪽 내용 -->
+									<p class="u-text u-text-body-alt-color u-text-6" style="padding:10px ;color:black !important;">Donec volutpat, purus et tempus convallis, odio quam consectetur nulla, sit amet auctor augue ligula ac ipsum. Curabitur elementum...</p>
+								</div>
+						  	</a>	
+					  	</div>	
+					</div>								
 				  	</div>
 			  	</div>
 		  	</div>			
 		</div>
+		<!-- <div id="calendar">
+			<div id="calendar_header"><i class="icon-chevron-left"></i>          <h1></h1><i class="icon-chevron-right"></i>         </div>
+			<div id="calendar_weekdays"></div>
+			<div id="calendar_content"></div>
+		</div> -->
 		<div class="clearfix"></div>
 		<footer>
-			<!-- <div class="container-fluid">
-				<p class="copyright">Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-				</p>
-			</div> -->
+			<div class="container-fluid">
+
+			</div>
 		</footer>
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
-	<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script> <!--JQUERY 스크립트 -->
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script> <!--JQUERY 스크립트 -->
+	<script src="{% static 'scripts/carlendar.js' %}"></script> <!-- 달력 API -->
 	<script src="{% static 'vendor/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
 	<script src="{% static 'vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
 	<script src="{% static 'vendor/chartist/js/chartist.min.js' %}"></script>

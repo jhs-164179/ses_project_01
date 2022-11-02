@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/board/style.css' %}">
+<h1>{{ board.title }}</h1>
+
+<div>
+    {{ board.content }}
+</div>
+
+<div>
+    <ul>
+        {% for reply in board.reply_set.all %}
+            <li>{{ reply.content }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<form action="{% url 'board:reply_create' board.id %}" method="post">
+    {% csrf_token %}
+    <textarea name="content" id="content" rows="15"></textarea>
+    <input type="submit" value="답변 등록">
+
+    <a href="{% url 'board:free' %}">게시글 목록으로</a>
+
+    
+</form>
