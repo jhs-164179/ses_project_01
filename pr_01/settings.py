@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'board.apps.BoardConfig',
     "main.apps.MainConfig",
     "datapg.apps.DatapgConfig",
