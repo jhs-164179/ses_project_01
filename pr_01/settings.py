@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'board.apps.BoardConfig',
     "main.apps.MainConfig",
     "datapg.apps.DatapgConfig",
     "django.contrib.admin",
@@ -78,12 +81,8 @@ WSGI_APPLICATION = "pr_01.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "OPTIONS" : {"read_default_file" : str(BASE_DIR/"my.cnf"),}
-        # "NAME" : "pr_01",
-        # "USER" : "root",
-        # "PASSWORD" : '1234',
-        # "PORT" : '3306',
-        # "HOST" : 'localhost',
+        "OPTIONS" : {'read_default_file' : str(BASE_DIR / 'hong.cnf')},
+        
     }
 }
 
