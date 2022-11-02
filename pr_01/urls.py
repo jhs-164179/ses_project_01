@@ -21,4 +21,5 @@ urlpatterns = [
     path('board/', include('board.urls')),
     path('data_pg/', include('datapg.urls')),
     path('', include('main.urls')),
+    path('accounts/', include('accounts.urls'))
 ]
