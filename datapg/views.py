@@ -47,12 +47,12 @@ def add_numcar(req):
 def column_chart(req):
     import pymysql
     # 127.0.0.1
-    db = pymysql.connect(host='127.0.0.1',port=3306,user='root',passwd='1234',db='pr_01',charset='utf8')
+    db = pymysql.connect(host='127.0.0.1',port=3306,user='root',passwd='1234',db='hongboard',charset='utf8')
     cursor = db.cursor()
 
     with db:
-        cursor.execute("USE pr_01")
-        cursor.execute("SELECT age, num_man, num_women FROM numcar")
+        cursor.execute("USE hongboard")
+        cursor.execute("SELECT age, num_man, num_women FROM datapg_numcar")
         data1 = cursor.fetchall()
 
     return render(req, 'datapg/charts.html', {

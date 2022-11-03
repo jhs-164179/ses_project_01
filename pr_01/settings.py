@@ -82,7 +82,7 @@ WSGI_APPLICATION = "pr_01.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "OPTIONS" : {'read_default_file' : str(BASE_DIR / 'hong.cnf')},
+        "OPTIONS" : {'read_default_file' : str(BASE_DIR / 'my.cnf')},
         
     }
 }

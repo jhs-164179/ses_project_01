@@ -10,7 +10,9 @@ from django.db.models import Q
 def MainPage(request) :
     return render(request, "main/index.html")
 
-# 병합할 때 필히 체크해야 될 부분임
+def api(request) :
+    return render(request, "main/api.html")
+
 class BoardSearch(generic.ListView):
     """내장 뷰 클래스인 ListView 클래스를 상속하여 구현한 사용자 정의 뷰 클래스."""
 
