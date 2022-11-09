@@ -8,8 +8,11 @@ from .models import Board
     
 def free_board(request):
     
-    board_list = Board.objects.order_by('-date')
-    context = {'board_list' : board_list }
+    board_list_admin = list(Board.objects.filter(count__gt = 0).order_by('-date'))
+    board_list_normal = list(Board.objects.exclude(count__gt = 0).order_by('-date'))
+    board_list = board_list_admin + board_list_normal
+
+    context = {'board_list' : board_list, 'admin_board_count' : -len(board_list_admin)}
 
     return render(request, 'board/free_board.html', context)
 

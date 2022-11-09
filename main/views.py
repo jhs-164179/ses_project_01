@@ -1,6 +1,6 @@
  # 메인 페이지 연결 + 검색 기능 테스트
 
-from .models import Board
+# from .models import Board
 from django.shortcuts import render
 from django.views import generic
 from django.db.models import Q
@@ -13,7 +13,7 @@ def MainPage(request) :
 def api(request) :
     return render(request, "main/api.html")
 
-class BoardSearch(generic.ListView):
+# class BoardSearch(generic.ListView):
     """내장 뷰 클래스인 ListView 클래스를 상속하여 구현한 사용자 정의 뷰 클래스."""
 
     # paginate_by = 10

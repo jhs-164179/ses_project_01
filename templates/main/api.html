@@ -27,18 +27,18 @@ dateTo=20221101
         var startdate = prompt('검색을 시작할 날짜를 입력해주세요.\r\nex) 20220101');
         var enddate = prompt('검색할 마지막 날짜를 입력해주세요.\r\nex) 20221101');
         $.ajax({
-            type: "GET",
-            url: "https://apis.data.go.kr/1140100/minAnalsInfoView5/minWdcloudInfo5",
+            type: "GET", 
+            url: "https://apis.data.go.kr/1140100/minAnalsInfoView5/minWdcloudInfo5", //API 주소
             data: {
-                'serviceKey' : 'UH+Mc8jhYyRLsrSA7MppqKWOudoTtmD/ylIRBx6kF88i0zvh2u415PmhmYcegUMVcrTmclI4vRNRii//CcKC/g==',
-                'searchword' : '전기자동차',
-                'resultCount' : '10',
-                'target' : 'pttn, dfpt, saeol, prpl, qna, qna_origin',
-                'dateFrom' : startdate,
-                'dateTo' : enddate
+                'serviceKey' : 'UH+Mc8jhYyRLsrSA7MppqKWOudoTtmD/ylIRBx6kF88i0zvh2u415PmhmYcegUMVcrTmclI4vRNRii//CcKC/g==', //인증키
+                'searchword' : '전기자동차', //키워드
+                'resultCount' : '10', //목록 갯수
+                'target' : 'pttn, dfpt, saeol, prpl, qna, qna_origin', //게시글 갯수
+                'dateFrom' : startdate, //시작일자
+                'dateTo' : enddate //종료일자
             },
-            success : function(context) {
-                var lines = JSON.parse(context);
+            success : function(context) { //context는 요청 성공시 에 받아오는 데이터 Object
+                var lines = JSON.parse(context); //jSON 데이터를 파싱하기 위해서 이 함수를 사용
                 var str = "";
                 for (var i = 0; i < lines.length; i++) {
                     str += '<tr><td>' + lines[i].label + '</td>' +

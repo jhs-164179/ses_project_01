@@ -21,6 +21,7 @@
 		<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon.png' %}">
 		<link rel="stylesheet" type="text.css" href="{% static 'css/bootstrap.min.css' %}">
 	</head>
+
 	<body>
 		<div id="wrapper">
 			{% include 'datapg/menubar.html' %}
@@ -36,17 +37,24 @@
 							</tr>
 						</thead>
 						<tbody>
+							<!--|truncatechars:숫자       제목 같은 문자를 자를때 사용-->
 							{% if board_list %}
-							{% for board in board_list %}
-							<tr>
-								<td>{{ forloop.counter }}</td>
-								<td>
-									<a href="{% url 'board:detail' board.id %}">{{ board.title }}</a>
-								</td>
-								<td>{{ board.date }}</td>
-								<td>{{ board.count }}</td>
-							</tr>
-							{% endfor %}
+								{% with board_num=admin_board_count %}
+									{% for board in board_list %}
+										<tr>
+											{% if board.count > 0 %}
+												<td style="color:red;">공지</td>
+											{% else %}
+												<td>{{ forloop.counter|add:board_num }}</td>
+											{% endif %} 
+											<td>
+												<a href="{% url 'board:detail' board.id %}"><b>{{ board.title }}</b></a>
+											</td>
+											<td>{{ board.date }}</td>
+											<td>{{ board.count }}</td>
+										</tr>
+									{% endfor %}
+								{% endwith %}
 							{% else %}
 							<tr>
 								<td colspan="3">질문이 없습니다.</td>
