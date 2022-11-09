@@ -1,25 +1,145 @@
+{% extends 'common/base2.html' %}   
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/board/style.css' %}">
+
+{% block title %}
+{{ board.title }}         
+{% endblock title %}
+
+{% block body %}
+<!-- 게시글 상세 -->
+
+<script>
+    function board_delete() {
+        let check = confirm("정말로 이 글을 삭제하시겠습니까?");
+        console.log(check);
+        if(check) {
+            window.location.assign("{% url 'board:delete' pk=board.id %}")
+        } else {
+            return false;
+        }
+    }
+
+    function reply_delete(num) {
+        let check = confirm("정말로 이 댓글을 삭제하시겠습니까?");
+        console.log(check);
+        if(check) {
+            document.getElementById('reply_list_'+num).submit();
+        } else {
+            return false;
+        }
+    }
+
+    function board_edit() {
+        window.location.assign("{% url 'board:edit' pk=board.id %}")
+    }
+
+    function SpaceCheck() {
+        let check = document.getElementById('content').value;
+        if(check == "" || check== " " || check.replaceAll(" ", "") == "") {
+            alert('올바른 내용을 입력해주세요.');
+            return false;
+        }
+        document.getElementById('reply_create').submit();
+    }
+
+    function reply_edit(num) {
+        var text = document.getElementById("reply_text_" + num).value;
+        $( '.reply_content_' + num ).replaceWith( "<textarea id='reply_rewrite_" + num + "' name='reply_rewrite_" + num + "' class='reply_rewrite_" + num + "'>" + text + "</textarea>" );
+        $( '.reply_rewrite_' + num ).after(
+            "<button id = 'reply_rewrites_" + num + "' class= 'btn btn-primary reply_reedit_" + num + "' style='margin : -25px 0px 0px 10px;' onclick='reply_edit_complete(" + num + ");'>완료</button>"
+        );
+        $( 'h5' ).remove( '.reply_date_'+num );
+        $( 'button' ).remove( '.reply_delete_'+num );
+        $( 'button' ).remove( '.reply_edit_'+num  );
+        $( '.reply_list_' + num ).attr("action", "{% url 'board:reply_edit' pk=board.id %}");
+    }
+
+    function reply_edit_complete(num) {
+        let blank = document.getElementById('reply_rewrite_' + num).value;
+        if(blank == "" || blank == " " || blank.replaceAll(" ", "") == "") {
+            alert('올바른 내용을 입력해주세요.');
+            return false;
+        }
+        let check = confirm("정말로 이 댓글을 수정하시겠습니까?");
+        if(check) {
+            document.getElementById('reply_list_' + num).submit();
+        } else {
+            return false;
+        }
+    }
+</script>
+
 <h1>{{ board.title }}</h1>
 
-<div>
-    {{ board.content }}
-</div>
+<h3><img src="{% static 'img/user_icon.png' %}" width="40" height="40">&nbsp;&nbsp;<b>{{ board.writer }}</b></h3>
 
-<div>
-    <ul>
-        {% for reply in board.reply_set.all %}
-            <li>{{ reply.content }}</li>
-        {% endfor %}
-    </ul>
-</div>
-
-<form action="{% url 'board:reply_create' board.id %}" method="post">
-    {% csrf_token %}
-    <textarea name="content" id="content" rows="15"></textarea>
-    <input type="submit" value="답변 등록">
-
-    <a href="{% url 'board:free' %}">게시글 목록으로</a>
-
+<div class="row" style="margin:0px 0px 0px 0px">
     
+    {{ board.date }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회 {{ board.count }}
+    
+    {% if board.writer.username == request.user.username %}
+    <span style="margin: 40px 0px 0px 550px"><a href="#reply"><img src="{% static 'img/reply_icon.png' %}" width="40" height="40">댓글 {{ board.reply_set.count }}</a></span>
+    <span>
+        <a class="btn btn-danger btn-sm;" style=" margin: 5px 40px 0px 0px; float : right;" onclick="board_delete();">글 삭제</a>
+        <a class="btn btn-warning btn-sm;"  style="margin: 5px 10px 0px 0px; float : right;" onclick="board_edit();">글 수정</a>
+    </span>
+    {% else %}
+    <span style="margin: 30px 0px 0px 800px"><a href="#reply"><img src="{% static 'img/reply_icon.png' %}" width="40" height="40">댓글 {{ board.reply_set.count }}</a></span>
+    {% endif %}
+
+</div>
+
+<hr style="border : 1px solid #aaa; margin : 20px 0px 20px 0px;">
+
+<div style="min-height: 300px; white-space: pre-wrap;">{{ board.content }}</div>
+
+<img src="{% static 'img/reply_icon.png' %}" width="40" height="40" id="reply">댓글 {{ board.reply_set.count }}
+
+<hr style="border : 1px solid #aaa; margin : 0px;" >
+
+<!-- 댓글 목록-->
+
+{% if board.reply_set.all %}
+    {% for reply in board.reply_set.all %}
+        <form class = "reply_list_{{ reply.id }}" id="reply_list_{{ reply.id }}" action="{% url 'board:reply_delete' pk=reply.id %}" method="POST" onsubmit="return false;">
+        <!-- <form id="reply_list" action="javascript:reply_delete();" method="POST"> -->
+            {% csrf_token %}
+            <h4 style="margin-top:10px;"><img src="{% static 'img/user_icon.png' %}" width="35" height="35">&nbsp;&nbsp;<b>{{ reply.writer }}</b></h4>
+            <div id = "reply_content_{{ reply.id }}" class="reply_content_{{ reply.id }}" style="white-space: pre-wrap; margin-left: 40px;">{{ reply.content }}</div>
+            <br>
+            <h5 class="date reply_date_{{ reply.id }}">{{ reply.date }}</h5>
+            {% if reply.writer.username == request.user.username %}
+                <button class="btn btn-danger btn-sm reply_delete_{{ reply.id }}" onclick="reply_delete({{ reply.id }});">댓글 삭제</button>
+                {% with intext=reply.content %}
+                    <button class="btn btn-warning btn-sm reply_edit_{{ reply.id }}" onclick="reply_edit({{ reply.id }});">댓글 수정</button>
+                {% endwith %}
+                <input type="hidden" name="boardid" id="boardid" value="{{ board.id }}">
+                <input type="hidden" name="replyid" id="replyid" value="{{ reply.id }}">
+                <input type="hidden" id="reply_text_{{ reply.id }}" value="{{ reply.content }}"> 
+            {% endif %}
+            <hr style="border : 1px solid #aaa; margin : 0px;" >
+        </form>
+    {% endfor %}
+{% endif %}
+        
+
+<!-- 댓글 작성 -->
+<h4><img src="{% static 'img/user_icon.png' %}" width="35" height="35">&nbsp;&nbsp;{{ user.username }}</h4>
+<form id = "reply_create" action="{% url 'board:reply_create' board.id %}" method="POST">
+    {% csrf_token %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <td class="col-11">
+                    <textarea id="content" name="content" class="form-control" style="resize:none;" placeholder="댓글을 남겨보세요" ></textarea>
+                </td>
+                <td><input type="button" value="완료" class="btn btn-primary" onclick="javascript:SpaceCheck();"></td>
+            </tr>
+        </tbody>
+    </table>
 </form>
+
+<a href="{% url 'board:free' %}" class="btn btn-primary">목록으로</a>
+ 
+
+{% endblock body %}

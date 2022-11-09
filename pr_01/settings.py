@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,6 +40,7 @@ LOGIN_REDIRECT_URL = '/'
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'board.apps.BoardConfig',
+    'user.apps.UserConfig',
     "main.apps.MainConfig",
     "datapg.apps.DatapgConfig",
     "django.contrib.admin",

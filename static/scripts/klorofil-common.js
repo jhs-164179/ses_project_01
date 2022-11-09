@@ -14,7 +14,7 @@ $(document).ready(function() {
 		}
 
 		$(this).find('.lnr').toggleClass('lnr-arrow-left-circle lnr-arrow-right-circle');
-
+	
 		if($(window).innerWidth() < 1025) {
 			if(!$('body').hasClass('offcanvas-active')) {
 				$('body').addClass('offcanvas-active');
