@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MIDDLEWARE = [
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'accounts.middleware.KickedMiddleware',
+    ]
+
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -79,14 +85,16 @@ WSGI_APPLICATION = "pr_01.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "OPTIONS" : {'read_default_file' : str(BASE_DIR / 'hong.cnf')},
-        
-    }
-}
-
+DATABASES = { 
+'default': { 
+    'ENGINE': 'django.db.backends.mysql', 
+    'NAME': 'hongboard', 
+    'USER': 'root', 
+    'PASSWORD': '1234', 
+    'HOST': 'localhost', 
+    'PORT': '3306'  
+     } 
+}   
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

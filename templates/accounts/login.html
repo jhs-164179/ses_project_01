@@ -1,10 +1,15 @@
-
 {% extends "accounts/base.html" %}
-
+{% load static %}
 {% block contents %}
-        <div class="row mt-5">
+<div class="left">
+	<div class="content">
+		<div class="header">
+			<div class="logo text-center"><img src="{% static 'img/logo-dark.png' %}" alt="Klorofil Logo"></div>
+				<p class="lead">로그인 해주세요</p>
+			</div>
+			<div class="row mt-5">
             <div class="col-12 text-center">
-                <h1>로그인</h1>
+                {% comment %} <h1>로그인</h1> {% endcomment %}
             </div>
         </div>
         <div class="row mt-5">
@@ -18,7 +23,7 @@
                     {% csrf_token %}
                     {% for field in form %}
                     <div class="form-group">
-                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <label for="{{ field.id_for_label }}" class="control-label sr-only">{{ field.label }}</label>
                         <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}" placeholder="{{ field.label }}" name="{{ field.name }}" />
                     </div>
                     {% if field.errors %}
@@ -29,4 +34,14 @@
                 </form>
             </div>
         </div>
+		</div>
+	</div>
+  {% comment %} <div class="right">
+		 <div class="overlay"></div>
+		<div class="content texst">
+			<h1 class="heading">Free Bootstrap dashboard template</h1>
+			<p>by The Develovers</p>
+		</div> 
+	</div>
+<div class="clearfix"></div> {% endcomment %}
 {% endblock %}

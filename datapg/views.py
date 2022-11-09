@@ -8,9 +8,8 @@ def data_page(req):
     # 127.0.0.1
     db = pymysql.connect(host='127.0.0.1',port=3306,user='root',passwd='1234',db='hongboard',charset='utf8')
     cursor = db.cursor()
-
+    # datapg_numcar 로 변경
     with db:
-        cursor.execute("USE pr_01")
         cursor.execute("SELECT age, num_man, num_women FROM numcar")
         data1 = cursor.fetchall()
         cursor.execute("SELECT * FROM numevcar ORDER BY num_evcar DESC")
