@@ -1,45 +1,26 @@
-from django.shortcuts import render, redirect
 from .models import User
 from django.http import HttpResponse
+from django.contrib import auth
+from django.contrib.auth.models import User as AuthUser
 from django.contrib.auth.hashers import make_password, check_password
 from .forms import LoginForm
-
-def home(request):
-    user_id = request.session.get('user')
-    if user_id:
-        user = User.objects.get(pk = user_id)
-        return HttpResponse("Hello! %s님" % user)
-    else:
-        return HttpResponse("로그인 해주세요!")
+from django.shortcuts import render, redirect
 
 def register(request):
-    if request.method == 'GET':
-        return render(request, 'register.html')
+    if request.method == 'POST':
+        if request.POST['password1'] == request.POST['password2']:
+            if AuthUser.objects.filter(username=request.POST['username']).count() <= 0:
+                user = AuthUser.objects.create_user(
+                                                username=request.POST['username'],
+                                                password=request.POST['password1']),
+                if user != None:
+                    user = auth.authenticate(request, username=request.POST['username'], password=request.POST['password1'])
+                    auth.login(request, user)
+                    return redirect('/')
 
-    elif request.method == 'POST':
-        username = request.POST.get('username', None)
-        useremail = request.POST.get('useremail', None) 
-        password = request.POST.get('password', None)
-        re_password = request.POST.get('re_password', None)
-        
-        err_data={}
-        if not(username and useremail and password and re_password):
-            err_data['error'] = '모든 값을 입력해주세요.'
-        
-        elif password != re_password:
-            err_data['error'] = '비밀번호가 다릅니다.'
-        
-        else:
-            user = User(
-                username=username,
-                useremail=useremail,
-                password=make_password(password),
-            )
-            user.save()
+    return render(request, 'accounts/register.html')
+    
 
-        return render(request, 'register.html', err_data)
-
-from .forms import LoginForm
 
 def login(request):
     if request.method == 'POST':
@@ -49,9 +30,10 @@ def login(request):
             return redirect('/')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'accounts/login.html', {'form': form})
 
 def logout(request):
-    if request.session.get('user'):
-        del(request.session['user'])
+    auth.logout(request)
     return redirect('/')
+
+    
