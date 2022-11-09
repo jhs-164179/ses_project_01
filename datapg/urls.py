@@ -5,7 +5,6 @@ from . import views
 app_name = "datapg"
 urlpatterns = [
     # path("",views.chart_page, name="datapage"),
-    path("",views.column_chart, name="datapage"),
-    path("db/",views.test),
-    path('numcar/', views.add_numcar),
+    path("",views.data_page, name="datapage"),
+    path("testt/",views.test_pg),
 ]
