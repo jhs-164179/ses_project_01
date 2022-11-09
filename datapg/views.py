@@ -32,5 +32,3 @@ def data_page(req):
         'row_data5': data5
     })
 
-def test_pg(req):
-    return render(req, 'datapg/testtt.html')
