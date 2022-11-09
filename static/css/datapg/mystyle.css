@@ -1,0 +1,24 @@
+p.db {
+    color:black;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+p#first {
+    font-size: 20px;
+}
+p#second {
+    font-size: 18px;
+}
+p#third {
+    font-size: 17px;
+}
+p#fourth {
+    font-size: 16px;
+}
+p#fiveth {
+    font-size: 15px;
+}
+p#sixth {
+    font-size: 14px;
+}

@@ -1,0 +1,69 @@
+
+<!-- JSON 데이터 추출 확인을 위한 임시 페이지 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>API 테스트</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+
+<script src="../../static/vendor/jquery/jquery.js"></script> <!--JQUERY 스크립트 -->
+
+<!-- 
+https://apis.data.go.kr/1140100/minAnalsInfoView5/minWdcloudInfo5
+serviceKey=UH%2BMc8jhYyRLsrSA7MppqKWOudoTtmD%2FylIRBx6kF88i0zvh2u415PmhmYcegUMVcrTmclI4vRNRii%2F%2FCcKC%2Fg%3D%3D
+searchword=%EC%A0%84%EA%B8%B0%EC%9E%90%EB%8F%99%EC%B0%A8
+resultCount=200
+target=pttn%2C%20dfpt%2C%20saeol%2C%20prpl%2C%20qna%2C%20qna_origin
+dateFrom=20220101
+dateTo=20221101
+-->
+
+<script>
+    $(document).ready(function() { //문서 실행 시 바로 나오게 끔
+        var startdate = prompt('검색을 시작할 날짜를 입력해주세요.\r\nex) 20220101');
+        var enddate = prompt('검색할 마지막 날짜를 입력해주세요.\r\nex) 20221101');
+        $.ajax({
+            type: "GET",
+            url: "https://apis.data.go.kr/1140100/minAnalsInfoView5/minWdcloudInfo5",
+            data: {
+                'serviceKey' : 'UH+Mc8jhYyRLsrSA7MppqKWOudoTtmD/ylIRBx6kF88i0zvh2u415PmhmYcegUMVcrTmclI4vRNRii//CcKC/g==',
+                'searchword' : '전기자동차',
+                'resultCount' : '10',
+                'target' : 'pttn, dfpt, saeol, prpl, qna, qna_origin',
+                'dateFrom' : startdate,
+                'dateTo' : enddate
+            },
+            success : function(context) {
+                var lines = JSON.parse(context);
+                var str = "";
+                for (var i = 0; i < lines.length; i++) {
+                    str += '<tr><td>' + lines[i].label + '</td>' +
+                        '<td>' + lines[i].value + '</td>' +
+                        '</tr>';
+                }
+                $('.table_body').append(str);
+            },
+            error : function() {
+			    alert('날짜를 잘못 입력하였거나, 데이터 추출 중 오류가 발생하였습니다.');			
+		    }
+        })
+    });
+</script>
+
+<body>
+    <table>
+        <thead>
+            <th>검색어</th>
+            <th>빈도</th>
+        </thead>
+        <tbody class="table_body">
+
+        </tbody>
+    </table>
+</body>
+
+</html>

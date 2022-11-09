@@ -23,9 +23,10 @@ def register(request):
 """ 
 
 def register(request):
-    if request.method == "GET":
-        return render(request, 'accounts/register.html')
-    elif request.method == "POST":
+    if request.method == 'GET':
+        return render(request, 'register.html')
+
+    elif request.method == 'POST':
         username = request.POST.get('username', None)
         useremail = request.POST.get('email', None)
         password = request.POST.get('password1', None)
@@ -47,7 +48,9 @@ def register(request):
             )
             user.save()
 
-        return render(request, 'accounts/login.html', err_data)
+        return render(request, 'register.html', err_data)
+
+from .forms import LoginForm
 
 def login(request):
     if request.method == 'POST':
@@ -60,7 +63,7 @@ def login(request):
     else:
         print('hello')
         form = LoginForm()
-    return render(request, 'accounts/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 def logout(request):
     if request.session.get('user'):

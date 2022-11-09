@@ -1,0 +1,7 @@
+[client]
+database = hongboard
+user = root
+host = localhost
+password = 1234
+port = 3306
+default-character-set = utf8
