@@ -22,7 +22,7 @@
 
 </script>
 
-    <!-- NAVBAR -->
+    <!-- 상단바 -->
 		<nav class="navbar navbar-default navbar-fixed-top" style="height: 50px;">
 			<div class="navbar-btn" style="padding: 0px 15px 0px 15px;">
 				<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
@@ -70,13 +70,13 @@
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
-		<!-- LEFT SIDEBAR -->
+		<!-- 왼쪽 사이드 바 -->
 		<div id="sidebar-nav" class="sidebar" style="padding-top: 50px;">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
 						<li><a href="{% url 'main:index' %}" class="active"><i class="lnr lnr-home"></i> <span>홈</span></a></li>
-						<li><a href="" class="active"><i class="lnr lnr-user"></i> <span>로그인 OR 회원정보</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+						<li><a href="{% url 'accounts:login' %}" class="active"><i class="lnr lnr-user"></i> <span>로그인 OR 회원정보</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
 						<li><a href="" class="active"><i class="lnr lnr-exit"></i> <span>회원가입 OR 로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
 						<li>
 							<a href="#subPages" data-toggle="collapse" class="active"><i class="lnr lnr-file-empty"></i> <span>메뉴</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>

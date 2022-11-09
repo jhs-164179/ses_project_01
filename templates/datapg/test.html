@@ -1,0 +1,27 @@
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script>
+    var xhr = new XMLHttpRequest();
+    var url = 'http://openapi.kepco.co.kr/service/EvInfoServiceV2/getEvSearchList'; /*URL*/
+    var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'MKrUU4zaVCpA1ox3Kz%2FmGU6pMnKkR%2FrA4R7N3%2Fxzy7caf2e3bbNlvaYnxH1vGVQFaNTVIKPYmGU5hzHycxAnVQ%3D%3D'; /*Service Key*/
+    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
+    xhr.open('GET', url + queryParams);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === xhr.DONE){
+            if (xhr.status === 200 || xhr.status === 201) {
+                console.log(xhr.responseText);
+            } else {
+                console.error(xhr.responseText);
+            }
+        }
+        if (this.readyState == 4) {
+            alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+        }
+    };
+    
+    xhr.send();
+</script>
+
+
+
+<!-- https://api.odcloud.kr/api/EvInfoServiceV2/v1/getEvSearchList -->
