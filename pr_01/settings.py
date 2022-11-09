@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'board.apps.BoardConfig',
+    'user.apps.UserConfig',
     "main.apps.MainConfig",
     "datapg.apps.DatapgConfig",
     "django.contrib.admin",

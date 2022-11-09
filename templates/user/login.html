@@ -1,0 +1,16 @@
+{% extends 'common/base2.html' %}
+{% load static %}
+
+{% block title %}로그인{% endblock %}
+
+{% block body %}
+<div class="h1 text-primary">로그인</div> 
+
+<form method="POST">
+    {% csrf_token %}
+    <table class="table">
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="로그인" class="btn btn-primary ">
+</form>
+{% endblock %}

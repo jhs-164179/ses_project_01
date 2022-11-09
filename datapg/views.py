@@ -10,6 +10,7 @@ def data_page(req):
     cursor = db.cursor()
 
     with db:
+        cursor.execute("USE pr_01")
         cursor.execute("SELECT age, num_man, num_women FROM numcar")
         data1 = cursor.fetchall()
         cursor.execute("SELECT * FROM numevcar ORDER BY num_evcar DESC")
