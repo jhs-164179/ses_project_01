@@ -14,7 +14,9 @@ def home(request):
 
 def register(request):
     if request.method == 'GET':
+
         return render(request, 'accounts/register.html')
+
 
     elif request.method == 'POST':
         username = request.POST.get('username', None)
@@ -37,7 +39,9 @@ def register(request):
             )
             user.save()
 
+
         return render(request, 'accounts/register.html', err_data)
+
 
 from .forms import LoginForm
 
@@ -49,7 +53,9 @@ def login(request):
             return redirect('/')
     else:
         form = LoginForm()
+
     return render(request, 'accounts/login.html', {'form': form})
+
 
 def logout(request):
     if request.session.get('user'):
