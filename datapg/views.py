@@ -32,3 +32,8 @@ def data_page(req):
         'row_data5': data5
     })
 
+<<<<<<< HEAD
+=======
+def test_pg(req):
+    return render(req, 'datapg/testtt.html')
+>>>>>>> ccb1ca1d9ca9808b8eae18d310b8cc52cb50322f
