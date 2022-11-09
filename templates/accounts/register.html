@@ -6,35 +6,27 @@
 		<div class="header">
 			<div class="logo text-center"><img src="{% static 'img/logo-dark.png' %}" alt="Klorofil Logo"></div>
 			<p class="lead">회원가입</p>
-			</div>
-			<form method = "POST" class="form-auth-small" action="{% url 'register' %}">
-				{% csrf_token %}
-				<div class="form-group">
-					<label for="signin-email" class="control-label sr-only">아이디</label>
-					<input type="text" class="form-control" name="username" value="" placeholder="ID">
-				</div>
-                <div class="form-group">
-					<label for="signin-email" class="control-label sr-only">이메일</label>
-					<input type="email" class="form-control" name="email" value="" placeholder="Email">
-				</div>
-                <div class="form-group">
-					<label for="signin-email" class="control-label sr-only">비밀번호</label>
-					<input type="password" class="form-control" name="password1" value="" placeholder="Password">
-				</div>
-				<div class="form-group">
-					<label for="signin-password" class="control-label sr-only">비밀번호 확인</label>
-					<input type="password" class="form-control" name="password2" value="" placeholder="Confirm Password">
-				</div>
-					<button type="submit" class="btn btn-primary btn-lg btn-block" value="register">등록</button>
-			</form>
-			</div>
 		</div>
-		<div class="right">
-			{% comment %} <div class="overlay"></div> 
-			{% comment %} <div class="content text">
-			<h1 class="heading">Free Bootstrap dashboard template</h1>
-			<p>by The Develovers</p>
-			</div> {% endcomment %}
-		</div>
-		<div class="clearfix"></div>
+		<form method = "POST" class="form-auth-small" action="{% url 'register' %}">
+			{% csrf_token %}
+			<div class="form-group">
+				<label for="signin-email" class="control-label sr-only">아이디</label>
+				<input type="text" class="form-control" name="username" value="" placeholder="ID">
+			</div>
+            <div class="form-group">
+				<label for="signin-email" class="control-label sr-only">이메일</label>
+				<input type="email" class="form-control" name="email" value="" placeholder= "Email">
+			</div> 
+            <div class="form-group">
+				<label for="signin-email" class="control-label sr-only">비밀번호</label>
+				<input type="password" class="form-control" name="password1" value="" placeholder="Password">
+			</div>
+			<div class="form-group">
+				<label for="signin-password" class="control-label sr-only">비밀번호 확인</label>
+				<input type="password" class="form-control" name="password2" value="" placeholder="Confirm Password">
+			</div>
+				<button type="submit" class="btn btn-primary btn-lg btn-block" value="register">등록</button>
+		</form>
+	</div>
+</div>
 {% endblock %}
