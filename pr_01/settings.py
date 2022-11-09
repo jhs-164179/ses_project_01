@@ -34,6 +34,7 @@ MIDDLEWARE = [
     'accounts.middleware.KickedMiddleware',
     ]
 
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
