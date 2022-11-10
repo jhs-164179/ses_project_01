@@ -22,15 +22,13 @@ class LoginForm(forms.Form):
         password = cleaned_data.get('password')
 
         if useremail and password:
-            print(useremail)
-            print(password)
             user = User.objects.get(user_email=useremail)
             if not check_password(password, user.user_pw):
-                print(123)
                 self.add_error('password', '비밀번호가 틀립니다.')
             else:
-                print(456)
                 self.user_name = user.user_name
+        
+        
 
 
 # class UserForm(UserCreationForm):

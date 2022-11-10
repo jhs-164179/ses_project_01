@@ -35,10 +35,10 @@ def register(request):
 
         if not(username and useremail and password and password2):
             err_data['error'] = '모든 값을 입력해주세요.'
-        
+            return render(request, 'accounts/register.html')
         elif password != password2:
             err_data['error'] = '비밀번호가 다릅니다.'
-        
+            return render(request, 'accounts/register.html')
         else:
             user = User(
                 user_name=username,
@@ -47,18 +47,15 @@ def register(request):
             )
             user.save()
 
-        return render(request, 'accounts/login.html', err_data)
+        return redirect('/accounts/login/')
 
 def login(request):
     if request.method == 'POST':
-        print('hello1')
         form = LoginForm(request.POST)
         if form.is_valid():
-            print('hello1')
             request.session['user'] = form.user_name
             return redirect('/')
     else:
-        print('hello')
         form = LoginForm()
     return render(request, 'accounts/login.html', {'form': form})
 
