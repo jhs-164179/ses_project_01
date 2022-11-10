@@ -68,16 +68,14 @@ class NoticeBoardListView(generic.ListView):
                     result = Board.objects.filter(title__icontains=search_word)
                 case 'content':
                     result = Board.objects.filter(content__icontains=search_word)
-                case 'writer':
-                    result = Board.objects.filter(writer__username__icontains=search_word)
+        
                 case _: # 간편 검색 기능 구현 
                     result = Board.objects.filter(
                         Q(title__icontains=search_word) |
-                        Q(content__icontains=search_word) |
-                        Q(writer__username__icontains=search_word)
+                        Q(content__icontains=search_word)
                     ).distinct()
         else:
-            result = Board.objects.all()           
+            result = Board.objects.filter(writer_id = 2)           
         return result.order_by('-date')
 
 

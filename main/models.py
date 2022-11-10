@@ -12,5 +12,5 @@
 #     date = models.DateTimeField(default=timezone.now)  # 작성일.
 #     count = models.IntegerField(default=0)  # 조회수.
 #     mainwriter = models.ForeignKey(auth_models.User, on_delete=models.DO_NOTHING)  # 작성자.
-    writer = models.ForeignKey(auth_models.User, on_delete=models.DO_NOTHING)  # 작성자.
+    # writer = models.ForeignKey(auth_models.User, on_delete=models.DO_NOTHING)  # 작성자.
 

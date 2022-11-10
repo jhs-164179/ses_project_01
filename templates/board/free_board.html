@@ -25,16 +25,7 @@
 		{% for board in board_list %}
 		<tr>
 			{% if board.writer_id == 2 %}
-				<td style="color:red;"><b>공지</b></td>
-				<td>
-					<a href="{% url 'board:detail' pk=board.id %}">{{ board.title }}</a>
-					{% if board.reply_set.all %}
-						<span class="text-danger">[{{ board.reply_set.count }}]</span>
-					{% endif %}
-				</td>
-				<td>{{ board.writer }}</td>
-				<td>{{ board.date }}</td>
-				<td>{{ board.count }}</td>
+				
 			{% endif %}
 		</tr>
 		{% endfor %}
