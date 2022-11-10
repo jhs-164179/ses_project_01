@@ -1,0 +1,39 @@
+<div class="left">
+	<div class="content">
+		<div class="header">
+			<div class="logo text-center"><img src="{% static 'img/logo-dark.png' %}" alt="Klorofil Logo"></div>
+				<p class="lead">로그인 해주세요</p>
+			</div>
+			<form class="form-auth-small" method="POST" action=".">
+				{% csrf_token %}
+				{% include "accounts/form_errors.html" %}
+				<div class="form-group">
+					<label for="signin-email" class="control-label sr-only">id</label>
+					<input type="email" class="form-control" id="email" value="{{ form.username.value|default_if_none:'' }}" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label for="signin-password" class="control-label sr-only">Password</label>
+					<input type="password" class="form-control" id="password" value="{{ form.password.value|default_if_none:'' }}" placeholder="Password">
+				</div>
+				<div class="form-group clearfix">
+					<label class="fancy-checkbox element-left">
+					<input type="checkbox">
+					<span>저장하기</span>
+					</label>
+				</div>
+					<button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
+				<div class="bottom">
+					{% comment %} <span class="helper-text"><i class="fa fa-lock"></i> <a href="#">비밀번호를 잃어버리셨나요?</a></span> {% endcomment %}
+				</div>
+				<div><a href=../register>회원가입</a></div>
+			</form>
+		</div>
+	</div>
+	<div class="right">
+		 <div class="overlay"></div>
+		<div class="content texst">
+			<h1 class="heading">Free Bootstrap dashboard template</h1>
+			<p>by The Develovers</p>
+		</div> 
+	</div>
+<div class="clearfix"></div>

@@ -1,4 +1,5 @@
-{% extends 'common/base.html' %}
+{% extends 'common/base2.html' %}
+{% load static %}
 
 {% block title %}로그인{% endblock %}
 
@@ -10,6 +11,6 @@
     <table class="table">
     {{ form.as_table }}
     </table>
-    <input type="submit" value="로그인" class="btn btn-outline-primary ">
+    <input type="submit" value="로그인" class="btn btn-primary ">
 </form>
 {% endblock %}

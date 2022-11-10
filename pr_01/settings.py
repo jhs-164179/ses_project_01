@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MIDDLEWARE = [
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'accounts.middleware.KickedMiddleware',
+    ]
+
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -87,7 +92,6 @@ DATABASES = {
         
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

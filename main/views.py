@@ -1,6 +1,6 @@
  # 메인 페이지 연결 + 검색 기능 테스트
 
-# from .models import Board
+#from .models import Board
 from django.shortcuts import render
 from django.views import generic
 from django.db.models import Q

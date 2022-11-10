@@ -79,22 +79,37 @@
 					<ul class="nav navbar-nav navbar-right" style="margin-top: 0px; margin-bottom: 0px;">
 						<li class="dropdown">
 							<!-- 로그인 기능 + 로그인 관련 메뉴바 -->
-							<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span>
-							{% if user.is_authenticated %}
-								{{ user.username }}님 환영합니다.
-							{% else %}
-								로그인해 주세요.
-							{% endif %}
-							</span>
-							<i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span id="newtest">{{ request.session.user }}님 환영합니다.</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								{% if user.is_authenticated %}
-									<li><a href="{% url 'accounts:register' %}"><i class="lnr lnr-user"></i> <span>회원정보</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
-									<li><a href="{% url 'accounts:logout' %}"><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
-								{% else %}
-									<li><a href="{% url 'accounts:login' %}"><i class="lnr lnr-lock"></i> <span>로그인</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
-									<li><a href="{% url 'accounts:register' %}"><i class="lnr lnr-users"></i> <span>회원가입</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
-								{% endif %}
+								<script>
+									window.onload = function() {
+										var test = document.getElementById("newtest").innerText
+										console.log(test)
+										function plzlogin() {
+											var atag = document.getElementById("changelog");
+											atag.href = "../accounts/login";
+											console.log(atag.href)
+											var spanstr = document.getElementById("hello");
+											spanstr.innerHTML = "로그인 OR 회원가입";
+										}
+										function plzlogout() {
+											var atag = document.getElementById("changelog");
+											atag.href = "{% url 'logout' %}";
+											console.log(atag.href)
+											var spanstr = document.getElementById("hello");
+											spanstr.innerHTML = "회원정보 OR 로그아웃";
+										}
+										if (test == "님 환영합니다.") {
+											plzlogin();
+										}
+										else {
+											plzlogout();
+										};
+									}
+								</script>
+								<li><a id="changelog" href="../accounts/login"><i class="lnr lnr-user"></i> <span id="hello">로그인 OR 회원가입</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
+								
+							
 								<!-- <li><a href=""><i class="lnr lnr-envelope"></i> <span></span></a></li> -->
 								<!-- <li><a href=""><i class="lnr lnr-cog"></i> <span></span></a></li> -->
 							</ul>
@@ -124,6 +139,12 @@
 				<nav>
 					<ul class="nav"> <!-- 기본메뉴 -->
 						<li><a href="{% url 'main:index' %}" class="active"><i class="lnr lnr-home"></i> <span>홈</span></a></li>
+						<li><a href="{% url 'accounts:login' %}" class="active"><i class="lnr lnr-user"></i> <span>로그인 OR 회원정보</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+						<li><a href="" class="active"><i class="lnr lnr-exit"></i> <span>회원가입 OR 로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+						<!-- <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li> -->
+						<!-- <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>분석</span></a></li> -->
+						<!-- <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li> -->
+						<!-- <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li> -->
 						<li>
 							<!-- 서브메뉴 -->
 							<a href="#subPages" data-toggle="collapse" class="active"><i class="lnr lnr-file-empty"></i><span>회원관리</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -141,7 +162,7 @@
 						</li>
 						<li><a href="{% url 'board:free' %}" class="active"><i class="lnr lnr-alarm"></i> <span>공지사항</span></a></li>
 						<li><a href="{% url 'board:free' %}" class="active"><i class="lnr lnr-inbox"></i> <span>자유게시판</span></a></li>
-						<li><a href="{% url 'datapg:datapage' %}" class="active"><i class="lnr lnr-chart-bars"></i> <span>전기자동차 현황</span></a></li>
+						<li><a href="{% url 'board:notice' %}" class="active"><i class="lnr lnr-alarm"></i> <span>공지사항</span></a></li>
 					</ul>
 				</nav>
 			</div>
