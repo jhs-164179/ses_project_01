@@ -1,17 +1,17 @@
 <script>
 
-	// 복사 방지 시스템
+	//복사 방지 시스템
 	//1. Ctrl + C 방지
-	// window.addEventListener("copy", (e) => {
-  	// 	e.preventDefault(); // 클립보드 이벤트를 활용을 위한 preventDefault 함수를 호출
-  	// 	e.clipboardData.setData("Text", "");
-	// 	alert('복사 방지 시스템이 작동 중입니다.');
-	// });
+	window.addEventListener("copy", (e) => {
+  		e.preventDefault(); // 클립보드 이벤트를 활용을 위한 preventDefault 함수를 호출
+  		e.clipboardData.setData("Text", "");
+		alert('복사 방지 시스템이 작동 중입니다.');
+	});
 	//2. 마우스 오른쪽 메뉴 방지
-	// window.oncontextmenu = function() {
-	// 	alert('복사 방지를 위해 마우스 우클릭이 금지되어 있습니다.');
-	// 	return false;
-	// }
+	window.oncontextmenu = function() {
+		alert('복사 방지를 위해 마우스 우클릭이 금지되어 있습니다.');
+		return false;
+	}
 
 	function drsearch() { //검색창에서 Enter를 눌렀을 때 실행하는 함수
 		if (window.event.keyCode == 13) {
@@ -27,31 +27,31 @@
 			input_word = input_word.replaceAll(pro_chr[i], ''); // 특수 문자 검색 차단 (엉뚱한 결과가 나오는 것 방지)
 		}
 		// || input_word == " " || input_word.replaceAll(" ", "") == ""
-		if (input_word == "") { //검색어가 없거나 공백이거나 공백만 있을 경우
+		if (input_word == "" || input_word == " " || input_word.replaceAll(" ", "") == "") { //검색어가 없거나 공백이거나 공백만 있을 경우
             alert('올바른 검색어를 입력해 주세요.\r\n공백 혹은 일부 특수문자는 사용이 불가능합니다.'); // \r\n 줄바꿈 시퀀스 사용
             return false;
         }
 		// href로 했더니 안되서 assign 사용하여 이동
 		// ?page=1&searchType=&searchWord=  <-- 이 부분은 불가피한 하드 코딩임
-		window.location.assign("{% url 'main:search' %}?page=1&searchType=&searchWord=" + input_word); //보드 게시판 검색 기능으로 이동
+		window.location.assign("{% url 'board:free' %}?page=1&searchType=&searchWord=" + input_word); //보드 게시판 검색 기능으로 이동
     }
 
 </script>
 
 <style>
 	/* 요소 선택 방지 기능 */
-	/* * {
+	* {
 		-webkit-user-select:none;
 		-moz-user-select:none;
 		-ms-user-select:none;
-		user-select:none
-	} */
+		user-select:none;
+	}
 </style>
 
     <!-- 상단바 -->
 		<nav class="navbar navbar-default navbar-fixed-top" style="height: 50px;">
 			<div class="navbar-btn" style="padding: 0px 15px 0px 15px;">
-				<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button> <!-- 왼쪽 메뉴바 숨김/활성 -->
+				<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-menu"></i></button> <!-- 왼쪽 메뉴바 숨김/활성 -->
 			</div>
 			<div class="brand" style="height:50px; padding: 11px 15px 11px 15px;">
 				<a style="font-size:20px;">전기자동차</a> <!-- 상단 메뉴바 타이틀 -->
@@ -79,19 +79,21 @@
 					<ul class="nav navbar-nav navbar-right" style="margin-top: 0px; margin-bottom: 0px;">
 						<li class="dropdown">
 							<!-- 로그인 기능 + 로그인 관련 메뉴바 -->
-							{% if user.is_authenticated %}
-							<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span>{{ user.username }}님 환영합니다.</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span>
+							{% if request.session.user != null %}
+								{{ request.session.user }}님 환영합니다.
+							{% else %}
+								로그인해주세요.
+							{% endif %}
+							</span>
+							<i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href=""><i class="lnr lnr-user"></i> <span>회원정보</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
-								<li><a href="{% url 'user:logout' %}"><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+								{% if request.session.user != null %}
+									<li><a href="{% url 'accounts:logout' %}"><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
 								{% else %}
-								<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span>로그인을 해주세요.</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="{% url 'user:login' %}"><i class="lnr lnr-user"></i> <span>로그인</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
-								<li><a href="{% url 'user:join' %}"><i class="lnr lnr-exit"></i> <span>회원가입</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+									<li><a href="{% url 'accounts:login' %}"><i class="lnr lnr-lock"></i> <span>로그인</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
+									<li><a href="{% url 'accounts:register' %}"><i class="lnr lnr-users"></i> <span>회원가입</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
 								{% endif %}
-								<!-- <li><a href=""><i class="lnr lnr-envelope"></i> <span></span></a></li> -->
-								<!-- <li><a href=""><i class="lnr lnr-cog"></i> <span></span></a></li> -->
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -99,9 +101,10 @@
 							<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span>메뉴</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu" style="left:0; right:0">
 								<li><a href="{% url 'main:index' %}">홈</a></li>
-								<li><a href="">전기자동차 현황</a></li>
-								<li><a href="">전기차3</a></li>
-								<li><a href="">전기차4</a></li>
+								<li><a href="{% url 'board:notice' %}">공지사항</a></li>
+								<li><a href="{% url 'board:free' %}">자유게시판</a></li>
+								<li><a href="{% url 'datapg:datapage' %}">전기자동차 현황</a></li>
+								<!-- <li><a href="">전기차4</a></li> -->
 							</ul>
 						</li>
 						<!-- <li>
@@ -113,34 +116,28 @@
 		</nav>
 		<!-- 상단바 끝 -->
 		<!-- 좌측 메뉴바 -->
-		<div id="sidebar-nav" class="sidebar" style="padding-top: 35px;">
+		<div id="sidebar-nav" class="sidebar" style="padding-top: 10px;">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav"> <!-- 기본메뉴 -->
 						<li><a href="{% url 'main:index' %}" class="active"><i class="lnr lnr-home"></i> <span>홈</span></a></li>
-						<li><a href="{% url 'accounts:login' %}" class="active"><i class="lnr lnr-user"></i> <span>로그인 OR 회원정보</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
-						<li><a href="" class="active"><i class="lnr lnr-exit"></i> <span>회원가입 OR 로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
-						<!-- <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li> -->
-						<!-- <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>분석</span></a></li> -->
-						<!-- <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li> -->
-						<!-- <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li> -->
 						<li>
 							<!-- 서브메뉴 -->
-							<a href="#subPages" data-toggle="collapse" class="active"><i class="lnr lnr-file-empty"></i> <span>메뉴</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<a href="#subPages" data-toggle="collapse" class="active"><i class="lnr lnr-file-empty"></i><span>회원관리</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse"> 
-								<ul class="nav"> <!-- -->
-									<li><a href="{% url 'datapg:datapage' %}" class=""><i class="lnr lnr-dice"></i> <span>통계</span></a></li>
-									<li><a href="" class=""><i class="lnr lnr-chart-bars"></i> <span>분석</span></a></li>
-									<!-- <li><a href="page-profile.html" class="">Profile</a></li> -->
-									<!-- <li><a href="page-login.html" class="">Login</a></li> -->
-									<!-- <li><a href="page-lockscreen.html" class="">Lockscreen</a></li> -->
+								<ul class="nav" style = "margin : 0px;">
+									{% if request.session.user != null %}
+										<li><a href="{% url 'accounts:logout' %}" class=""><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+									{% else %}
+										<li><a href="{% url 'accounts:login' %}" class=""><i class="lnr lnr-lock"></i> <span>로그인</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+										<li><a href="{% url 'accounts:register' %}" class=""><i class="lnr lnr-users"></i> <span>회원가입</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->										
+									{% endif %}
 								</ul>
 							</div>
 						</li>
-						<!-- <li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li> -->
-						<!-- <li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li> -->
-						<li><a href="{% url 'board:free' %}" class="active"><i class="lnr lnr-inbox"></i> <span>자유게시판</span></a></li>
 						<li><a href="{% url 'board:notice' %}" class="active"><i class="lnr lnr-alarm"></i> <span>공지사항</span></a></li>
+						<li><a href="{% url 'board:free' %}" class="active"><i class="lnr lnr-inbox"></i> <span>자유게시판</span></a></li>
+						<li><a href="{% url 'datapg:datapage' %}" class="active"><i class="lnr lnr-chart-bars"></i> <span>전기자동차 현황</span></a></li>
 					</ul>
 				</nav>
 			</div>

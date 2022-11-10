@@ -75,6 +75,6 @@ def add_numevcar2():
     csv_to_db('numevcar2',NumEvCar2,arr)
     return print('NumEvCar table updated')
 
-# add_numcar()
-# add_numevcar()
+add_numcar()
+add_numevcar()
 add_numevcar2()
