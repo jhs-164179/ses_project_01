@@ -46,17 +46,21 @@ def register(request):
                 user_pw = make_password(password),
             )
             user.save()
-
-        return redirect('/accounts/login/')
+            return redirect('/accounts/login/')
 
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
+            # 로그인 시에 login_id를 입력하지 않으므로 직접 아래의 줄처럼 직접 DB에서 가져온다.
+            get_id = User.objects.filter(user_name = form.user_name).values('id')[0]['id']
             request.session['user'] = form.user_name
+            request.session['id'] = get_id
+            #print(get_id)
             return redirect('/')
     else:
         form = LoginForm()
+    print(form.errors)
     return render(request, 'accounts/login.html', {'form': form})
 
 def logout(request):
