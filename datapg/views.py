@@ -16,11 +16,14 @@ def data_page(req):
         data2 = cursor.fetchall()
         cursor.execute("SELECT * FROM numevcar2")
         data3 = cursor.fetchall()
-        cursor.execute("SELECT * FROM test1 ORDER BY two DESC")
-        data4 = cursor.fetchall()
+        # cursor.execute("SELECT * FROM test1 ORDER BY two DESC")
+        # data4 = cursor.fetchall()
         cursor.execute("SELECT * FROM test2")
         data5 = cursor.fetchall()
+        cursor.execute("SELECT lat,lng FROM clustercenter")
+        data6= cursor.fetchall()
         
+    print(data6)
 
     return render(req, 'datapg/charts.html', {
         'col1_title': '남성',
@@ -28,8 +31,9 @@ def data_page(req):
         'row_data': data1,
         'row_data2': data2,
         'row_data3': data3,
-        'row_data4': data4,
-        'row_data5': data5
+        # 'row_data4': data4,
+        'row_data5': data5,
+        'row_data6': data6
     })
 
 def test_pg(req):
