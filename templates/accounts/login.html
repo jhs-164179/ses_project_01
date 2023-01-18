@@ -1,47 +1,59 @@
 {% extends "accounts/base.html" %}
 {% load static %}
 {% block contents %}
-<div class="left">
-	<div class="content">
-		<div class="header">
-			<div class="logo text-center"><img src="{% static 'img/logo-dark.png' %}" alt="Klorofil Logo"></div>
-				<p class="lead">로그인 해주세요</p>
-			</div>
-			<div class="row mt-5">
-            <div class="col-12 text-center">
-                {% comment %} <h1>로그인</h1> {% endcomment %}
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-12">
-                {{ error }}
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-12">
-                <form method="POST" action=".">
-                    {% csrf_token %}
-                    {% for field in form %}
-                    <div class="form-group">
-                        <label for="{{ field.id_for_label }}" class="control-label sr-only">{{ field.label }}</label>
-                        <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}" placeholder="{{ field.label }}" name="{{ field.name }}" />
+<div class="limiter">
+	<div class="container-login100">
+		<div class="wrap-login100">
+            <form class="login100-form validate-form" method="POST" action=".">
+                {% csrf_token %}
+                    <span class="login100-form-title p-b-48">
+                        <a href="{% url 'main:index' %}" style="margin:15px 0px 0px 0px; font-size:20px; color: hsl(22, 97%, 50%);">
+                        <img src="{% static 'img/dol2.png' %}" style="height:40px; width:45px; margin:0px -25px 0px 0px; position: relative; z-index: 1;">
+                        <img src="{% static 'img/charging2.png' %}" style="height:40px; width:37px; margin:3px -7px 0px 0px;">
+                        <b><em>JEJU</em>로</b>
+                        <b>충전</b>
+                        </a>
+			        </span> 
+                <span class="login100-form-title p-b-26">
+						Welcome
+			    </span>
+               
+
+
+                {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}" class="control-label sr-only">{{ field.label }}</label>
+                    <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}" placeholder="{{ field.label }}" name="{{ field.name }}" />
+                                {% if field.errors %}
+                                <span style="color: red">{{ field.errors }}</span>
+                                {% endif %}
+                                {% endfor %}
+				</div>
+                <div class="row mt-5">
+                    <div class="col-12">    
+                        {{ error }}
                     </div>
-                    {% if field.errors %}
-                    <span style="color: red">{{ field.errors }}</span>
-                    {% endif %}
-                    {% endfor %}
-                    <button type="submit" class="btn btn-primary">로그인</button>
-                </form>
-            </div>
+                </div>
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn" type="submit">
+                                    Login
+                            </button>
+                        </div>
+                    </div>
+
+{% comment %}--------------------------------------------------  {% endcomment %}
+                    <div class="text-center p-t-115">
+                        <span class="txt1">
+                                Don’t have an account?
+                        </span>
+                        <a class="txt2" href="../register">
+                                Sign Up
+                        </a>
+                    </div>
+            </form>
         </div>
-		</div>
-	</div>
-  {% comment %} <div class="right">
-		 <div class="overlay"></div>
-		<div class="content texst">
-			<h1 class="heading">Free Bootstrap dashboard template</h1>
-			<p>by The Develovers</p>
-		</div> 
-	</div>
-<div class="clearfix"></div> {% endcomment %}
+    </div>
+</div>
 {% endblock %}

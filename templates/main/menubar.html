@@ -47,14 +47,19 @@
 		user-select:none;
 	}
 </style>
-
+{% load static %}
     <!-- 상단바 -->
 		<nav class="navbar navbar-default navbar-fixed-top" style="height: 50px;">
 			<div class="navbar-btn" style="padding: 0px 15px 0px 15px;">
 				<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-menu"></i></button> <!-- 왼쪽 메뉴바 숨김/활성 -->
 			</div>
-			<div class="brand" style="height:50px; padding: 11px 15px 11px 15px;">
-				<a style="font-size:20px;">전기자동차</a> <!-- 상단 메뉴바 타이틀 -->
+			<div class="brand" style="height:50px; padding: 5px 15px 11px 15px;">
+				<a href="{% url 'main:index' %}" style="margin:15px 0px 0px 0px; font-size:20px; color: hsl(22, 97%, 50%);">
+					<img src="{% static 'img/dol2.png' %}" style="height:40px; width:45px; margin:0px -25px 0px 0px; position: relative; z-index: 1;">
+					<img src="{% static 'img/charging2.png' %}" style="height:40px; width:37px; margin:3px -7px 0px 0px;">
+					<b><em>JEJU</em>로</b>
+					<b>충전</b>
+				</a> <!-- 상단 메뉴바 타이틀 -->
 			</div>
 			<div class="container-fluid">
 				<!-- 로그인과 같이 보안이 중요한 경우에는 POST를 사용해야 하나 단순 검색과 같은 기능 구현시에는 GET을 사용해도 괜찮음 
@@ -100,7 +105,7 @@
 							<!-- 상단바 메뉴 기능 -->
 							<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span>메뉴</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu" style="left:0; right:0">
-								<li><a href="{% url 'main:index' %}">홈</a></li>
+								<li><a href="{% url 'datapg:datapage' %}">홈</a></li>
 								<li><a href="{% url 'board:notice' %}">공지사항</a></li>
 								<li><a href="{% url 'board:free' %}">자유게시판</a></li>
 								<li><a href="{% url 'datapg:datapage' %}">전기자동차 현황</a></li>
@@ -120,21 +125,24 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav"> <!-- 기본메뉴 -->
-						<li><a href="{% url 'main:index' %}" class="active"><i class="lnr lnr-home"></i> <span>홈</span></a></li>
+						<li><a href="{% url 'datapg:datapage' %}" class="active"><i class="lnr lnr-home"></i> <span>홈</span></a></li>
 						<li>
 							<!-- 서브메뉴 -->
 							<a href="#subPages" data-toggle="collapse" class="active"><i class="lnr lnr-file-empty"></i><span>회원관리</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse"> 
 								<ul class="nav" style = "margin : 0px;">
-									{% if request.session.user != null %}
-										<li><a href="{% url 'accounts:logout' %}" class=""><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+
+									{% if user.is_authenticated %}
+										<li><a href=""><i class="lnr lnr-user"></i> <span>회원정보</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
+										<li><a href="{% url 'user:logout' %}"><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
 									{% else %}
-										<li><a href="{% url 'accounts:login' %}" class=""><i class="lnr lnr-lock"></i> <span>로그인</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
-										<li><a href="{% url 'accounts:register' %}" class=""><i class="lnr lnr-users"></i> <span>회원가입</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->										
-									{% endif %}
+										<li><a href="{% url 'user:login' %}"><i class="lnr lnr-user"></i> <span>로그인</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
+										<li><a href="{% url 'user:join' %}"><i class="lnr lnr-exit"></i> <span>회원가입</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+										{% endif %}
 								</ul>
 							</div>
 						</li>
+						<li><a href="{% url 'main:index' %}" class="active"><i class="lnr lnr-file-empty"></i> <span>Info</span></a></li>
 						<li><a href="{% url 'board:notice' %}" class="active"><i class="lnr lnr-alarm"></i> <span>공지사항</span></a></li>
 						<li><a href="{% url 'board:free' %}" class="active"><i class="lnr lnr-inbox"></i> <span>자유게시판</span></a></li>
 						<li><a href="{% url 'datapg:datapage' %}" class="active"><i class="lnr lnr-chart-bars"></i> <span>전기자동차 현황</span></a></li>
