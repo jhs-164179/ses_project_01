@@ -1,6 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.utils import timezone
+from .forms import QuestionForm # 수정
+from django import forms # 수정
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
@@ -107,14 +110,52 @@ class FreeBoardCreateView(LoginRequiredMixin, generic.CreateView):
 
     template_name = "board/board_form.html"
 
+    widgets = {
+        'title' : forms.TextInput(attrs={'class':'form_control'}),
+        'content' : forms.Textarea(attrs={'class':'form-control', 'rows':10, 'cols' : 100})
+    }
+
     def form_valid(self, form):
         form.instance.writer = self.request.user
         form.save()
         return redirect(reverse_lazy('board:free'))
 
-
 @login_required(login_url=reverse_lazy('user:login'), redirect_field_name='/board/free/')
 
+# 도전
+
+def board_create(request) :
+
+    return render(request, 'board/board_form2.html')
+
+def board_register(request) :
+    #board = Board.objects.create
+    title = request.POST.get('title', '')
+    content = request.POST.get('content', '')
+    board.title = title
+    board.content = content
+    board.save()
+    return redirect(reverse('board:detail', kwargs={'pk':pk}))
+    pass
+
+
+# def question_create(request):
+    
+#     if request.method == 'POST':
+
+       
+#         form = QuestionForm(request.POST)
+#         if form.is_valid():
+#             Board = form.save(commit=False)
+#             Board.date = timezone.now()
+#             Board.save()
+#             return redirect('board:free')
+#         else:
+#             form = QuestionForm()
+#         context = {'form': form}
+#     return render(request, 'board/board_form2.html', context) 
+
+    
 
 def reply_create(request, board_id):
 

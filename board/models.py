@@ -23,3 +23,4 @@ class Reply(models.Model):
 
     def __str__(self) -> str:
         return f'{self.board.title}-{self.content}'
+

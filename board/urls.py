@@ -10,6 +10,9 @@ urlpatterns = [
     # 자유게시판에서 글 작성.
     path('write/', views.FreeBoardCreateView.as_view(), name='create'),
 
+    path('write2/', views.board_create, name='board_form2'),
+
+
     # 공지사항 페이지로 이동.
     path('notice/', views.NoticeBoardListView.as_view(), name='notice'),
     
