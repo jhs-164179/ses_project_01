@@ -20,7 +20,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('board/', include('board.urls')),
     path('data_pg/', include('datapg.urls')),
-    path('', include('main.urls')),
+    path('', include('datapg.urls')),
     path('accounts/', include('accounts.urls')),
     path('user/', include('user.urls')),
 ]

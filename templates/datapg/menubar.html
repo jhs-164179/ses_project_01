@@ -65,7 +65,7 @@
 				<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-menu"></i></button> <!-- 왼쪽 메뉴바 숨김/활성 -->
 			</div>
 			<div class="brand" style="height:50px; padding: 5px 15px 11px 15px;">
-				<a href="{% url 'main:index' %}" style="margin:15px 0px 0px 0px; font-size:20px; color: hsl(22, 97%, 50%);">
+				<a href="{% url 'datapg:datapage' %}" style="margin:15px 0px 0px 0px; font-size:20px; color: hsl(22, 97%, 50%);">
 					<img src="{% static 'img/dol2.png' %}" style="height:40px; width:45px; margin:0px -25px 0px 0px; position: relative; z-index: 1;">
 					<img src="{% static 'img/charging2.png' %}" style="height:40px; width:37px; margin:3px -7px 0px 0px;">
 					<b><em>JEJU</em>로</b>
@@ -165,7 +165,7 @@
 						<li><a href="{% url 'main:index' %}" class="active"><i class="lnr lnr-file-empty"></i> <span>Info</span></a></li>
 						<li><a href="{% url 'board:notice' %}" class="active"><i class="lnr lnr-alarm"></i> <span>공지사항</span></a></li>
 						<li><a href="{% url 'board:free' %}" class="active"><i class="lnr lnr-inbox"></i> <span>자유게시판</span></a></li>
-						<li><a href="{% url 'datapg:datapage' %}" class="active"><i class="lnr lnr-chart-bars"></i> <span>전기자동차 현황</span></a></li>
+						<li><a href="{% url 'datapg:datapage' %}" class="active"><i class="lnr lnr-chart-bars"></i> <span>입지 분석 페이지</span></a></li>
 					</ul>
 				</nav>
 			</div>
