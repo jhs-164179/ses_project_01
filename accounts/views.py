@@ -6,21 +6,6 @@ from django.contrib.auth.hashers import make_password, check_password
 from .forms import LoginForm
 from django.shortcuts import render, redirect
 
-"""
-def register(request):
-    if request.method == 'POST':
-        if request.POST['password1'] == request.POST['password2']:
-            if AuthUser.objects.filter(username=request.POST['username']).count() <= 0:
-                user = AuthUser.objects.create_user(
-                                                username=request.POST['username'],
-                                                password=request.POST['password1']),
-                if user != None:
-                    user = auth.authenticate(request, username=request.POST['username'], password=request.POST['password1'])
-                    auth.login(request, user)
-                    return redirect('/')
-
-    return render(request, 'accounts/register.html')
-""" 
 
 def register(request):
     if request.method == "GET":
@@ -60,7 +45,9 @@ def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
+            get_id = User.objects.filter(user_name = form.user_name).values('id')[0]['id']
             request.session['user'] = form.user_name
+            request.session['id'] = get_id
             return redirect('/')
     else:
         form = LoginForm()
@@ -70,5 +57,3 @@ def logout(request):
     if request.session.get('user'):
         del(request.session['user'])
     return redirect('/')
-
-    
