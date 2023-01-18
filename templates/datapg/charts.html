@@ -260,13 +260,14 @@
 						<!-- 페이지 좌하단 -->
 						<div class="col-md-6">
 							<!-- 충전소 데이터 분석 그래프 -->
-							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">충전소 문제점</h3>
+							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">(임시) 충전소 입지 예측</h3>
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">충전 시설 현황</h3>
+									<h3 class="panel-title">최적의 충전소 입지</h3>
 								</div>
 								<div class="panel-body">
-									<div id="combo-chart" style="width:100%; height:400px; margin:auto;"></div>
+									{% comment %} <div id="combo-chart" style="width:100%; height:400px; margin:auto;"></div> {% endcomment %}
+									<div id="map2" style="width:100%; height:300px; margin:auto;"></div>
 								</div>
 							</div>
 						</div>
@@ -275,13 +276,14 @@
 						<!-- 페이지 우하단 -->
 						<div class="col-md-6">
 							<!-- 전기차 보조금 예측 그래프 -->
-							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">전기차 보조금 예측</h3>
+							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">충전 인프라 수요</h3>
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">2023 전기차 보조금 예측</h3>
+									<h3 class="panel-title">전기차 충전 민원</h3>
 								</div>
 								<div class="panel-body">
-									<div id="line-chart" style="width:100%; height:400px; margin:auto;"></div>
+									<img src="{% static 'img/chargemin3.png' %}" alt='minwonimg' style='width:100%; height:300px; margin:auto;'>
+									{% comment %} <div id="line-chart" style="width:100%; height:400px; margin:auto;"></div> {% endcomment %}
 								</div>
 							</div>
 						</div>
@@ -313,9 +315,14 @@
 	<!-- 카카오 맵 api -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e033816e8f4fac437e466060be505bae&libraries=clusterer"></script>
 	<script type="text/javascript">
+		
 		var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
 			center : new kakao.maps.LatLng(35.936, 127.811), // 지도의 중심좌표 
 			level : 13 // 지도의 확대 레벨 
+		});
+		var map2 = new kakao.maps.Map(document.getElementById('map2'), { // 지도를 표시할 div
+			center : new kakao.maps.LatLng(33.377, 126.538), // 지도의 중심좌표 
+			level : 11 // 지도의 확대 레벨 
 		});
 		// 마우스 휠로 확대 축소하는 기능 제거
 		map.setZoomable(false);
@@ -324,6 +331,11 @@
 		// 지도 줌 기능 추가
 		map.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
 		
+		map2.setZoomable(false);
+		map2.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
+		map2.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
+		
+		// map 1
 		var nation = [];
 		var region = [];
 		
@@ -778,6 +790,23 @@
 			// map.setCenter(moveLation)
 			map.panTo(moveLation);
 		}
+
+		// map2
+		var markers=[];
+		
+		function addMarker(lat,lng) {
+			var marker=new kakao.maps.Marker({
+				position: new kakao.maps.LatLng(lat,lng)
+			});
+
+			marker.setMap(map2)
+
+			markers.push(marker)
+		}
+		addMarker({{row_data6.0.0}},{{row_data6.0.1}})
+		addMarker({{row_data6.1.0}},{{row_data6.1.1}})
+		addMarker({{row_data6.2.0}},{{row_data6.2.1}})
+		addMarker({{row_data6.3.0}},{{row_data6.3.1}})
 	</script>
 
 	<!-- 구글 차트 api -->
@@ -873,6 +902,7 @@
 		} 
 		
 		// 충전소 상태 데이터 차트(pie)
+		/*
 		function drawPie() {
 			// 차트에 입력되는 데이터
 			var data3 = new google.visualization.arrayToDataTable([
@@ -897,7 +927,7 @@
 
 			pie_chart.draw(data3, options3);
 		}
-		
+		*/
 		// 연도별 전기차 보조금 예측 차트(line)
 		function drawLine() {
 			// 차트에 입력되는 데이터

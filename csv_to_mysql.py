@@ -1,19 +1,20 @@
 import os
 import django
-
+import joblib
+import pandas as pd
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pr_01.settings")
 
 django.setup()
 
-from datapg.models import NumCar, NumEvCar, NumEvCar2
+from datapg.models import NumCar, NumEvCar, NumEvCar2, ClusterCenter
 import csv
 
 
 data = None
 file_dir = 'datapg/datafile/'
 
-def read_data(table_name):
+def read_data(file_dir,table_name):
     with open(file_dir + f'{table_name}.csv','r',encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         global data
@@ -28,7 +29,7 @@ def csv_to_db(table_name, class_name, bulk_list):
     return
 
 def add_numcar():
-    read_data('numcar')
+    read_data(file_dir,'numcar')
     if not data:
         return print('Nothing to update')
 
@@ -44,7 +45,7 @@ def add_numcar():
     return print('NumCar table updated')
 
 def add_numevcar():
-    read_data('numevcar')
+    read_data(file_dir,'numevcar')
     if not data:
         return print('Nothing to update')
 
@@ -60,7 +61,7 @@ def add_numevcar():
     return print('NumEvCar table updated')
 
 def add_numevcar2():
-    read_data('numevcar2')
+    read_data(file_dir,'numevcar2')
     if not data:
         return print('Nothing to update')
 
@@ -75,6 +76,21 @@ def add_numevcar2():
     csv_to_db('numevcar2',NumEvCar2,arr)
     return print('NumEvCar table updated')
 
+def add_cluster_center():
+    read_data(file_dir+'ml/','cluster_center')
+    if not data:
+        return print('Nothing to update')
+    arr=[]
+    for row in data:
+        arr.append(ClusterCenter(
+            lng=row[0],
+            lat=row[1]
+        ))
+
+    csv_to_db('clustercenter',ClusterCenter,arr)
+    return print('ClusterCenter table updated')
+
 add_numcar()
 add_numevcar()
 add_numevcar2()
+add_cluster_center()
