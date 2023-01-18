@@ -9,6 +9,9 @@ from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
 from django.db.models import Q
 
+from django.forms import ModelForm, TextInput, Textarea
+from django import forms
+
 from .models import Board, Reply
 
 # 자유게시판 페이지로 이동.
@@ -103,10 +106,12 @@ class FreeBoardDetailView(generic.DetailView):
 
 
 # 자유게시판에서 글 작성.
-class FreeBoardCreateView(LoginRequiredMixin, generic.CreateView):
+#LoginRequiredMixin, # LoginRequiredMixin 사용 안하고 로그인시에 받아온 정보 이용
+
+class FreeBoardCreateView(generic.CreateView):
     model = Board
     fields = ['title', 'content']
-    login_url = reverse_lazy('user:login')
+    login_url = reverse_lazy('accounts:login')
 
     template_name = "board/board_form.html"
 
@@ -115,56 +120,66 @@ class FreeBoardCreateView(LoginRequiredMixin, generic.CreateView):
         'content' : forms.Textarea(attrs={'class':'form-control', 'rows':10, 'cols' : 100})
     }
 
-    def form_valid(self, form):
-        form.instance.writer = self.request.user
-        form.save()
-        return redirect(reverse_lazy('board:free'))
+    widgets = {
+        'title' : TextInput(attrs={
+                'id': 'id_title',
+                'style': 'max-width: 1000px;',
+                }) ,
+        'content' : Textarea(attrs={
+                'id': 'id_content',
+                'style': 'max-width: 1000px;',
+                })
+        }
 
-@login_required(login_url=reverse_lazy('user:login'), redirect_field_name='/board/free/')
-
-# 도전
-
-def board_create(request) :
-
-    return render(request, 'board/board_form2.html')
-
-def board_register(request) :
-    #board = Board.objects.create
-    title = request.POST.get('title', '')
-    content = request.POST.get('content', '')
-    board.title = title
-    board.content = content
-    board.save()
-    return redirect(reverse('board:detail', kwargs={'pk':pk}))
-    pass
+    def form_valid(self, form) :
+        user = self.request.session.get('user')
+        user_id = self.request.session.get('id')
+        # 로그인 여부를 위의 두 변수의 값이 Null인지 아닌지 여부로 판별
+        if user is not None or user_id is not None:
+            print(user)
+            form.instance.user_name = user
+            form.instance.writer_id = user_id
+            form.save()
+            return redirect(reverse_lazy('board:free'))
+        else :
+            return redirect(reverse_lazy('accounts:login'))
 
 
-# def question_create(request):
-    
-#     if request.method == 'POST':
+# class FreeBoardCreateView(generic.CreateView):
+#     model = Board
+#     fields = ['title', 'content']
+#     login_url = reverse_lazy('accounts:login')
 
-       
-#         form = QuestionForm(request.POST)
-#         if form.is_valid():
-#             Board = form.save(commit=False)
-#             Board.date = timezone.now()
-#             Board.save()
-#             return redirect('board:free')
-#         else:
-#             form = QuestionForm()
-#         context = {'form': form}
-#     return render(request, 'board/board_form2.html', context) 
+#     template_name = "board/board_form.html"
 
-    
+#     def form_valid(self, form) :
+#         user = self.request.session.get('user')
+#         user_id = self.request.session.get('id')
+#         # 로그인 여부를 위의 두 변수의 값이 Null인지 아닌지 여부로 판별
+#         if user is not None or user_id is not None:
+#             print(user)
+#             form.instance.user_name = user
+#             form.instance.writer_id = user_id
+#             form.save()
+#             return redirect(reverse_lazy('board:free'))
+#         else :
+#             return redirect(reverse_lazy('accounts:login'))
+
+
+#@login_required(login_url=reverse_lazy('accounts:login'), redirect_field_name='/board/free/')
 
 def reply_create(request, board_id):
 
     content = request.POST.get('content', '')
-    user = request.user
-    Reply.objects.create(content=content, writer=user, board_id=board_id)
-
-    return redirect(reverse('board:detail', kwargs={'pk':board_id}))
-
+    # user = request.user
+    user = request.session.get('user')
+    user_id = request.session.get('id')
+    # 로그인 여부를 위의 두 변수의 값이 Null인지 아닌지 여부로 판별
+    if user is not None or user_id is not None:
+        Reply.objects.create(content=content, user_name=user, writer_id=user_id , board_id=board_id)
+        return redirect(reverse('board:detail', kwargs={'pk':board_id}))
+    else :
+        return redirect(reverse_lazy('accounts:login'))
 
 def board_delete(request, pk) :
     

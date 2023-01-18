@@ -25,12 +25,12 @@ class NumEvCar2(models.Model): # 지방 단위 전기차 대수
     class Meta:
         db_table = 'numevcar2'
 
-class Test1(models.Model):
-    one = models.CharField(max_length=20)
-    two = models.IntegerField()
+class ClusterCenter(models.Model):
+    lng = models.FloatField()
+    lat = models.FloatField()
     
     class Meta:
-        db_table = 'test1'
+        db_table = 'clustercenter'
 
 class Test2(models.Model):
     one = models.CharField(max_length=20)

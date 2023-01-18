@@ -76,16 +76,19 @@
 <div class="row" style="margin:0px 0px 0px 0px">
     
     {{ board.date }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회 {{ board.count }}
+    {% if board.writer.id == request.session.id %}
     
-    {% if board.writer.username == request.user.username %}
     <span style="margin: 40px 0px 0px 550px"><a href="#reply"><img src="{% static 'img/reply_icon.png' %}" width="40" height="40">댓글 {{ board.reply_set.count }}</a></span>
     <span>
         <a class="btn btn-danger btn-sm;" style=" margin: 5px 40px 0px 0px; float : right;" onclick="board_delete();">글 삭제</a>
         <a class="btn btn-primary btn-sm;"  style="margin: 5px 10px 0px 0px; float : right;" onclick="board_edit();">글 수정</a>
     </span>
+
+    
     {% else %}
     <span style="margin: 30px 0px 0px 800px"><a href="#reply"><img src="{% static 'img/reply_icon.png' %}" width="40" height="40">댓글 {{ board.reply_set.count }}</a></span>
     {% endif %}
+    
 
 </div>
 
@@ -116,7 +119,7 @@
             <div id = "reply_content_{{ reply.id }}" class="reply_content_{{ reply.id }}" style="white-space: pre-wrap; margin-left: 40px;">{{ reply.content }}</div>
             <br>
             <h5 class="date reply_date_{{ reply.id }}">{{ reply.date }}</h5>
-            {% if reply.writer.username == request.user.username %}
+            {% if reply.writer.id == request.session.id %}
                 <button class="btn btn-danger btn-sm reply_delete_{{ reply.id }}" onclick="reply_delete({{ reply.id }});">댓글 삭제</button>
                 {% with intext=reply.content %}
                     <button class="btn btn-primary btn-sm reply_edit_{{ reply.id }} " onclick="reply_edit({{ reply.id }});">댓글 수정</button>

@@ -5,19 +5,17 @@
 	<div class="container-login100">
 		<div class="wrap-login100">
             <form class="login100-form validate-form" method="POST" action=".">
-                {% csrf_token %}
-                    <span class="login100-form-title p-b-48">
-                        <a href="{% url 'main:index' %}" style="margin:15px 0px 0px 0px; font-size:20px; color: hsl(22, 97%, 50%);">
-                        <img src="{% static 'img/dol2.png' %}" style="height:40px; width:45px; margin:0px -25px 0px 0px; position: relative; z-index: 1;">
-                        <img src="{% static 'img/charging2.png' %}" style="height:40px; width:37px; margin:3px -7px 0px 0px;">
-                        <b><em>JEJU</em>로</b>
-                        <b>충전</b>
-                        </a>
-			        </span> 
-                <span class="login100-form-title p-b-26">
-						Welcome
-			    </span>
-               
+                    {% csrf_token %}
+                    {% include "./form_errors.html" %}
+                <span class="login100-form-title p-b-48">
+                    <a href="{% url 'main:index' %}" style="margin:15px 0px 0px 0px; font-size:20px; color: hsl(22, 97%, 50%);">
+                    <img src = "{% static 'img/do12.png' %}" style="height:40px; width:45px; margin:0px -25px 0px 0px; position: relative; z-index:1;">
+                    <img src = "{% static 'img/charging2.png' %}" style="height:40px; width:37px; margin:3px -7px 0px 0px;">
+                    <b><em>JEJU</em>로</b>
+                    <b>충전</b>
+                    </a>
+			    	<i class="zmdi zmdi-font"></i>
+			    </span> 
 
 
                 {% for field in form %}
@@ -45,15 +43,17 @@
 
 {% comment %}--------------------------------------------------  {% endcomment %}
                     <div class="text-center p-t-115">
+                            <a href="{static %%}"><img src="{% static 'img/kakao_login.png' %}" style="height: 70px;"/></a>
                         <span class="txt1">
                                 Don’t have an account?
                         </span>
                         <a class="txt2" href="../register">
                                 Sign Up
-                        </a>
+                        </a>                        
                     </div>
             </form>
         </div>
     </div>
 </div>
+
 {% endblock %}
