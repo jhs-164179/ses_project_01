@@ -73,7 +73,7 @@
 
 <h3><img src="{% static 'img/user_icon.png' %}" width="40" height="40">&nbsp;&nbsp;<b>{{ board.writer }}</b></h3>
 
-<div class="row" style="margin:0px 0px 0px 0px">
+<div class="row" style="margin:0px 0px 0px 0px;">
     
     {{ board.date }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회 {{ board.count }}
     {% if board.writer.id == request.session.id %}
@@ -101,9 +101,9 @@
     <span><img src="{% static 'img/reply_icon.png' %}" width="40" height="40" id="reply">댓글 {{ board.reply_set.count }}</span>
 
     <span><a id="kakaotalk-sharing-btn" href="javascript:;">
-    <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"  style="height: 40px; float: right; margin-left: 15px;" alt="카카오톡 공유 보내기 버튼"></a></span>
-    <span><img src="{% static 'img/share.png' %}" style="height:40px; float: right;" id="share"></span>
-    <span style="float:right; margin : 10px 5px 0 0;">공유</span>
+    <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"  style="height: 40px; float: right; margin: 0px 0px 0px 0px;" alt="카카오톡 공유 보내기 버튼"></a></span>
+    <span><img src="{% static 'img/share.png' %}" style="height:35px; float: right; margin: 2px 5px 0px 0px" id="share"></span>
+    <span style="float:right; margin : 10px 5px 0px 10px; font-size: 17px;"><b>공유</b></span>
 </div>
 
 <hr style="border : 1px solid #aaa; margin : 0px;" >

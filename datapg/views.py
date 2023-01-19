@@ -20,10 +20,9 @@ def data_page(req):
         # data4 = cursor.fetchall()
         cursor.execute("SELECT * FROM test2")
         data5 = cursor.fetchall()
-        cursor.execute("SELECT lat,lng FROM clustercenter")
-        data6= cursor.fetchall()
+        # cursor.execute("SELECT lat,lng FROM clustercenter")
+        # data6= cursor.fetchall()
         
-    print(data6)
 
     return render(req, 'datapg/charts.html', {
         'col1_title': '남성',
@@ -32,9 +31,20 @@ def data_page(req):
         'row_data2': data2,
         'row_data3': data3,
         # 'row_data4': data4,
-        'row_data5': data5,
-        'row_data6': data6
+        'row_data5': data5
+        # 'row_data6': data6
     })
 
-def test_pg(req):
-    return render(req, 'datapg/testtt.html')
+def pr_pg(req):
+    import pymysql
+    # 127.0.0.1
+    db = pymysql.connect(host='127.0.0.1',port=3306,user='root',passwd='1234',db='hongboard',charset='utf8')
+    cursor = db.cursor()
+    
+    with db:
+        cursor.execute("SELECT lat,lng FROM clustercenter")
+        data6= cursor.fetchall()
+
+    return render(req, 'datapg/pr.html', {
+        'row_data6': data6
+    })

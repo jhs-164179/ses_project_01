@@ -8,7 +8,12 @@ urlpatterns = [
     path('free/', views.FreeBoardListView.as_view(), name='free'),
     
     # 자유게시판에서 글 작성.
-    path('write/', views.FreeBoardCreateView.as_view(), name='create'),
+    # path('write/', views.FreeBoardCreateView.as_view(), name='create'),
+    # path('write2/', views.board_create, name='board_form2'),
+
+    path('write_board/', views.write_board, name='write'),
+    path('register_board/', views.register_board, name='register'),
+
 
     # path('write2/', views.board_create, name='board_form2'),
 

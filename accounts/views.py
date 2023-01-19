@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.contrib import messages
 
 def register(request):
+
     if request.method == "GET":
         return render(request, 'accounts/register.html')
     elif request.method == "POST":
@@ -52,6 +53,10 @@ def login(request):
     if request.session.get('user') is not None or request.session.get('id') is not None :
         return redirect('/')
 
+def login(request):
+
+    if request.session.get('user') is not None or request.session.get('id') is not None :
+        return redirect('/')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
