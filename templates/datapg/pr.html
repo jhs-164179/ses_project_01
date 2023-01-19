@@ -44,7 +44,6 @@
 				<div class="container-fluid">
 					<!-- 페이지 상단 -->
 					<div class="row">
-
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class='panel-title' style='text-align:center;'>제주도 전기차 급속 충전소 최적 입지 선정</h3>
@@ -57,6 +56,8 @@
 							</div>
                         </div>
 					</div>
+					
+
 				</div>
 			</div>
 		</div>
@@ -93,7 +94,6 @@
 		map2.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
 		map2.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
 		
-
 		// map2
 		var imgSrc= "{% static 'img/charging2.png' %}",
             imgSize = new kakao.maps.Size(44,49),
@@ -130,18 +130,59 @@
             });
 		marker4.setMap(map2);
 		
-		var iwContent = '<div style="padding:5px;">Hello World!</div>',
-			iwRemoveable = true;
+		var	iwRemoveable = true;
+		var iwContent = '<div style="font-weight:bold;">위치정보</div>' +
+						'<div">제주시 아라동</div>' +
+						'<div style="font-weight:bold;">인근시설</div>' +
+						'<div>제주대학교</div>'
 
 		var infowindow = new kakao.maps.InfoWindow({
 			content: iwContent,
+			removable: iwRemoveable
+		});
+
+		var iwContent2 = '<div style="font-weight:bold;">위치정보</div>' +
+						'<div">서귀포시 동홍동</div>' +
+						'<div style="font-weight:bold;">인근시설</div>' +
+						'<div>솔오름전망대</div>'
+		
+		var infowindow2 = new kakao.maps.InfoWindow({
+			content: iwContent2,
+			removable: iwRemoveable
+		});
+
+		var iwContent3 = '<div style="font-weight:bold;">위치정보</div>' +
+						'<div">제주시 연동</div>' +
+						'<div style="font-weight:bold;">인근시설</div>' +
+						'<div>제주도립미술관</div>'
+
+		var infowindow3 = new kakao.maps.InfoWindow({
+			content: iwContent3,
+			removable: iwRemoveable
+		});
+
+		var iwContent4 = '<div style="font-weight:bold;">위치정보</div>' +
+						'<div">서귀포시 회수동</div>' +
+						'<div style="font-weight:bold;">인근시설</div>' +
+						'<div>서귀포천문과학관</div>'
+
+		var infowindow4 = new kakao.maps.InfoWindow({
+			content: iwContent4,
 			removable: iwRemoveable
 		});
 		
 		kakao.maps.event.addListener(marker, 'click', function(){
 			infowindow.open(map2, marker);
 		});
+		kakao.maps.event.addListener(marker2, 'click', function(){
+			infowindow2.open(map2, marker2);
+		});
+		kakao.maps.event.addListener(marker3, 'click', function(){
+			infowindow3.open(map2, marker3);
+		});
+		kakao.maps.event.addListener(marker4, 'click', function(){
+			infowindow4.open(map2, marker4);
+		});
 	</script>
-
 </body>
 </html>

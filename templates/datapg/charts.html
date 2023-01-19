@@ -4,7 +4,7 @@
 <html>
 
 <head>
-	<title>page</title>
+	<title>데이터 페이지</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -260,12 +260,13 @@
 						<!-- 페이지 좌하단 -->
 						<div class="col-md-6">
 							<!-- 충전소 데이터 분석 그래프 -->
-							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">(임시) 충전소 입지 예측</h3>
+							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">(임시) 지자체별 충전소 대수</h3>
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">최적의 충전소 입지</h3>
+									<h3 class="panel-title">지자체별 충전소 대수</h3>
 								</div>
 								<div class="panel-body">
+									<img src="{% static 'img/temporary.jpg' %}" alt='charger' style='width:100%; height:300px; margin:auto;'>
 									{% comment %} <div id="combo-chart" style="width:100%; height:400px; margin:auto;"></div> {% endcomment %}
 									{% comment %} <div id="map2" style="width:100%; height:300px; margin:auto;"></div> {% endcomment %}
 								</div>
@@ -274,17 +275,9 @@
 
 						<!-- 그래프(multiple) -->
 						<!-- 페이지 우하단 -->
-<<<<<<< HEAD
 						<div class="col-md-6">
 							<!-- 전기차 보조금 예측 그래프 -->
 							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">충전 인프라 수요</h3>
-=======
-
-						<div class="col-md-6">
-							<!-- 전기차 보조금 예측 그래프 -->
-							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">충전 인프라 수요</h3>
-
->>>>>>> 12c9493d134c9bd4caee5c0d5bffca8628a4ffed
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title">전기차 충전 민원</h3>
@@ -294,7 +287,7 @@
 									{% comment %} <div id="line-chart" style="width:100%; height:400px; margin:auto;"></div> {% endcomment %}
 								</div>
 							</div>
-						</div> -->
+						</div>
 					</div>
 				</div>
 			</div>
@@ -802,7 +795,6 @@
 		// 차트 함수 호출
 		google.charts.setOnLoadCallback(drawStacked);
 		google.charts.setOnLoadCallback(drawBar);
-		google.charts.setOnLoadCallback(drawPie);
 		google.charts.setOnLoadCallback(drawLine);
 
 		// 연령별 차량 등록 대수 차트(stack)
@@ -886,33 +878,6 @@
 			bar_chart.draw(data2, google.charts.Bar.convertOptions(options2));
 		} 
 		
-		// 충전소 상태 데이터 차트(pie)
-		/*
-		function drawPie() {
-			// 차트에 입력되는 데이터
-			var data3 = new google.visualization.arrayToDataTable([
-				['충전소 상태','비율'],
-				{% for i in row_data4 %}
-				['{{i.1}}', {{i.2}}],
-				{% endfor %}
-			]);
-			
-			// 차트 옵션
-			var options3 = {
-				legend: 'none',
-				pieSliceText: 'label',
-				pieStartAngle: 0,
-				chartArea: {width:'70%',height:'80%'},
-				fontName:'Roboto',
-				colors:['rgb(161, 167, 250)','rgb(66, 133, 244)','rgb(37, 106, 184)','rgb(161, 194, 250)','rgb(161, 203, 250)','rgb(183, 223, 237)']
-			};
-
-			// 차트 종류/위치 설정 후 생성
-			var pie_chart = new google.visualization.PieChart(document.getElementById('combo-chart'));
-
-			pie_chart.draw(data3, options3);
-		}
-		*/
 		// 연도별 전기차 보조금 예측 차트(line)
 		function drawLine() {
 			// 차트에 입력되는 데이터
@@ -950,7 +915,5 @@
 			line_chart.draw(data4, options4);
 		}
 	</script>
-
-
 </body>
 </html>
