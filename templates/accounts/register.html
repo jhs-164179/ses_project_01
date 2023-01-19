@@ -36,11 +36,13 @@
 				</div> 
             	<div class="form-group">
 					<label for="signin-email" class="control-label sr-only">비밀번호</label>
-					<input type="password" class="form-control" name="password1" value="" placeholder="Password">
-				</div>
+
+					<input type="password" minlength="8" maxlength="16" class="form-control" name="password1" value="" placeholder="Password">
+				<p style="opacity: 60%;">8 ~ 16 자를 사용하세요.</p>
 				<div class="form-group">
 					<label for="signin-password" class="control-label sr-only">비밀번호 확인</label>
-					<input type="password" class="form-control" name="password2" value="" placeholder="Confirm Password">
+					<input type="password" minlength="8" maxlength="16" class="form-control" name="password2" value="" placeholder="Confirm Password">
+
 				</div>
 				<div class="container-login100-form-btn">
 					<div class="wrap-login100-form-btn">
