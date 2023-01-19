@@ -4,7 +4,7 @@
 <html>
 
 <head>
-	<title>page</title>
+	<title>급속충전기 입지 분석</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -28,8 +28,8 @@
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
-	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon.png' %}">
+	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/logo.png' %}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/logo.png' %}">
 </head>
 
 <body>
@@ -183,25 +183,6 @@
 		kakao.maps.event.addListener(marker4, 'click', function(){
 			infowindow4.open(map2, marker4);
 		});
-		
-		/*
-		var content = '<div class="panel">' +
-						'<div class="panel-heading">' +
-							'<h3 class="panel-title">default</h3>'
-						'</div>' +
-					'</div>';
-		var overlay = new kakao.maps.CustomOverlay({
-			content:content,
-			map:map2,
-			position:marker.getPosition()
-		});
-		kakao.maps.event.addListener(marker, 'click', function() {
-			overlay.setMap(map);
-		});
-		function closeOverlay() {
-			overlay.setMap(Null);
-		}
-		*/
 	</script>
 </body>
 </html>
