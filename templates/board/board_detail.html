@@ -73,7 +73,7 @@
 
 <h3><img src="{% static 'img/user_icon.png' %}" width="40" height="40">&nbsp;&nbsp;<b>{{ board.writer }}</b></h3>
 
-<div class="row" style="margin:0px 0px 0px 0px">
+<div class="row" style="margin:0px 0px 0px 0px;">
     
     {{ board.date }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;조회 {{ board.count }}
     {% if board.writer.id == request.session.id %}
@@ -81,7 +81,7 @@
     <span style="margin: 40px 0px 0px 550px"><a href="#reply"><img src="{% static 'img/reply_icon.png' %}" width="40" height="40">댓글 {{ board.reply_set.count }}</a></span>
     <span>
         <a class="btn btn-danger btn-sm;" style=" margin: 5px 40px 0px 0px; float : right;" onclick="board_delete();">글 삭제</a>
-        <a class="btn btn-warning btn-sm;"  style="margin: 5px 10px 0px 0px; float : right;" onclick="board_edit();">글 수정</a>
+        <a class="btn btn-primary btn-sm;"  style="margin: 5px 10px 0px 0px; float : right;" onclick="board_edit();">글 수정</a>
     </span>
 
     
@@ -101,9 +101,9 @@
     <span><img src="{% static 'img/reply_icon.png' %}" width="40" height="40" id="reply">댓글 {{ board.reply_set.count }}</span>
 
     <span><a id="kakaotalk-sharing-btn" href="javascript:;">
-    <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"  style="height: 40px; float: right; margin-left: 15px;" alt="카카오톡 공유 보내기 버튼"></a></span>
-    <span><img src="{% static 'img/share.png' %}" style="height:40px; float: right;" id="share"></span>
-    <span style="float:right; margin : 10px 5px 0 0;">공유</span>
+    <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"  style="height: 40px; float: right; margin: 0px 0px 0px 0px;" alt="카카오톡 공유 보내기 버튼"></a></span>
+    <span><img src="{% static 'img/share.png' %}" style="height:35px; float: right; margin: 2px 5px 0px 0px" id="share"></span>
+    <span style="float:right; margin : 10px 5px 0px 10px; font-size: 17px;"><b>공유</b></span>
 </div>
 
 <hr style="border : 1px solid #aaa; margin : 0px;" >
@@ -122,7 +122,7 @@
             {% if reply.writer.id == request.session.id %}
                 <button class="btn btn-danger btn-sm reply_delete_{{ reply.id }}" onclick="reply_delete({{ reply.id }});">댓글 삭제</button>
                 {% with intext=reply.content %}
-                    <button class="btn btn-warning btn-sm reply_edit_{{ reply.id }}" onclick="reply_edit({{ reply.id }});">댓글 수정</button>
+                    <button class="btn btn-primary btn-sm reply_edit_{{ reply.id }} " onclick="reply_edit({{ reply.id }});">댓글 수정</button>
                 {% endwith %}
                 <input type="hidden" name="boardid" id="boardid" value="{{ board.id }}">
                 <input type="hidden" name="replyid" id="replyid" value="{{ reply.id }}">
