@@ -65,7 +65,7 @@
 				<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-menu"></i></button> <!-- 왼쪽 메뉴바 숨김/활성 -->
 			</div>
 			<div class="brand" style="height:50px; padding: 5px 15px 11px 15px;">
-				<a href="{% url 'main:index' %}" style="margin:15px 0px 0px 0px; font-size:20px; color: hsl(22, 97%, 50%);">
+				<a href="{% url 'datapg:datapage' %}" style="margin:15px 0px 0px 0px; font-size:20px; color: hsl(22, 97%, 50%);">
 					<img src="{% static 'img/dol2.png' %}" style="height:40px; width:45px; margin:0px -25px 0px 0px; position: relative; z-index: 1;">
 					<img src="{% static 'img/charging2.png' %}" style="height:40px; width:37px; margin:3px -7px 0px 0px;">
 					<b><em>JEJU</em>로</b>
@@ -119,18 +119,7 @@
 								{% endif %}
 							</ul>
 						</li>
-						<li class="dropdown">
-							<!-- 상단바 메뉴 기능 -->
-							<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span>메뉴</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu" style="left:0; right:0">
-								<li><a href="{% url 'main:index' %}">홈</a></li>
-								<li><a href="{% url 'board:notice' %}">공지사항</a></li>
-								<li><a href="{% url 'board:free' %}">자유게시판</a></li>
-								<li><a href="{% url 'datapg:datapage' %}">입지 분석 페이지</a></li>
-								<!-- <li><a href="">전기차4</a></li> -->
-								
-							</ul>
-						</li>
+						
 						<!-- <li>
 							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
 						</li> -->
@@ -148,6 +137,7 @@
 						<li><a href="{% url 'main:mmindex' %}" class="active"><i class="lnr lnr-file-empty"></i> <span>Info</span></a></li>
 						<li><a href="{% url 'board:free' %}" class="active"><i class="lnr lnr-inbox"></i> <span>자유게시판</span></a></li>
 						<li><a href="{% url 'datapg:project' %}" class="active"><i class="lnr lnr-chart-bars"></i> <span>충전소 입지 선정</span></a></li>
+
 					</ul>
 				</nav>
 			</div>
