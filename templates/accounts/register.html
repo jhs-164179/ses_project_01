@@ -23,14 +23,7 @@
 				        <b>충전</b>
                     </a>
 			    </span> 
-				<span class="login100-form-title p-b-48">
-					<a href="{% url 'main:index' %}" style="margin:15px 0px 0px 0px; font-size:20px; color: hsl(22, 97%, 50%);">
-						<img src="{% static 'img/dol2.png' %}" style="height:40px; width:45px; margin:0px -25px 0px 0px; position: relative; z-index:1;">
-						<img src="{% static 'img/charging2.png' %}" style="height:40px; width:37px; margin:3px -7px 0px 0px;">
-						<b><em>JEJU로</em></b>
-						<b>충전</b>
-					</a>
-				</span>
+				
 				<span class="login100-form-title p-b-26">
 					회원가입
 					<!-- Sign Up -->
@@ -59,7 +52,20 @@
 						</button>						
 					</div>
 				</div>
-				<a href="{% url 'accounts:login' %}"> 
+
+				<div class="text-center p-t-115" style= "padding-top: 30px">
+					<span class="txt1" style="font-size: 15px;">
+							이미 계정이 있으신가요?
+					</span>
+					<div >
+						  
+						<a class="txt2" href="../login" style="font-size: 17px;">
+							<b>로그인</b>
+						</a>                        
+					</div>
+				</div>
+
+				<!-- <a href="{% url 'accounts:login' %}"> 
 				<div class="container-login100-form-btn">
 					<div class="wrap-login100-form-btn">
 						<div class="login100-form-bgbtn"></div>
@@ -68,7 +74,7 @@
 						</button>						
 					</div>
 				</div> 
-				</a>
+				</a> -->
 			</form>
 		</div>
 	</div>
