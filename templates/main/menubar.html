@@ -101,17 +101,7 @@
 								{% endif %}
 							</ul>
 						</li>
-						<li class="dropdown">
-							<!-- 상단바 메뉴 기능 -->
-							<a href="" class="dropdown-toggle" data-toggle="dropdown" style="padding: 12px 50px 12px 15px;"><span>메뉴</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu" style="left:0; right:0">
-								<li><a href="{% url 'datapg:datapage' %}">홈</a></li>
-								<li><a href="{% url 'board:notice' %}">공지사항</a></li>
-								<li><a href="{% url 'board:free' %}">자유게시판</a></li>
-								<li><a href="{% url 'datapg:datapage' %}">전기자동차 현황</a></li>
-								<!-- <li><a href="">전기차4</a></li> -->
-							</ul>
-						</li>
+						
 						<!-- <li>
 							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
 						</li> -->
@@ -126,24 +116,7 @@
 				<nav>
 					<ul class="nav"> <!-- 기본메뉴 -->
 						<li><a href="{% url 'datapg:datapage' %}" class="active"><i class="lnr lnr-home"></i> <span>홈</span></a></li>
-						<li>
-							<!-- 서브메뉴 -->
-							<a href="#subPages" data-toggle="collapse" class="active"><i class="lnr lnr-file-empty"></i><span>회원관리</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages" class="collapse"> 
-								<ul class="nav" style = "margin : 0px;">
-
-									{% if user.is_authenticated %}
-										<li><a href=""><i class="lnr lnr-user"></i> <span>회원정보</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
-										<li><a href="{% url 'user:logout' %}"><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
-									{% else %}
-										<li><a href="{% url 'user:login' %}"><i class="lnr lnr-user"></i> <span>로그인</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
-										<li><a href="{% url 'user:join' %}"><i class="lnr lnr-exit"></i> <span>회원가입</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
-										{% endif %}
-								</ul>
-							</div>
-						</li>
 						<li><a href="{% url 'main:index' %}" class="active"><i class="lnr lnr-file-empty"></i> <span>Info</span></a></li>
-						<li><a href="{% url 'board:notice' %}" class="active"><i class="lnr lnr-alarm"></i> <span>공지사항</span></a></li>
 						<li><a href="{% url 'board:free' %}" class="active"><i class="lnr lnr-inbox"></i> <span>자유게시판</span></a></li>
 						<li><a href="{% url 'datapg:datapage' %}" class="active"><i class="lnr lnr-chart-bars"></i> <span>입지 분석 페이지</span></a></li>
 					</ul>
