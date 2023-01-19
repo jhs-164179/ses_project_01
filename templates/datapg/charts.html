@@ -4,7 +4,7 @@
 <html>
 
 <head>
-	<title>page</title>
+	<title>데이터 페이지</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -260,12 +260,13 @@
 						<!-- 페이지 좌하단 -->
 						<div class="col-md-6">
 							<!-- 충전소 데이터 분석 그래프 -->
-							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">(임시) 충전소 입지 예측</h3>
+							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">(임시) 지자체별 충전소 대수</h3>
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">최적의 충전소 입지</h3>
+									<h3 class="panel-title">지자체별 충전소 대수</h3>
 								</div>
 								<div class="panel-body">
+									<img src="{% static 'img/temporary.jpg' %}" alt='charger' style='width:100%; height:300px; margin:auto;'>
 									{% comment %} <div id="combo-chart" style="width:100%; height:400px; margin:auto;"></div> {% endcomment %}
 									{% comment %} <div id="map2" style="width:100%; height:300px; margin:auto;"></div> {% endcomment %}
 								</div>
@@ -323,25 +324,17 @@
 	<!-- 카카오 맵 api -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e033816e8f4fac437e466060be505bae&libraries=clusterer"></script>
 	<script type="text/javascript">
-		
 		var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
 			center : new kakao.maps.LatLng(35.936, 127.811), // 지도의 중심좌표 
 			level : 13 // 지도의 확대 레벨 
 		});
-		var map2 = new kakao.maps.Map(document.getElementById('map2'), { // 지도를 표시할 div
-			center : new kakao.maps.LatLng(33.377, 126.538), // 지도의 중심좌표 
-			level : 11 // 지도의 확대 레벨 
-		});
+		
 		// 마우스 휠로 확대 축소하는 기능 제거
 		map.setZoomable(false);
 		// 지도 타입 변경 기능 추가
 		map.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
 		// 지도 줌 기능 추가
 		map.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
-		
-		map2.setZoomable(false);
-		map2.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
-		map2.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
 		
 		// map 1
 		var nation = [];
@@ -799,22 +792,7 @@
 			map.panTo(moveLation);
 		}
 
-		// map2
-		var markers=[];
 		
-		function addMarker(lat,lng) {
-			var marker=new kakao.maps.Marker({
-				position: new kakao.maps.LatLng(lat,lng)
-			});
-
-			marker.setMap(map2)
-
-			markers.push(marker)
-		}
-		addMarker({{row_data6.0.0}},{{row_data6.0.1}})
-		addMarker({{row_data6.1.0}},{{row_data6.1.1}})
-		addMarker({{row_data6.2.0}},{{row_data6.2.1}})
-		addMarker({{row_data6.3.0}},{{row_data6.3.1}})
 	</script>
 
 	<!-- 구글 차트 api -->
@@ -825,7 +803,6 @@
 		// 차트 함수 호출
 		google.charts.setOnLoadCallback(drawStacked);
 		google.charts.setOnLoadCallback(drawBar);
-		google.charts.setOnLoadCallback(drawPie);
 		google.charts.setOnLoadCallback(drawLine);
 
 		// 연령별 차량 등록 대수 차트(stack)
@@ -909,33 +886,6 @@
 			bar_chart.draw(data2, google.charts.Bar.convertOptions(options2));
 		} 
 		
-		// 충전소 상태 데이터 차트(pie)
-		/*
-		function drawPie() {
-			// 차트에 입력되는 데이터
-			var data3 = new google.visualization.arrayToDataTable([
-				['충전소 상태','비율'],
-				{% for i in row_data4 %}
-				['{{i.1}}', {{i.2}}],
-				{% endfor %}
-			]);
-			
-			// 차트 옵션
-			var options3 = {
-				legend: 'none',
-				pieSliceText: 'label',
-				pieStartAngle: 0,
-				chartArea: {width:'70%',height:'80%'},
-				fontName:'Roboto',
-				colors:['rgb(161, 167, 250)','rgb(66, 133, 244)','rgb(37, 106, 184)','rgb(161, 194, 250)','rgb(161, 203, 250)','rgb(183, 223, 237)']
-			};
-
-			// 차트 종류/위치 설정 후 생성
-			var pie_chart = new google.visualization.PieChart(document.getElementById('combo-chart'));
-
-			pie_chart.draw(data3, options3);
-		}
-		*/
 		// 연도별 전기차 보조금 예측 차트(line)
 		function drawLine() {
 			// 차트에 입력되는 데이터
@@ -973,7 +923,5 @@
 			line_chart.draw(data4, options4);
 		}
 	</script>
-
-
 </body>
 </html>
