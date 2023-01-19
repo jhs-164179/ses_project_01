@@ -15,14 +15,11 @@ def register(request):
         useremail = request.POST.get('email', None)
         password = request.POST.get('password1', None)
         password2 = request.POST.get('password2', None)
-                        
-        err_data = {}   
-                        
+
         err_data = {}   
 
         if not(username and useremail and password and password2):
             err_data['error'] = '모든 값을 입력해주세요.'
-            return render(request, 'accounts/register.html', err_data)
             return render(request, 'accounts/register.html', err_data)
         elif password != password2:
             err_data['error'] = '비밀번호가 다릅니다.'
@@ -32,7 +29,6 @@ def register(request):
             return render(request, 'accounts/register.html', err_data)
         elif User.objects.filter(user_email=request.POST['email']).exists():
             err_data['error'] = '이미 가입된 이메일이 있습니다.'
-            return render(request, 'accounts/register.html', err_data)
             return render(request, 'accounts/register.html', err_data)
         elif User.objects.filter(user_name=request.POST['username']).exists():
             err_data['error'] = '이미 가입된 닉네임이 있습니다.'
@@ -51,9 +47,6 @@ def register(request):
         return redirect('/accounts/login/')
         
 
-
-        return redirect('/accounts/login/')
-        
 
 def login(request):
     if request.method == 'POST':

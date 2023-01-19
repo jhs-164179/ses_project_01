@@ -10,8 +10,8 @@
 				{% csrf_token %}
 				<span class="login100-form-title p-b-48">
 					<a href="{% url 'main:index' %}" style="margin:15px 0px 0px 0px; font-size:20px; color: hsl(22, 97%, 50%);">
-						<img src="{% static 'img/dol2.png %}" style="height:40px; width:45px; margin:0px -25px 0px 0px; position: relative; z-index:1;">
-						<img src="{% static 'img/chargin2.png' %}" style="height:40px; width:37px; margin:3px -7px 0px 0px;">
+						<img src="{% static 'img/dol2.png' %}" style="height:40px; width:45px; margin:0px -25px 0px 0px; position: relative; z-index:1;">
+						<img src="{% static 'img/charging2.png' %}" style="height:40px; width:37px; margin:3px -7px 0px 0px;">
 								<b><em>JEJU</em></b>
 								<b>충전</b>
 					</a>
@@ -34,9 +34,22 @@
 			<div class="form-group">
 				<label for="signin-password" class="control-label sr-only">비밀번호 확인</label>
 				<input type="password" class="form-control" name="password2" value="" placeholder="Confirm Password">
-			</div>
-				<button type="submit" class="btn btn-primary btn-lg btn-block" value="register">등록</button>
-			</form>
+					<div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn" type="submit" value="register">
+                                    등록
+                            </button>
+                        </div>
+                    </div>
+							</div>
+						</div>
+				</form>
+			
+			
+			
+			
+
 		</div>
 	</div>
 </div>

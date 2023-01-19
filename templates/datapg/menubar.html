@@ -150,15 +150,13 @@
 							<a href="#subPages" data-toggle="collapse" class="active"><i class="lnr lnr-file-empty"></i><span>회원관리</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse"> 
 								<ul class="nav" style = "margin : 0px;">
-
-									{% if user.is_authenticated %}
+									{% if request.session.user != null %}
 										<li><a href=""><i class="lnr lnr-user"></i> <span>회원정보</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
-										<li><a href="{% url 'user:logout' %}"><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+										<li><a href="{% url 'accounts:logout' %}"><i class="lnr lnr-exit"></i> <span>로그아웃</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
 									{% else %}
-										<li><a href="{% url 'user:login' %}"><i class="lnr lnr-user"></i> <span>로그인</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
-										<li><a href="{% url 'user:join' %}"><i class="lnr lnr-exit"></i> <span>회원가입</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
-										{% endif %}
-									
+										<li><a href="{% url 'accounts:login' %}"><i class="lnr lnr-lock"></i> <span>로그인</span></a></li> <!-- 로그인 아닐시 목록에서 안보이게 함 -->
+										<li><a href="{% url 'accounts:register' %}"><i class="lnr lnr-users"></i> <span>회원가입</span></a></li> <!-- 조건에 따리서 로그인 로그아웃 바뀌게 변경 -->
+									{% endif %}
 								</ul>
 							</div>
 						</li>
