@@ -44,250 +44,20 @@
 				<div class="container-fluid">
 					<!-- 페이지 상단 -->
 					<div class="row">
-						<!-- 페이지 좌상단 영역 -->
-						<div class="col-md-6">
-
-							<!-- 패널 상단 제목 -->
-							<h3 style="text-align: center; margin-top:0px; margin-bottom: 15px;">전기차 현황</h3>
-
-							<div class="panel">
-								<div class="panel-heading">
-									<!-- 패널(지도) 제목 -->
-									<!-- 패널(지도) 제목 -->
-									<h3 class="panel-title">시도별 전기차 대수</h3>
-								</div>
-								<div class="panel-body">
-									<!-- 카카오 맵 API -->
-									<div id="map" style="width:100%; height:600px; margin:auto;"></div>
-								</div>
-								<!-- 탭별로 전국/지역 별 전기차 대수 순위별로 표시 -->
-								<div class="panel-footer">
-									<div class="row">
-										<div class="col-xs-3"> <!-- required for floating -->
-											<!-- Nav tabs -->
-											<ul class="nav nav-tabs tabs-left">
-												<!-- 전국 전기차 현황 탭 -->
-												<li class="active"><a href="#national" onclick="chNation()" data-toggle="tab">전기차<br>(전국)</a></li>
-												<!-- 지역별 전기차 현황 탭 -->
-												<li class="dropdown">
-													<a href="#" id="myTabDrop2" class="dopdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents2">전기차<span class="caret"></span><br>(지역)</a>
-													<ul class="dropdown-menu" aria-labelledby="myTabDrop2" id="myTabDrop1-contents2">
-														<li><a href="#dropdown1-2" onclick="chCap()" data-toggle="tab">수도권</a></li>
-														<li><a href="#dropdown2-2" onclick="chGang()" data-toggle="tab">강원도</a></li>
-														<li><a href="#dropdown3-2" onclick="chChung()" data-toggle="tab">충청도</a></li>
-														<li><a href="#dropdown4-2" onclick="chJeolla()" data-toggle="tab">전라도</a></li>
-														<li><a href="#dropdown5-2" onclick="chGyeong()" data-toggle="tab">경상도</a></li>
-														<li><a href="#dropdown6-2" onclick="chJeju()" data-toggle="tab">제주도</a></li>
-													</ul>
-												</li>
-											</ul>
-										</div>
-										
-										<div class="col-xs-9">
-											<!-- Tab panes -->
-											<div class="tab-content">
-											  	<div class="tab-pane active" id="national">
-													<div class="row">
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<!-- 전국 -->
-																<li style="margin: 0px 0px">1. {{ row_data2.1.1 }}&ensp;{{ row_data2.1.2 }}대&nbsp;({{ row_data2.1.3 }}%)</li>
-																<li style="margin: 10px 0px">2. {{ row_data2.2.1 }}&ensp;{{ row_data2.2.2 }}대&nbsp;({{ row_data2.2.3 }}%)</li>
-																<li style="margin: 10px 0px">3. {{ row_data2.3.1 }}&ensp;{{ row_data2.3.2 }}대&nbsp;({{ row_data2.3.3 }}%)</li>
-															</ol>
-														</div>
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<li style="margin: 0px 0px">4. {{ row_data2.4.1 }}&ensp;{{ row_data2.4.2 }}대&nbsp;({{ row_data2.4.3 }}%)</li>
-																<li style="margin: 10px 0px">5. {{ row_data2.5.1 }}&ensp;{{ row_data2.5.2 }}대&nbsp;({{ row_data2.5.3 }}%)</li>
-																<li style="margin: 10px 0px">6. {{ row_data2.6.1 }}&ensp;{{ row_data2.6.2 }}대&nbsp;({{ row_data2.6.3 }}%)</li>
-															</ol>
-														</div>
-													</div>
-												</div>
-											  	<div class="tab-pane" id="dropdown1-2">
-													<div class="row">
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<!-- 수도권 -->
-																<li style="margin: 0px 0px">1. {{ row_data3.1.1 }}&ensp;{{ row_data3.1.2 }}대&nbsp;({{ row_data3.1.3 }}%)</li>
-																<li style="margin: 10px 0px">2. {{ row_data3.2.1 }}&ensp;{{ row_data3.2.2 }}대&nbsp;({{ row_data3.2.3 }}%)</li>
-																<li style="margin: 10px 0px">3. {{ row_data3.3.1 }}&ensp;{{ row_data3.3.2 }}대&nbsp;({{ row_data3.3.3 }}%)</li>
-															</ol>
-														</div>
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<li style="margin: 0px 0px">4. {{ row_data3.4.1 }}&ensp;{{ row_data3.4.2 }}대&nbsp;({{ row_data3.4.3 }}%)</li>
-																<li style="margin: 10px 0px">5. {{ row_data3.5.1 }}&ensp;{{ row_data3.5.2 }}대&nbsp;({{ row_data3.5.3 }}%)</li>
-																<li style="margin: 10px 0px">6. {{ row_data3.6.1 }}&ensp;{{ row_data3.6.2 }}대&nbsp;({{ row_data3.6.3 }}%)</li>
-															</ol>
-														</div>
-													</div>
-												</div>
-											  	<div class="tab-pane" id="dropdown2-2">
-													<div class="row">
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<!-- 강원도 -->
-																<li style="margin: 0px 0px">1. {{ row_data3.8.1 }}&ensp;{{ row_data3.8.2 }}대&nbsp;({{ row_data3.8.3 }}%)</li>
-																<li style="margin: 10px 0px">2. {{ row_data3.9.1 }}&ensp;{{ row_data3.9.2 }}대&nbsp;({{ row_data3.9.3 }}%)</li>
-																<li style="margin: 10px 0px">3. {{ row_data3.10.1 }}&ensp;{{ row_data3.10.2 }}대&nbsp;({{ row_data3.10.3 }}%)</li>
-															</ol>
-														</div>
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<li style="margin: 0px 0px">4. {{ row_data3.11.1 }}&ensp;{{ row_data3.11.2 }}대&nbsp;({{ row_data3.11.3 }}%)</li>
-																<li style="margin: 10px 0px">5. {{ row_data3.12.1 }}&ensp;{{ row_data3.12.2 }}대&nbsp;({{ row_data3.12.3 }}%)</li>
-																<li style="margin: 10px 0px">6. {{ row_data3.13.1 }}&ensp;{{ row_data3.13.2 }}대&nbsp;({{ row_data3.13.3 }}%)</li>
-															</ol>
-														</div>
-													</div>
-												</div>
-											  	<div class="tab-pane" id="dropdown3-2">
-													<div class="row">
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<!-- 충청도 -->
-																<li style="margin: 0px 0px">1. {{ row_data3.15.1 }}&ensp;{{ row_data3.15.2 }}대&nbsp;({{ row_data3.15.3 }}%)</li>
-																<li style="margin: 10px 0px">2. {{ row_data3.16.1 }}&ensp;{{ row_data3.16.2 }}대&nbsp;({{ row_data3.16.3 }}%)</li>
-																<li style="margin: 10px 0px">3. {{ row_data3.17.1 }}&ensp;{{ row_data3.17.2 }}대&nbsp;({{ row_data3.17.3 }}%)</li>
-															</ol>
-														</div>
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<li style="margin: 0px 0px">4. {{ row_data3.18.1 }}&ensp;{{ row_data3.18.2 }}대&nbsp;({{ row_data3.18.3 }}%)</li>
-																<li style="margin: 10px 0px">5. {{ row_data3.19.1 }}&ensp;{{ row_data3.19.2 }}대&nbsp;({{ row_data3.19.3 }}%)</li>
-																<li style="margin: 10px 0px">6. {{ row_data3.20.1 }}&ensp;{{ row_data3.20.2 }}대&nbsp;({{ row_data3.20.3 }}%)</li>
-															</ol>
-														</div>
-													</div>
-												</div>
-											  	<div class="tab-pane" id="dropdown4-2">
-													<div class="row">
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<!-- 전라도 -->
-																<li style="margin: 0px 0px">1. {{ row_data3.22.1 }}&ensp;{{ row_data3.22.2 }}대&nbsp;({{ row_data3.22.3 }}%)</li>
-																<li style="margin: 10px 0px">2. {{ row_data3.23.1 }}&ensp;{{ row_data3.23.2 }}대&nbsp;({{ row_data3.23.3 }}%)</li>
-																<li style="margin: 10px 0px">3. {{ row_data3.24.1 }}&ensp;{{ row_data3.24.2 }}대&nbsp;({{ row_data3.24.3 }}%)</li>
-															</ol>
-														</div>
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<li style="margin: 0px 0px">4. {{ row_data3.25.1 }}&ensp;{{ row_data3.25.2 }}대&nbsp;({{ row_data3.25.3 }}%)</li>
-																<li style="margin: 10px 0px">5. {{ row_data3.26.1 }}&ensp;{{ row_data3.26.2 }}대&nbsp;({{ row_data3.26.3 }}%)</li>
-																<li style="margin: 10px 0px">6. {{ row_data3.27.1 }}&ensp;{{ row_data3.27.2 }}대&nbsp;({{ row_data3.27.3 }}%)</li>
-															</ol>
-														</div>
-													</div>
-												</div>
-											  	<div class="tab-pane" id="dropdown5-2">
-													<div class="row">
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<!-- 경상도 -->
-																<li style="margin: 0px 0px">1. {{ row_data3.29.1 }}&ensp;{{ row_data3.29.2 }}대&nbsp;({{ row_data3.29.3 }}%)</li>
-																<li style="margin: 10px 0px">2. {{ row_data3.30.1 }}&ensp;{{ row_data3.30.2 }}대&nbsp;({{ row_data3.30.3 }}%)</li>
-																<li style="margin: 10px 0px">3. {{ row_data3.31.1 }}&ensp;{{ row_data3.31.2 }}대&nbsp;({{ row_data3.31.3 }}%)</li>
-															</ol>
-														</div>
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<li style="margin: 0px 0px">4. {{ row_data3.32.1 }}&ensp;{{ row_data3.32.2 }}대&nbsp;({{ row_data3.32.3 }}%)</li>
-																<li style="margin: 10px 0px">5. {{ row_data3.33.1 }}&ensp;{{ row_data3.33.2 }}대&nbsp;({{ row_data3.33.3 }}%)</li>
-																<li style="margin: 10px 0px">6. {{ row_data3.34.1 }}&ensp;{{ row_data3.34.2 }}대&nbsp;({{ row_data3.34.3 }}%)</li>
-														</div>
-													</div>
-												</div>
-												<div class="tab-pane" id="dropdown6-2">
-													<div class="row">
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<!-- 제주도 -->
-																<li style="margin: 0px 0px">1. {{ row_data3.36.1 }}&ensp;{{ row_data3.36.2 }}대&nbsp;({{ row_data3.36.3 }}%)</li>
-																<li style="margin: 10px 0px">2. {{ row_data3.37.1 }}&ensp;{{ row_data3.37.2 }}대&nbsp;({{ row_data3.37.3 }}%)</li>
-																<li style="margin: 10px 0px"></li>
-															</ol>
-														</div>
-														<div class="col-xs-6">
-															<ol style="list-style: none; padding-left: 0px;">
-																<li style="margin: 0px 0px"></li>
-																<li style="margin: 10px 0px"></li>
-																<li style="margin: 10px 0px"></li>
-															</ol>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class='panel-title' style='text-align:center;'>제주도 전기차 급속 충전소 최적 입지 선정</h3>
+                            </div>
+                            <div class='panel-body'>
+                                <div id="map" style="width:100%; height:600px; margin:auto;"></div>
+                            </div>
+                            <div class='panel-footer'>
+								<h3 class='panel-title' style='text-align:right'>최종 수정일 : 23.01.19</h3>
 							</div>
-						</div>
-
-						<!-- 페이지 우상단 영역 -->
-						<div class="col-md-6">
-							<!-- 그래프(bar , line) -->
-							<div class="panel-group">
-								<!-- 연령별 차량 등록 대수  -->
-								<h3 style="text-align: center; margin-top:0px; margin-bottom: 15px;">전기차 사용자 주요 연령층</h3>
-								<div class="panel">
-									<div class="panel-heading">
-										<h3 class="panel-title">연령별 차량 등록 대수</h3>
-									</div>
-									<div class="panel-body">
-										<div id="stack-chart" style="width:100%; height:309px; margin:auto;"></div>
-									</div>
-								</div>
-								<!-- 전기차 관련 민원 통계 -->
-								<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">부족한 전기차 인프라</h3>
-								<div class="panel">
-									<div class="panel-heading">
-										<h3 class="panel-title">전기차 관련 민원</h3>
-									</div>
-									<div class="panel-body">
-										<div id="bar-chart" style="width:100%; height:309px; margin:auto;"></div>
-									</div>
-								</div>
-							</div>
-						</div>
+                        </div>
 					</div>
 					
 
-					<!-- 페이지 하단 -->
-					<div class="row">
-						<!-- 그래프(area) -->
-						<!-- 페이지 좌하단 -->
-						<div class="col-md-6">
-							<!-- 충전소 데이터 분석 그래프 -->
-							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">(임시) 충전소 입지 예측</h3>
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title">최적의 충전소 입지</h3>
-								</div>
-								<div class="panel-body">
-									{% comment %} <div id="combo-chart" style="width:100%; height:400px; margin:auto;"></div> {% endcomment %}
-									<div id="map2" style="width:100%; height:300px; margin:auto;"></div>
-								</div>
-							</div>
-						</div>
-
-						<!-- 그래프(multiple) -->
-						<!-- 페이지 우하단 -->
-						<div class="col-md-6">
-							<!-- 전기차 보조금 예측 그래프 -->
-							<h3 style="text-align: center; margin-top:20px; margin-bottom: 15px;">충전 인프라 수요</h3>
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title">전기차 충전 민원</h3>
-								</div>
-								<div class="panel-body">
-									<img src="{% static 'img/chargemin3.png' %}" alt='minwonimg' style='width:100%; height:300px; margin:auto;'>
-									{% comment %} <div id="line-chart" style="width:100%; height:400px; margin:auto;"></div> {% endcomment %}
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -315,657 +85,104 @@
 	<!-- 카카오 맵 api -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e033816e8f4fac437e466060be505bae&libraries=clusterer"></script>
 	<script type="text/javascript">
-		
-		var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-			center : new kakao.maps.LatLng(35.936, 127.811), // 지도의 중심좌표 
-			level : 13 // 지도의 확대 레벨 
-		});
-		var map2 = new kakao.maps.Map(document.getElementById('map2'), { // 지도를 표시할 div
+		var map2 = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
 			center : new kakao.maps.LatLng(33.377, 126.538), // 지도의 중심좌표 
-			level : 11 // 지도의 확대 레벨 
+			level : 10 // 지도의 확대 레벨 
 		});
-		// 마우스 휠로 확대 축소하는 기능 제거
-		map.setZoomable(false);
-		// 지도 타입 변경 기능 추가
-		map.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
-		// 지도 줌 기능 추가
-		map.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
-		
+
 		map2.setZoomable(false);
 		map2.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
 		map2.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
 		
-		// map 1
-		var nation = [];
-		var region = [];
-		
-
-		class Region {
-			constructor(content,position,radius,color) {
-				this.content = content;
-				this.position = position;
-				this.radius = radius;
-				this.color = color;
-				this.ncustomOverlay = new kakao.maps.CustomOverlay({
-					content: this.content,
-					position: this.position
-				});
-				this.ncircle = new kakao.maps.Circle();
-			};
-
-			create_overlay() {
-				this.ncustomOverlay.setMap(map);
-			};
-
-			hide_overlay() {
-				this.ncustomOverlay.setVisible(null);
-			};
-
-			show_overlay() {
-				this.ncustomOverlay.setVisible(true);
-			}
-
-			create_circle() {
-				this.ncircle.setOptions({
-					center: this.position, // 원 중심 설정
-					radius: this.radius, // 원 반지름 설정 (단위:미터)
-					strokeWeight: 1, // 테두리 선의 굵기 설정
-					strokeColor: this.color, // 테두리 선의 색 설정
-					strokeOpacity: 0, // 테두리 선의 투명도 설정
-					fillColor: this.color, // 채우기 색 설정
-					fillOpacity: 0 // 채우기 투명도 설정
-				});
-				this.ncircle.setMap(map);
-			};
-			
-			hide_circle() {
-				this.ncircle.setOptions({
-					strokeOpacity: 0,
-					fillOpacity: 0
-				});
-			};
-
-			show_circle() {
-				this.ncircle.setOptions({
-					strokeOpacity: 1, // 테두리 선의 투명도 설정
-					fillOpacity: .7 // 채우기 투명도 설정
-				});
-			};
-		};
-
-		var numb = 1600
-		var numb2 = 600
-		// 수도권 row_data2.1.2대(1등) 
-		var cp = {
-			content: '<p id="first" class="db">수도권 {{row_data2.1.2}}대({{row_data2.1.3}}%)</p>',
-			position: new kakao.maps.LatLng(37.5447,126.9884),
-			radius: {{row_data2.1.3}}*numb,
-			color: 'blue',
-
-			// 서울
-			cont_1: '<p id="first" class="db">{{row_data3.1.1}} {{row_data3.1.2}}대({{row_data3.1.3}}%)</p>',
-			pos_1: new kakao.maps.LatLng(37.5662, 126.978),
-			rad_1: {{row_data3.1.3}}*numb2,
-
-			// 인천
-			cont_2: '<p id="second" class="db">{{row_data3.2.1}} {{row_data3.2.2}}대({{row_data3.2.3}}%)</p>',
-			pos_2: new kakao.maps.LatLng(37.3945, 126.6494),
-			rad_2: {{row_data3.2.3}}*numb2,
-
-			// 수원
-			cont_3: '<p id="third" class="db">{{row_data3.3.1}} {{row_data3.3.2}}대({{row_data3.3.3}}%)</p>',
-			pos_3: new kakao.maps.LatLng(37.2591, 127.032),
-			rad_3: {{row_data3.3.3}}*numb2,
-
-			// 용인
-			cont_4: '<p id="fourth" class="db">{{row_data3.4.1}} {{row_data3.4.2}}대({{row_data3.4.3}}%)</p>',
-			pos_4: new kakao.maps.LatLng(37.2406, 127.1996),
-			rad_4: {{row_data3.4.3}}*numb2,
-
-			// 성남
-			cont_5: '<p id="fiveth" class="db">{{row_data3.5.1}} {{row_data3.5.2}}대({{row_data3.5.3}}%)</p>',
-			pos_5: new kakao.maps.LatLng(37.4473, 127.1373),
-			rad_5: {{row_data3.5.3}}*numb2,
-
-			// 고양
-			cont_6: '<p id="sixth" class="db">{{row_data3.6.1}} {{row_data3.6.2}}대({{row_data3.6.3}}%)</p>',
-			pos_6: new kakao.maps.LatLng(37.6623, 126.8341),
-			rad_6: {{row_data3.6.3}}*numb2,
-		};
-		// 강원도 row_data2.6.2대(6등) 
-		var gw = {
-			content: '<p id="sixth" class="db">강원도 {{row_data2.6.2}}대({{row_data2.6.3}}%)</p>',
-			position: new kakao.maps.LatLng(37.757, 128.8785),
-			radius: {{row_data2.6.3}}*numb,
-			color: 'aqua',
-
-			// 춘천
-			cont_1: '<p id="first" class="db">{{row_data3.8.1}} {{row_data3.8.2}}대({{row_data3.8.3}}%)</p>',
-			pos_1: new kakao.maps.LatLng(37.8577, 127.7546),
-			rad_1: {{row_data3.8.3}}*numb2,
-
-			// 강릉
-			cont_2: '<p id="second" class="db">{{row_data3.9.1}} {{row_data3.9.2}}대({{row_data3.9.3}}%)</p>',
-			pos_2: new kakao.maps.LatLng(37.7521, 128.8759),
-			rad_2: {{row_data3.9.3}}*numb2,
-
-			// 원주
-			cont_3: '<p id="third" class="db">{{row_data3.10.1}} {{row_data3.10.2}}대({{row_data3.10.3}}%)</p>',
-			pos_3: new kakao.maps.LatLng(37.3449, 127.9444),
-			rad_3: {{row_data3.10.3}}*numb2,
-
-			// 삼척
-			cont_4: '<p id="fourth" class="db">{{row_data3.11.1}} {{row_data3.11.2}}대({{row_data3.11.3}}%)</p>',
-			pos_4: new kakao.maps.LatLng(37.4525, 129.1637),
-			rad_4: {{row_data3.11.3}}*numb2,
-
-			// 평창
-			cont_5: '<p id="fiveth" class="db">{{row_data3.12.1}} {{row_data3.12.2}}대({{row_data3.12.3}}%)</p>',
-			pos_5: new kakao.maps.LatLng(37.3707, 128.3904),
-			rad_5: {{row_data3.12.3}}*numb2,
-
-			// 속초
-			cont_6: '<p id="sixth" class="db">{{row_data3.13.1}} {{row_data3.13.2}}대({{row_data3.13.3}}%)</p>',
-			pos_6: new kakao.maps.LatLng(38.2075, 128.5925),
-			rad_6: {{row_data3.13.3}}*numb2,
-		};
-		// 충청도 row_data2.3.2대(3등) 
-		var cc = {
-			content: '<p id="third" class="db">충청도 {{row_data2.3.2}}대({{row_data2.3.3}}%)</p>',
-			position: new kakao.maps.LatLng(36.5574, 127.2928),
-			radius: {{row_data2.3.3}}*numb,
-			color: 'skyblue',
-
-			// 대전
-			cont_1: '<p id="first" class="db">{{row_data3.15.1}} {{row_data3.15.2}}대({{row_data3.15.3}}%)</p>',
-			pos_1: new kakao.maps.LatLng(36.35, 127.3848),
-			rad_1: {{row_data3.15.3}}*numb2,
-
-			// 청주
-			cont_2: '<p id="second" class="db">{{row_data3.16.1}} {{row_data3.16.2}}대({{row_data3.16.3}}%)</p>',
-			pos_2: new kakao.maps.LatLng(36.6393, 127.5356),
-			rad_2: {{row_data3.16.3}}*numb2,
-
-			// 충주
-			cont_3: '<p id="third" class="db">{{row_data3.17.1}} {{row_data3.17.2}}대({{row_data3.17.3}}%)</p>',
-			pos_3: new kakao.maps.LatLng(36.9889, 127.9181),
-			rad_3: {{row_data3.17.3}}*numb2,
-
-			// 천안
-			cont_4: '<p id="fourth" class="db">{{row_data3.18.1}} {{row_data3.18.2}}대({{row_data3.18.3}}%)</p>',
-			pos_4: new kakao.maps.LatLng(36.8138, 127.1132),
-			rad_4: {{row_data3.18.3}}*numb2,
-
-			// 아산
-			cont_5: '<p id="fiveth" class="db">{{row_data3.19.1}} {{row_data3.19.2}}대({{row_data3.19.3}}%)</p>',
-			pos_5: new kakao.maps.LatLng(36.7899, 127.0027),
-			rad_5: {{row_data3.19.3}}*numb2,
-
-			// 세종
-			cont_6: '<p id="sixth" class="db">{{row_data3.20.1}} {{row_data3.20.2}}대({{row_data3.20.3}}%)</p>',
-			pos_6: new kakao.maps.LatLng(36.48, 127.2888),
-			rad_6: {{row_data3.20.3}}*numb2,
-		};
-		// 전라도 row_data2.4.2대(4등) 
-		var jl = {
-			content: '<p id="fourth" class="db">전라도 {{row_data2.4.2}}대({{row_data2.4.3}}%)</p>',
-			position: new kakao.maps.LatLng(35.1598, 126.8512),
-			radius: {{row_data2.4.3}}*numb,
-			color: 'pink',
-
-			// 광주
-			cont_1: '<p id="first" class="db">{{row_data3.22.1}} {{row_data3.22.2}}대({{row_data3.22.3}}%)</p>',
-			pos_1: new kakao.maps.LatLng(35.1598, 126.8512),
-			rad_1: {{row_data3.22.3}}*numb2,
-
-			// 순천
-			cont_2: '<p id="second" class="db">{{row_data3.23.1}} {{row_data3.23.2}}대({{row_data3.23.3}}%)</p>',
-			pos_2: new kakao.maps.LatLng(34.9767, 127.4869),
-			rad_2: {{row_data3.23.3}}*numb2,
-
-			// 나주
-			cont_3: '<p id="third" class="db">{{row_data3.24.1}} {{row_data3.24.2}}대({{row_data3.24.3}}%)</p>',
-			pos_3: new kakao.maps.LatLng(35.0158, 126.7109),
-			rad_3: {{row_data3.24.3}}*numb2,
-
-			// 여수
-			cont_4: '<p id="fourth" class="db">{{row_data3.25.1}} {{row_data3.25.2}}대({{row_data3.25.3}}%)</p>',
-			pos_4: new kakao.maps.LatLng(34.7604, 127.6624),
-			rad_4: {{row_data3.25.3}}*numb2,
-
-			// 영광
-			cont_5: '<p id="fiveth" class="db">{{row_data3.26.1}} {{row_data3.26.2}}대({{row_data3.26.3}}%)</p>',
-			pos_5: new kakao.maps.LatLng(35.2771, 126.512),
-			rad_5: {{row_data3.26.3}}*numb2,
-
-			// 광양
-			cont_6: '<p id="sixth" class="db">{{row_data3.27.1}} {{row_data3.27.2}}대({{row_data3.27.3}}%)</p>',
-			pos_6: new kakao.maps.LatLng(34.9335, 127.6972),
-			rad_6: {{row_data3.27.3}}*numb2,
-		};	
-		// 경상도 row_data2.2.2대(2등) 
-		var gs = {
-			content: '<p id="second" class="db">경상도 {{row_data2.2.2}}대({{row_data2.2.3}}%)</p>',
-			position: new kakao.maps.LatLng(35.9609, 128.9497),
-			radius: {{row_data2.2.3}}*numb,
-			color: 'orange',
-
-			// 대구
-			cont_1: '<p id="first" class="db">{{row_data3.29.1}} {{row_data3.29.2}}대({{row_data3.29.3}}%)</p>',
-			pos_1: new kakao.maps.LatLng(35.8714, 128.6015),
-			rad_1: {{row_data3.29.3}}*numb2,
-
-			// 부산
-			cont_2: '<p id="second" class="db">{{row_data3.30.1}} {{row_data3.30.2}}대({{row_data3.30.3}}%)</p>',
-			pos_2: new kakao.maps.LatLng(35.1796, 129.0753),
-			rad_2: {{row_data3.30.3}}*numb2,
-
-			// 울산
-			cont_3: '<p id="third" class="db">{{row_data3.31.1}} {{row_data3.31.2}}대({{row_data3.31.3}}%)</p>',
-			pos_3: new kakao.maps.LatLng(35.5382, 129.3462),
-			rad_3: {{row_data3.31.3}}*numb2,
-
-			// 창원
-			cont_4: '<p id="fourth" class="db">{{row_data3.32.1}} {{row_data3.32.2}}대({{row_data3.32.3}}%)</p>',
-			pos_4: new kakao.maps.LatLng(35.2143, 128.6179),
-			rad_4: {{row_data3.32.3}}*numb2,
-
-			// 포항
-			cont_5: '<p id="fiveth" class="db">{{row_data3.33.1}} {{row_data3.33.2}}대({{row_data3.33.3}}%)</p>',
-			pos_5: new kakao.maps.LatLng(36.0135, 129.3975),
-			rad_5: {{row_data3.33.3}}*numb2,
-
-			// 구미
-			cont_6: '<p id="sixth" class="db">{{row_data3.34.1}} {{row_data3.34.2}}대({{row_data3.34.3}}%)</p>',
-			pos_6: new kakao.maps.LatLng(36.1199, 128.3443),
-			rad_6: {{row_data3.34.3}}*numb2,
-		};
-		// 제주도 row_data2.5.2대(5등) 
-		var jj = {
-			content: '<p id="fiveth" class="db">제주도 {{row_data2.5.2}}대({{row_data2.5.3}}%)</p>',
-			position: new kakao.maps.LatLng(33.3738, 126.547),
-			radius: {{row_data2.5.3}}*numb,
-			color: 'saddlebrown',
-
-			// 제주시
-			cont_1: '<p id="first" class="db">{{row_data3.36.1}} {{row_data3.36.2}}대({{row_data3.36.3}}%)</p>',
-			pos_1: new kakao.maps.LatLng(33.4901, 126.527),
-			rad_1: {{row_data3.36.3}}*numb2,
-
-			// 서귀포
-			cont_2: '<p id="second" class="db">{{row_data3.37.1}} {{row_data3.37.2}}대({{row_data3.37.3}}%)</p>',
-			pos_2: new kakao.maps.LatLng(33.2485, 126.5653),
-			rad_2: {{row_data3.37.3}}*numb2,
-		};
-		
-		var arr = ["cp","gs","jl","cc","gw","jj"];
-
-		for (var i=0;i<6;i++){
-			eval("var nation_" + i + " = new Region(" + arr[i] + ".content," + arr[i] + ".position," + arr[i] + ".radius," + arr[i] + ".color)");
-			eval("nation.push(nation_" + i + ")");
-		};
-
-		for (var i=0;i<6;i++){
-			if (i != 5){
-				for (var j=0;j<6;j++){
-					eval("var region_" + i + "_" + j + " = new Region(" + arr[i] + ".cont_" + (j+1) + "," + arr[i] +".pos_"+ (j+1) + "," + arr[i] + ".rad_" + (j+1) + "," + arr[j] + ".color)");
-					eval("region.push(region_" + i + "_" + j + ")");
-				};
-			}
-			else {
-				for (var j=0;j<2;j++){
-					eval("var region_" + i + "_" + j + " = new Region(" + arr[i] + ".cont_" + (j+1) + "," + arr[i] +".pos_"+ (j+1) + "," + arr[i] + ".rad_" + (j+1) + "," + arr[j] + ".color)");
-					eval("region.push(region_" + i + "_" + j + ")");
-				};
-			};
-		};
-		
-		for (var i=0;i<nation.length;i++) {
-			nation[i].create_circle();
-			nation[i].show_circle();
-			nation[i].create_overlay();
-		};
-
-		for (var i=0;i<region.length;i++){
-			region[i].create_circle();
-			region[i].create_overlay();
-			region[i].hide_overlay();
-		};
-		
-
-		function showhideopt(a) {
-			if (a==0){ // 전국단위만 표시
-				for (var i=0;i<nation.length;i++) {
-					nation[i].show_circle();
-					nation[i].show_overlay();
-				};
-				for (var i=0;i<region.length;i++){
-					region[i].hide_circle();
-					region[i].hide_overlay();
-				};
-			}
-			else { // 지역단위만 표시
-				for (var i=0;i<nation.length;i++) {
-					nation[i].hide_circle();
-					nation[i].hide_overlay();
-				};
-				for (var i=0;i<region.length;i++){
-					region[i].hide_circle();
-					region[i].hide_overlay();
-				};
-				if (a=="cp") { // 수도권
-					for (var i=0;i<region.length-26;i++){
-						region[i].show_circle();
-						region[i].show_overlay();
-					};
-				}
-				else if (a=="gs") { // 경상도
-					for (var i=region.length-26;i<region.length-20;i++){
-						region[i].show_circle();
-						region[i].show_overlay();
-					};
-				}
-				else if (a=="jl") { // 전라도
-					for (var i=region.length-20;i<region.length-14;i++){
-						region[i].show_circle();
-						region[i].show_overlay();
-					};
-				}
-				else if (a=="cc") { // 충청도
-					for (var i=region.length-14;i<region.length-8;i++){
-						region[i].show_circle();
-						region[i].show_overlay();
-					};
-				}
-				else if (a=="gw") { // 강원도
-					for (var i=region.length-8;i<region.length-2;i++){
-						region[i].show_circle();
-						region[i].show_overlay();
-					};
-				}
-				else { // 제주도
-					for (var i=region.length-2;i<region.length;i++){
-						region[i].show_circle();
-						region[i].show_overlay();
-					};
-				};
-			};
-		};
-
-
-		function chNation() {
-			var level = map.getLevel();
-
-			if (level != 13){map.setLevel(13);};
-
-			showhideopt(0);
-
-			// 지도의 중심좌표 변경
-			var moveLation = new kakao.maps.LatLng(35.936, 127.811);
-
-			// map.setCenter(moveLation)
-			map.panTo(moveLation);
-		}
-
-		function chCap() {
-			var level = map.getLevel();
-
-			if (level != 10){map.setLevel(10);};
-			
-			showhideopt("cp");
-			
-			// 지도의 중심좌표 변경
-			var moveLation = new kakao.maps.LatLng(37.4789, 126.8763);
-
-			// map.setCenter(moveLation)
-			map.panTo(moveLation);
-		}
-
-		function chGyeong() {
-			var level = map.getLevel();
-
-			if (level != 11){map.setLevel(11);};
-				
-			showhideopt("gs");
-
-			// 지도의 중심좌표 변경
-			var moveLation = new kakao.maps.LatLng(35.7107, 128.845);
-
-			// map.setCenter(moveLation)
-			map.panTo(moveLation);
-		}
-
-		function chJeolla() {			
-			var level = map.getLevel();
-
-			if (level != 11){map.setLevel(11);};
-				
-			showhideopt("jl");
-
-			// 지도의 중심좌표 변경
-			var moveLation = new kakao.maps.LatLng(35.3209, 127.0809);
-
-			// map.setCenter(moveLation)
-			map.panTo(moveLation);
-		}
-
-		function chChung() {
-			var level = map.getLevel();
-
-			if (level != 11){map.setLevel(11);};
-				
-			showhideopt("cc");
-
-			// 지도의 중심좌표 변경
-			var moveLation = new kakao.maps.LatLng(36.636, 127.2875);
-
-			// map.setCenter(moveLation)
-			map.panTo(moveLation);
-		}
-
-		function chGang() {
-			var level = map.getLevel();
-
-			if (level != 12){map.setLevel(12);};
-
-			showhideopt("gw");
-				
-			// 지도의 중심좌표 변경
-			var moveLation = new kakao.maps.LatLng(37.6779, 128.5318);
-
-			// map.setCenter(moveLation)
-			map.panTo(moveLation);
-		}
-		
-		function chJeju() {
-			var level = map.getLevel();
-
-			if (level != 11){map.setLevel(11);};
-				
-			showhideopt("jj");
-
-			// 지도의 중심좌표 변경
-			var moveLation = new kakao.maps.LatLng(33.3738, 126.547);
-
-			// map.setCenter(moveLation)
-			map.panTo(moveLation);
-		}
-
 		// map2
-		var markers=[];
+		var imgSrc= "{% static 'img/charging2.png' %}",
+            imgSize = new kakao.maps.Size(44,49),
+            imgOption = {offset: new kakao.maps.Point(15, 43)};
+
+        var markerImage = new kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
+     
+        var markerPosition= new kakao.maps.LatLng({{row_data6.0.0}},{{row_data6.0.1}});
+		var marker = new kakao.maps.Marker({
+                position: markerPosition,
+                image: markerImage,
+                clickable: true
+            });
+		marker.setMap(map2);
+		var markerPosition= new kakao.maps.LatLng({{row_data6.1.0}},{{row_data6.1.1}});
+		var marker2 = new kakao.maps.Marker({
+                position: markerPosition,
+                image: markerImage,
+                clickable: true
+            });
+		marker2.setMap(map2);
+		var markerPosition= new kakao.maps.LatLng({{row_data6.2.0}},{{row_data6.2.1}});
+		var marker3 = new kakao.maps.Marker({
+                position: markerPosition,
+                image: markerImage,
+                clickable: true
+            });
+		marker3.setMap(map2);
+		var markerPosition= new kakao.maps.LatLng({{row_data6.3.0}},{{row_data6.3.1}});
+		var marker4 = new kakao.maps.Marker({
+                position: markerPosition,
+                image: markerImage,
+                clickable: true
+            });
+		marker4.setMap(map2);
 		
-		function addMarker(lat,lng) {
-			var marker=new kakao.maps.Marker({
-				position: new kakao.maps.LatLng(lat,lng)
-			});
+		var	iwRemoveable = true;
+		var iwContent = '<div style="font-weight:bold;">위치정보</div>' +
+						'<div">제주시 아라동</div>' +
+						'<div style="font-weight:bold;">인근시설</div>' +
+						'<div>제주대학교</div>'
 
-			marker.setMap(map2)
+		var infowindow = new kakao.maps.InfoWindow({
+			content: iwContent,
+			removable: iwRemoveable
+		});
 
-			markers.push(marker)
-		}
-		addMarker({{row_data6.0.0}},{{row_data6.0.1}})
-		addMarker({{row_data6.1.0}},{{row_data6.1.1}})
-		addMarker({{row_data6.2.0}},{{row_data6.2.1}})
-		addMarker({{row_data6.3.0}},{{row_data6.3.1}})
+		var iwContent2 = '<div style="font-weight:bold;">위치정보</div>' +
+						'<div">서귀포시 동홍동</div>' +
+						'<div style="font-weight:bold;">인근시설</div>' +
+						'<div>솔오름전망대</div>'
+		
+		var infowindow2 = new kakao.maps.InfoWindow({
+			content: iwContent2,
+			removable: iwRemoveable
+		});
+
+		var iwContent3 = '<div style="font-weight:bold;">위치정보</div>' +
+						'<div">제주시 연동</div>' +
+						'<div style="font-weight:bold;">인근시설</div>' +
+						'<div>제주도립미술관</div>'
+
+		var infowindow3 = new kakao.maps.InfoWindow({
+			content: iwContent3,
+			removable: iwRemoveable
+		});
+
+		var iwContent4 = '<div style="font-weight:bold;">위치정보</div>' +
+						'<div">서귀포시 회수동</div>' +
+						'<div style="font-weight:bold;">인근시설</div>' +
+						'<div>서귀포천문과학관</div>'
+
+		var infowindow4 = new kakao.maps.InfoWindow({
+			content: iwContent4,
+			removable: iwRemoveable
+		});
+		
+		kakao.maps.event.addListener(marker, 'click', function(){
+			infowindow.open(map2, marker);
+		});
+		kakao.maps.event.addListener(marker2, 'click', function(){
+			infowindow2.open(map2, marker2);
+		});
+		kakao.maps.event.addListener(marker3, 'click', function(){
+			infowindow3.open(map2, marker3);
+		});
+		kakao.maps.event.addListener(marker4, 'click', function(){
+			infowindow4.open(map2, marker4);
+		});
 	</script>
-
-	<!-- 구글 차트 api -->
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript">
-		// 차트 패키지(bar chart, line chart 등등) 로드
-		google.charts.load('current', {'packages': ['bar','corechart']});
-		// 차트 함수 호출
-		google.charts.setOnLoadCallback(drawStacked);
-		google.charts.setOnLoadCallback(drawBar);
-		google.charts.setOnLoadCallback(drawPie);
-		google.charts.setOnLoadCallback(drawLine);
-
-		// 연령별 차량 등록 대수 차트(stack)
-		function drawStacked() {
-			// 차트에 입력되는 데이터
-			var data = new google.visualization.DataTable();
-			
-			data.addColumn('string', '{{ hAxis_title }}');
-			data.addColumn('number', '{{ col1_title }}');
-			data.addColumn('number', '{{ col2_title }}');
-			data.addRows([
-				{% for i in row_data %}{% if i.0|equal:"10대 이하"%}{% elif i.0|equal:"90대 이상" %}{% elif i.0|equal:"50대"%}['{{ i.0 }}', {{ i.1 }}, {{ i.2 }}],{% else %}['{{ i.0 }}', {{ i.1 }}, {{ i.2 }}],{% endif %}{% endfor %}
-			]);
-			
-			// 차트 옵션
-			var options = {
-				isStacked: true,
-				width: '100%',				
-				vAxis: {
-					format: 'decimal',
-                    viewWindow: {
-                        max: 7000000
-                    }
-                }
-				//colors: ['#1b9e77', '#d95f02'], // 색 변경
-			};
-	
-			// 차트 종류/위치 설정 후 생성
-			var stack_chart = new google.charts.Bar(document.getElementById('stack-chart'));
-		
-			stack_chart.draw(data, google.charts.Bar.convertOptions(options));	
-		};
-		
-		// 전기차 관련 민원 차트(bar)
-		function drawBar() {
-			var lines;
-
-			var data2 = new google.visualization.DataTable();
-			
-			data2.addColumn('string','');
-			data2.addColumn('number','빈도');
-
-			$.ajax({
-				type: "GET",
-				async: false,
-				url: "https://apis.data.go.kr/1140100/minAnalsInfoView5/minWdcloudInfo5",
-				data: {
-					'serviceKey' : 'UH+Mc8jhYyRLsrSA7MppqKWOudoTtmD/ylIRBx6kF88i0zvh2u415PmhmYcegUMVcrTmclI4vRNRii//CcKC/g==',
-					'searchword' : '전기자동차',
-					'resultCount' : '10',
-					'target' : 'pttn, dfpt, saeol, prpl, qna, qna_origin',
-					'dateFrom' : 20220101,
-					'dateTo' : 20221101
-				},
-				success: function(context) {
-					lines = JSON.parse(context);
-				},
-				error: function() {
-					alert('오류 발생! 죄송합니다 새로고침 해주세요');
-				}
-			});
-			// 차트에 입력되는 데이터
-			for (var i=0;i<lines.length;i++){
-				data2.addRow([lines[i].label,lines[i].value]);
-			};
-			
-			// 차트 옵션
-			var options2 = {
-				width: '100%',
-				legend: 'top',
-				fontSize: '13',
-				chartArea: {width:'80%',height:'80%'},
-				
-				vAxis: {textPosition : 'none'},
-				bars: 'horizontal'
-			};
-
-			// 차트 종류/위치 설정 후 생성
-			var bar_chart = new google.charts.Bar(document.getElementById('bar-chart'));
-
-			bar_chart.draw(data2, google.charts.Bar.convertOptions(options2));
-		} 
-		
-		// 충전소 상태 데이터 차트(pie)
-		/*
-		function drawPie() {
-			// 차트에 입력되는 데이터
-			var data3 = new google.visualization.arrayToDataTable([
-				['충전소 상태','비율'],
-				{% for i in row_data4 %}
-				['{{i.1}}', {{i.2}}],
-				{% endfor %}
-			]);
-			
-			// 차트 옵션
-			var options3 = {
-				legend: 'none',
-				pieSliceText: 'label',
-				pieStartAngle: 0,
-				chartArea: {width:'70%',height:'80%'},
-				fontName:'Roboto',
-				colors:['rgb(161, 167, 250)','rgb(66, 133, 244)','rgb(37, 106, 184)','rgb(161, 194, 250)','rgb(161, 203, 250)','rgb(183, 223, 237)']
-			};
-
-			// 차트 종류/위치 설정 후 생성
-			var pie_chart = new google.visualization.PieChart(document.getElementById('combo-chart'));
-
-			pie_chart.draw(data3, options3);
-		}
-		*/
-		// 연도별 전기차 보조금 예측 차트(line)
-		function drawLine() {
-			// 차트에 입력되는 데이터
-			var data4 = new google.visualization.DataTable();
-
-			data4.addColumn('string','year');
-			data4.addColumn('number','전기차 보조금');
-			data4.addColumn({type:'boolean',role:'certainty'});
-			data4.addRows([
-				{% for i in row_data5 %}
-				['{{i.1}}',{{i.2}},true],
-				{% endfor %}
-				['2023',1000,false],
-			]);
-
-			// 차트 옵션
-			var options4 = {
-				/*
-				series: {
-					0: {curveType: 'function'}
-				},
-				*/
-				fontName: 'Roboto',
-				legend: 'none',
-				vAxis: {
-                    viewWindow: {
-                        min: 500
-                    }
-                }
-			};
-
-			// 차트 종류/위치 설정 후 생성
-			var line_chart = new google.visualization.LineChart(document.getElementById('line-chart'));
-
-			line_chart.draw(data4, options4);
-		}
-	</script>
-
-
 </body>
 </html>
