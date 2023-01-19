@@ -52,11 +52,6 @@ def login(request):
 
     if request.session.get('user') is not None or request.session.get('id') is not None :
         return redirect('/')
-
-def login(request):
-
-    if request.session.get('user') is not None or request.session.get('id') is not None :
-        return redirect('/')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
