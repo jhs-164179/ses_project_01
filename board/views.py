@@ -1,6 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.utils import timezone
+from .forms import QuestionForm # 수정
+from django import forms # 수정
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
@@ -32,12 +35,12 @@ class FreeBoardListView(generic.ListView):
                 case 'content':
                     result = Board.objects.filter(content__icontains=search_word)
                 case 'writer':
-                    result = Board.objects.filter(writer__username__icontains=search_word)
+                    result = Board.objects.filter(writer__user_name__icontains=search_word)
                 case _: # 간편 검색 기능 구현 
                     result = Board.objects.filter(
                         Q(title__icontains=search_word) |
                         Q(content__icontains=search_word) |
-                        Q(writer__username__icontains=search_word)
+                        Q(user_name__icontains=search_word)
                     ).distinct()
         else:
             result = Board.objects.all()           
@@ -71,14 +74,17 @@ class NoticeBoardListView(generic.ListView):
                     result = Board.objects.filter(title__icontains=search_word)
                 case 'content':
                     result = Board.objects.filter(content__icontains=search_word)
-        
+                case 'writer':
+                    result = Board.objects.filter(user_name__icontains=search_word)
+
                 case _: # 간편 검색 기능 구현 
                     result = Board.objects.filter(
                         Q(title__icontains=search_word) |
-                        Q(content__icontains=search_word)
+                        Q(content__icontains=search_word) |
+                        Q(user_name__icontains=search_word)
                     ).distinct()
         else:
-            result = Board.objects.filter(writer_id = 2)           
+            result = Board.objects.all()           
         return result.order_by('-date')
 
 
@@ -113,6 +119,11 @@ class FreeBoardCreateView(generic.CreateView):
     template_name = "board/board_form.html"
 
     widgets = {
+        'title' : forms.TextInput(attrs={'class':'form_control'}),
+        'content' : forms.Textarea(attrs={'class':'form-control', 'rows':10, 'cols' : 100})
+    }
+
+    widgets = {
         'title' : TextInput(attrs={
                 'id': 'id_title',
                 'style': 'max-width: 1000px;',
@@ -135,6 +146,22 @@ class FreeBoardCreateView(generic.CreateView):
             return redirect(reverse_lazy('board:free'))
         else :
             return redirect(reverse_lazy('accounts:login'))
+
+def write_board(request) : # 게시글 작성 페이지로 이동
+    user = request.session.get('user')
+    user_id = request.session.get('id')
+    if user is None or user_id is None:
+        return redirect(reverse_lazy('accounts:login'))
+    else :
+        return render(request, 'board/write_board.html')
+
+def register_board(request) : # 게시글 등록
+    title = request.POST.get('title', '')
+    content = request.POST.get('content', '')
+    user = request.session.get('user')
+    user_id = request.session.get('id')
+    Board.objects.create(title=title, content=content, user_name=user, writer_id=user_id)
+    return redirect(reverse('board:free'))
 
 
 # class FreeBoardCreateView(generic.CreateView):
