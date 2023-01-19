@@ -1,5 +1,9 @@
 {% extends "accounts/base.html" %}
 {% load static %}
+{% block title %}
+로그인          
+{% endblock title %}
+
 {% block contents %}
 {% load socialaccount %}
 {% load i18n %}
@@ -36,14 +40,15 @@
                         {{ error }}
                     </div>
                 </div>
-                    <div class="container-login100-form-btn">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn"></div>
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
                             <button class="login100-form-btn" type="submit">
-                                    로그인
+                            <b style="font-size: 18px;">로그인</b>
                             </button>
                         </div>
                     </div>
+                </div>
 
 {% comment %}--------------------------------------------------  {% endcomment %}
         
@@ -56,6 +61,7 @@
                         <a class="txt2" href="../register">
                                 회원가입
                         </a>                        
+
                     </div>
             </form>
         </div>
