@@ -5,7 +5,8 @@ from django.contrib import auth
 from django.contrib.auth.hashers import make_password, check_password
 from .forms import LoginForm
 from django.shortcuts import render, redirect
-
+from django.urls import reverse
+from django.contrib import messages
 
 def register(request):
 
@@ -16,8 +17,9 @@ def register(request):
         useremail = request.POST.get('email', None)
         password = request.POST.get('password1', None)
         password2 = request.POST.get('password2', None)
-                        
-        err_data = {}      
+
+
+        err_data = {}   
 
         if not(username and useremail and password and password2):
             err_data['error'] = '모든 값을 입력해주세요.'
@@ -49,8 +51,6 @@ def register(request):
         
 
 
-        return redirect('/accounts/login/')
-        
 
 def login(request):
 
@@ -74,3 +74,55 @@ def logout(request):
         del(request.session['user'])
         del(request.session['id'])
     return redirect('/')
+
+# 비밀번호 변경
+
+def re_password(request):
+    #request.session['error'] = ''
+    #return redirect(reverse('accounts:password'))
+    return render(request, 'accounts/password.html')
+
+def renew_password(request):
+    
+    if request.session.get('user') is None or request.session.get('id') is None :
+        messages.success(request, '로그인 후 비밀번호 변경이 가능합니다.')
+        return redirect(reverse('accounts:password'))
+    
+    lastpassword = request.POST.get('lastpass')
+    renewpassword1 = request.POST.get('newpass1')
+    renewpassword2 = request.POST.get('newpass2')
+    get_pw = User.objects.filter(id = request.session.get('id')).values('user_pw')[0]['user_pw']
+    print(get_pw)
+
+    # 데이터를 일회성으로 전달하기 위해서는 session에 저장하기 보단 
+    # django의 messages 기능을 이용한다.
+    # redirect일때 유용하게 사용 가능
+
+    if lastpassword == '' or renewpassword1 == '' or renewpassword2 == '' :
+        messages.success(request, '비밀번호란은 비워둘 수 없습니다.')
+        #request.session['error'] = '바꿀 비밀번호란은 비워둘 수 없습니다.'
+        return redirect(reverse('accounts:password'))
+    elif len(renewpassword1) < 8 or len(renewpassword2) < 8:
+        messages.success(request, '바꿀 비밀번호는 8자리 이상이어야 합니다.')
+        #request.session['error'] = '바꿀 비밀번호는 8자리 이상이어야 합니다.'
+        return redirect(reverse('accounts:password'))
+    elif not check_password(lastpassword, get_pw):
+        messages.success(request, '기존 비밀번호가 일치하지 않습니다.')
+        #request.session['error'] = '기존 비밀번호가 일치하지 않습니다.'
+        return redirect(reverse('accounts:password'))
+    elif renewpassword1 != renewpassword2 :
+        messages.success(request, '바꿀 비밀번호가 일치하지 않습니다.')
+        #request.session['error'] = '바꿀 비밀번호가 일치하지 않습니다.'
+        return redirect(reverse('accounts:password'))
+    elif lastpassword == renewpassword1 or lastpassword == renewpassword2 :
+        messages.success(request, '바꿀 비밀번호가 기존 비밀번호와 같습니다.')
+        #request.session['error'] = '바꿀 비밀번호가 기존 비밀번호와 같습니다.'
+        return redirect(reverse('accounts:password'))
+    else :
+        #request.session['error'] = ''
+        repass = User.objects.get(id = request.session.get('id'))
+        repass.user_pw = make_password(renewpassword2)
+        repass.save()
+        del(request.session['user'])
+        del(request.session['id'])
+        return redirect('/')

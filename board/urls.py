@@ -15,6 +15,9 @@ urlpatterns = [
     path('register_board/', views.register_board, name='register'),
 
 
+    # path('write2/', views.board_create, name='board_form2'),
+
+
     # 공지사항 페이지로 이동.
     path('notice/', views.NoticeBoardListView.as_view(), name='notice'),
     
