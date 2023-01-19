@@ -17,7 +17,8 @@ def register(request):
         useremail = request.POST.get('email', None)
         password = request.POST.get('password1', None)
         password2 = request.POST.get('password2', None)
-                        
+
+
         err_data = {}   
 
         if not(username and useremail and password and password2):
@@ -46,7 +47,10 @@ def register(request):
             )
             user.save()
 
-        return redirect('/accounts/login/')        
+        return redirect('/accounts/login/')
+        
+
+
 
 def login(request):
 
