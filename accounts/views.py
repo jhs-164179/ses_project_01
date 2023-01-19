@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 
 
 def register(request):
+
     if request.method == "GET":
         return render(request, 'accounts/register.html')
     elif request.method == "POST":
@@ -52,6 +53,9 @@ def register(request):
         
 
 def login(request):
+
+    if request.session.get('user') is not None or request.session.get('id') is not None :
+        return redirect('/')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -68,4 +72,5 @@ def login(request):
 def logout(request):
     if request.session.get('user'):
         del(request.session['user'])
+        del(request.session['id'])
     return redirect('/')
