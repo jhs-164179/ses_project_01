@@ -1,188 +1,270 @@
-{% load static %}
-{% load datapg_filter %}
-<!doctype html>
+{% load static %} {% load datapg_filter %}
+<!DOCTYPE html>
 <html>
+    <head>
+        <title>급속충전기 입지 분석</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <!-- VENDOR CSS (구형 페이지 지원용)-->
 
-<head>
-	<title>급속충전기 입지 분석</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<!-- VENDOR CSS (구형 페이지 지원용)-->
-	
-	<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
-	
-	
-	<link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
-	
-	<link rel="stylesheet" href="{% static 'vendor/linearicons/style.css' %}">
-	<!--
+        <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" />
+
+        <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" />
+
+        <link rel="stylesheet" href="{% static 'vendor/linearicons/style.css' %}" />
+        <!--
 	<link rel="stylesheet" href="{% static 'vendor/chartist/css/chartist-custom.css' %}">
 	-->
-	
-	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="{% static 'css/main.css' %}">
-	<!-- SUB CSS (패널 탭 수직정렬,p태그 스타일) -->
-	<link rel="stylesheet" href="{% static 'css/datapg/bootstrap.vertical-tabs.min.css' %}">
-	<link rel="stylesheet" href="{% static 'css/datapg/mystyle.css' %}">
-	<!-- GOOGLE FONTS -->
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/logo.png' %}">
-	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/logo.png' %}">
-</head>
 
-<body>
-	<!-- WRAPPER -->
-	<div id="wrapper">
-		{% include 'datapg/menubar.html' %}
-	
-		<!-- MAIN -->
-		<div class="main" style="padding-top: 50px;">
-			<!-- MAIN CONTENT -->
-			<div class="main-content" style="padding-top: 15px;">
-				<div class="container-fluid">
-					<!-- 페이지 상단 -->
-					<div class="row">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <h3 class='panel-title' style='text-align:center;'>제주도 전기차 급속 충전소 최적 입지 선정</h3>
+        <!-- MAIN CSS -->
+        <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+        <!-- SUB CSS (패널 탭 수직정렬,p태그 스타일) -->
+        <link rel="stylesheet" href="{% static 'css/datapg/bootstrap.vertical-tabs.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/datapg/mystyle.css' %}" />
+        <!-- GOOGLE FONTS -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" />
+        <!-- ICONS -->
+        <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/logo.png' %}" />
+        <link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/logo.png' %}" />
+    </head>
+
+    <body>
+        <!-- WRAPPER -->
+        <div id="wrapper">
+            {% include 'datapg/menubar.html' %}
+
+            <!-- MAIN -->
+            <div class="main" style="padding-top: 50px">
+                <!-- MAIN CONTENT -->
+                <div class="main-content" style="padding-top: 15px">
+                    <div class="container-fluid">
+                        <!-- 페이지 상단 -->
+                        <div class="row">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title" style="text-align: center">제주도 전기차 급속 충전소 최적 입지 선정</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="map" style="width: 100%; height: 600px; margin: auto"></div>
+                                </div>
+                                <div class="panel-footer">
+                                    <h3 class="panel-title" style="text-align: right">최종 수정일 : 23.03.14</h3>
+                                </div>
                             </div>
-                            <div class='panel-body'>
-                                <div id="map" style="width:100%; height:600px; margin:auto;"></div>
-                            </div>
-                            <div class='panel-footer'>
-								<h3 class='panel-title' style='text-align:right'>최종 수정일 : 23.01.19</h3>
-							</div>
                         </div>
-					</div>
-					
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT -->
 
-				</div>
-			</div>
-		</div>
-			<!-- END MAIN CONTENT -->
-		
-		<!-- END MAIN -->
+            <!-- END MAIN -->
 
-		<!-- 페이지 하단 copyright -->
-		<div class="clearfix"></div>
-		<footer>
-			<div class="container-fluid">
-				<p class="copyright">Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a></p>
-			</div>
-		</footer>
-		<!-- 페이지 하단 copyright END -->
-	</div>
-	<!-- END WRAPPER -->
-	
-	<!-- Javascript -->
-	<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-	<script src="{% static 'vendor/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
-	<script src="{% static 'scripts/klorofil-common.js' %}"></script>
-	
-	<!-- 카카오 맵 api -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e033816e8f4fac437e466060be505bae&libraries=clusterer"></script>
-	<script type="text/javascript">
-		var map2 = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-			center : new kakao.maps.LatLng(33.377, 126.538), // 지도의 중심좌표 
-			level : 10 // 지도의 확대 레벨 
-		});
+            <!-- 페이지 하단 copyright -->
+            <div class="clearfix"></div>
+            <footer>
+                <div class="container-fluid">
+                    <p class="copyright">Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a></p>
+                </div>
+            </footer>
+            <!-- 페이지 하단 copyright END -->
+        </div>
+        <!-- END WRAPPER -->
 
-		map2.setZoomable(false);
-		map2.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
-		map2.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
-		
-		// map2
-		var imgSrc= "{% static 'img/charging2.png' %}",
-            imgSize = new kakao.maps.Size(44,49),
-            imgOption = {offset: new kakao.maps.Point(15, 43)};
+        <!-- Javascript -->
+        <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'vendor/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+        <script src="{% static 'scripts/klorofil-common.js' %}"></script>
 
-        var markerImage = new kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
-     
-        var markerPosition= new kakao.maps.LatLng({{row_data6.0.0}},{{row_data6.0.1}});
-		var marker = new kakao.maps.Marker({
-                position: markerPosition,
-                image: markerImage,
-                clickable: true
+        <!-- 카카오 맵 api -->
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e033816e8f4fac437e466060be505bae&libraries=clusterer"></script>
+        <script type="text/javascript">
+            var map2 = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
+            	center : new kakao.maps.LatLng(33.377, 126.538), // 지도의 중심좌표
+            	level : 10 // 지도의 확대 레벨
             });
-		marker.setMap(map2);
-		var markerPosition= new kakao.maps.LatLng({{row_data6.1.0}},{{row_data6.1.1}});
-		var marker2 = new kakao.maps.Marker({
-                position: markerPosition,
-                image: markerImage,
-                clickable: true
+
+            map2.setZoomable(false);
+            map2.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
+            map2.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
+
+            // map2
+            var imgSrc= "{% static 'img/charging2.png' %}",
+                      imgSize = new kakao.maps.Size(44,49),
+                      imgOption = {offset: new kakao.maps.Point(15, 43)};
+
+                  var markerImage = new kakao.maps.MarkerImage(imgSrc, imgSize, imgOption);
+
+                  var markerPosition= new kakao.maps.LatLng({{row_data6.0.0}},{{row_data6.0.1}});
+            var marker = new kakao.maps.Marker({
+                          position: markerPosition,
+                          image: markerImage,
+                          clickable: true
+                      });
+            marker.setMap(map2);
+
+            var markerPosition= new kakao.maps.LatLng({{row_data6.1.0}},{{row_data6.1.1}});
+            var marker2 = new kakao.maps.Marker({
+                          position: markerPosition,
+                          image: markerImage,
+                          clickable: true
+                      });
+            marker2.setMap(map2);
+
+            var markerPosition= new kakao.maps.LatLng({{row_data6.2.0}},{{row_data6.2.1}});
+            var marker3 = new kakao.maps.Marker({
+                          position: markerPosition,
+                          image: markerImage,
+                          clickable: true
+                      });
+            marker3.setMap(map2);
+
+            var markerPosition= new kakao.maps.LatLng({{row_data6.3.0}},{{row_data6.3.1}});
+            var marker4 = new kakao.maps.Marker({
+                          position: markerPosition,
+                          image: markerImage,
+                          clickable: true
+                      });
+            marker4.setMap(map2);
+
+            var markerPosition= new kakao.maps.LatLng({{row_data6.4.0}},{{row_data6.4.1}});
+            var marker5 = new kakao.maps.Marker({
+                          position: markerPosition,
+                          image: markerImage,
+                          clickable: true
+                      });
+            marker5.setMap(map2);
+
+            var markerPosition= new kakao.maps.LatLng({{row_data6.5.0}},{{row_data6.5.1}});
+            var marker6 = new kakao.maps.Marker({
+                          position: markerPosition,
+                          image: markerImage,
+                          clickable: true
+                      });
+            marker6.setMap(map2);
+
+            var markerPosition= new kakao.maps.LatLng({{row_data6.6.0}},{{row_data6.6.1}});
+            var marker7 = new kakao.maps.Marker({
+                          position: markerPosition,
+                          image: markerImage,
+                          clickable: true
+                      });
+            marker7.setMap(map2);
+
+            var markerPosition= new kakao.maps.LatLng({{row_data6.7.0}},{{row_data6.7.1}});
+            var marker8 = new kakao.maps.Marker({
+                          position: markerPosition,
+                          image: markerImage,
+                          clickable: true
+                      });
+            marker8.setMap(map2);
+
+            var	iwRemoveable = true;
+            var iwContent = '<div style="font-weight:bold;">위치정보</div>' +
+            				'<div">제주시 우도면</div>' +
+            				'<div style="font-weight:bold;">인근시설</div>' +
+            				'<div>우도초등학교</div>'
+
+            var infowindow = new kakao.maps.InfoWindow({
+            	content: iwContent,
+            	removable: iwRemoveable
             });
-		marker2.setMap(map2);
-		var markerPosition= new kakao.maps.LatLng({{row_data6.2.0}},{{row_data6.2.1}});
-		var marker3 = new kakao.maps.Marker({
-                position: markerPosition,
-                image: markerImage,
-                clickable: true
+
+            var iwContent2 = '<div style="font-weight:bold;">위치정보</div>' +
+            				'<div">제주시 오라동</div>' +
+            				'<div style="font-weight:bold;">인근시설</div>' +
+            				'<div>오라동주민센터</div>'
+
+            var infowindow2 = new kakao.maps.InfoWindow({
+            	content: iwContent2,
+            	removable: iwRemoveable
             });
-		marker3.setMap(map2);
-		var markerPosition= new kakao.maps.LatLng({{row_data6.3.0}},{{row_data6.3.1}});
-		var marker4 = new kakao.maps.Marker({
-                position: markerPosition,
-                image: markerImage,
-                clickable: true
+
+            var iwContent3 = '<div style="font-weight:bold;">위치정보</div>' +
+            				'<div">제주시 한림읍</div>' +
+            				'<div style="font-weight:bold;">인근시설</div>' +
+            				'<div>한림농협창고</div>'
+
+            var infowindow3 = new kakao.maps.InfoWindow({
+            	content: iwContent3,
+            	removable: iwRemoveable
             });
-		marker4.setMap(map2);
-		
-		var	iwRemoveable = true;
-		var iwContent = '<div style="font-weight:bold;">위치정보</div>' +
-						'<div">제주시 아라동</div>' +
-						'<div style="font-weight:bold;">인근시설</div>' +
-						'<div>제주대학교</div>'
 
-		var infowindow = new kakao.maps.InfoWindow({
-			content: iwContent,
-			removable: iwRemoveable
-		});
+            var iwContent4 = '<div style="font-weight:bold;">위치정보</div>' +
+            				'<div">서귀포시 예래동</div>' +
+            				'<div style="font-weight:bold;">인근시설</div>' +
+            				'<div>하얏트호텔기숙사</div>'
 
-		var iwContent2 = '<div style="font-weight:bold;">위치정보</div>' +
-						'<div">서귀포시 동홍동</div>' +
-						'<div style="font-weight:bold;">인근시설</div>' +
-						'<div>솔오름전망대</div>'
-		
-		var infowindow2 = new kakao.maps.InfoWindow({
-			content: iwContent2,
-			removable: iwRemoveable
-		});
+            var infowindow4 = new kakao.maps.InfoWindow({
+            	content: iwContent4,
+            	removable: iwRemoveable
+            });
 
-		var iwContent3 = '<div style="font-weight:bold;">위치정보</div>' +
-						'<div">제주시 연동</div>' +
-						'<div style="font-weight:bold;">인근시설</div>' +
-						'<div>제주도립미술관</div>'
+            var iwContent5 = '<div style="font-weight:bold;">위치정보</div>' +
+            				'<div">제주시 조천읍</div>' +
+            				'<div style="font-weight:bold;">인근시설</div>' +
+            				'<div>수운교조천지부</div>'
 
-		var infowindow3 = new kakao.maps.InfoWindow({
-			content: iwContent3,
-			removable: iwRemoveable
-		});
+            var infowindow5 = new kakao.maps.InfoWindow({
+            	content: iwContent5,
+            	removable: iwRemoveable
+            });
 
-		var iwContent4 = '<div style="font-weight:bold;">위치정보</div>' +
-						'<div">서귀포시 회수동</div>' +
-						'<div style="font-weight:bold;">인근시설</div>' +
-						'<div>서귀포천문과학관</div>'
+            var iwContent6 = '<div style="font-weight:bold;">위치정보</div>' +
+            				'<div">서귀포시 영천동</div>' +
+            				'<div style="font-weight:bold;">인근시설</div>' +
+            				'<div>감귤체험농장</div>'
 
-		var infowindow4 = new kakao.maps.InfoWindow({
-			content: iwContent4,
-			removable: iwRemoveable
-		});
-		
-		kakao.maps.event.addListener(marker, 'click', function(){
-			infowindow.open(map2, marker);
-		});
-		kakao.maps.event.addListener(marker2, 'click', function(){
-			infowindow2.open(map2, marker2);
-		});
-		kakao.maps.event.addListener(marker3, 'click', function(){
-			infowindow3.open(map2, marker3);
-		});
-		kakao.maps.event.addListener(marker4, 'click', function(){
-			infowindow4.open(map2, marker4);
-		});
-	</script>
-</body>
+            var infowindow6 = new kakao.maps.InfoWindow({
+            	content: iwContent6,
+            	removable: iwRemoveable
+            });
+
+            var iwContent7 = '<div style="font-weight:bold;">위치정보</div>' +
+            				'<div">제주시 구좌읍</div>' +
+            				'<div style="font-weight:bold;">인근시설</div>' +
+            				'<div>비밀의숲</div>'
+
+            var infowindow7 = new kakao.maps.InfoWindow({
+            	content: iwContent7,
+            	removable: iwRemoveable
+            });
+
+            var iwContent8 = '<div style="font-weight:bold;">위치정보</div>' +
+            				'<div">제주시 봉개동</div>' +
+            				'<div style="font-weight:bold;">인근시설</div>' +
+            				'<div>제주절물자연휴양림</div>'
+
+            var infowindow8 = new kakao.maps.InfoWindow({
+            	content: iwContent8,
+            	removable: iwRemoveable
+            });
+
+            kakao.maps.event.addListener(marker, 'click', function(){
+            	infowindow.open(map2, marker);
+            });
+            kakao.maps.event.addListener(marker2, 'click', function(){
+            	infowindow2.open(map2, marker2);
+            });
+            kakao.maps.event.addListener(marker3, 'click', function(){
+            	infowindow3.open(map2, marker3);
+            });
+            kakao.maps.event.addListener(marker4, 'click', function(){
+            	infowindow4.open(map2, marker4);
+            });
+            kakao.maps.event.addListener(marker5, 'click', function(){
+            	infowindow5.open(map2, marker5);
+            });
+            kakao.maps.event.addListener(marker6, 'click', function(){
+            	infowindow6.open(map2, marker6);
+            });
+            kakao.maps.event.addListener(marker7, 'click', function(){
+            	infowindow7.open(map2, marker7);
+            });
+            kakao.maps.event.addListener(marker8, 'click', function(){
+            	infowindow8.open(map2, marker8);
+            });
+        </script>
+    </body>
 </html>

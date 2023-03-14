@@ -119,7 +119,18 @@
 						<li><a href="{% url 'datapg:datapage' %}" class="active"><i class="lnr lnr-home"></i> <span>홈</span></a></li>
 						<li><a href="{% url 'main:mmindex' %}" class="active"><i class="lnr lnr-file-empty"></i> <span>Info</span></a></li>
 						<li><a href="{% url 'board:free' %}" class="active"><i class="lnr lnr-inbox"></i> <span>자유게시판</span></a></li>
-						<li><a href="{% url 'datapg:project' %}" class="active"><i class="lnr lnr-chart-bars"></i> <span>충전소 입지 선정</span></a></li>
+						<li>
+							<a href="#subPages" data-toggle="collapse" class="active"><i class="lnr lnr-chart-bars"></i> <span>충전소 입지 선정</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse">
+								<ul class="nav" style="margin-top:0">
+									<li>
+										<a href="{% url 'datapg:project' %}" class="">분석결과</a>
+									</li>
+									<li><a href="{% url 'datapg:project_2' %}" class="">분석효과</a></li>
+								</ul>
+							</div>
+							{% comment %} <a href="{% url 'datapg:project' %}" class="active"><i class="lnr lnr-chart-bars"></i> <span>충전소 입지 선정</span></a> {% endcomment %}
+						</li>
 					</ul>
 				</nav>
 			</div>
