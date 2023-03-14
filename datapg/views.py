@@ -48,3 +48,14 @@ def pr_pg(req):
     return render(req, 'datapg/pr.html', {
         'row_data6': data6
     })
+
+def pr_pg_2(req):
+    # 체크박스 형식을 선택하면 컬럼을 선택하여 학습 및 배포할 수 있게끔..
+    # if req.method == 'POST':
+    #     form = req.POST
+
+    #     print(form)
+    #     print(len(form))
+
+
+    return render(req, 'datapg/pr_2.html')
