@@ -21,7 +21,9 @@ urlpatterns = [
     path('board/', include('board.urls')),
     path('data_pg/', include('datapg.urls')),
     path('', include('main.urls')),
-    path('accounts/', include('accounts.urls')),
     path('user/', include('user.urls')),
-    re_path('accounts/', include('allauth.urls'))
+    re_path('accounts/', include('accounts.urls')),
+    re_path('accounts/', include('allauth.urls')),
+    
 ]
+
