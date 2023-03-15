@@ -7,6 +7,8 @@ from .forms import LoginForm
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
+import urllib
+
 
 def register(request):
 
@@ -126,3 +128,4 @@ def renew_password(request):
         del(request.session['user'])
         del(request.session['id'])
         return redirect('/')
+
