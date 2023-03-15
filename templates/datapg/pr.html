@@ -47,9 +47,28 @@
                                 <h3 class='panel-title' style='text-align:center;'>제주도 전기차 급속 충전소 최적 입지 선정</h3>
                             </div>
                             <div class='panel-body'>
+                                <form method="post">
+                                    <ul>
+                                        <li style="list-style-type: none;">
+                                            <input type="checkbox" id="chimsoo" value="0" name="chimsoo" checked>&nbsp;침수우려여부&emsp;
+                                            <input type="checkbox" id="cctv" value="1" name="cctv" checked>&nbsp;cctv 유무&emsp;
+                                            <input type="checkbox" id="search" value="2" name="search" checked>&nbsp;합산 검색 수&emsp;
+                                            <input type="checkbox" id="elecar" value="3" name="elecar" checked>&nbsp;2122전기차증감율&emsp;
+                                            <input type="checkbox" id="statis_2" value="4" name="statis_2" checked>&nbsp;2개년 통계_2&emsp;
+                                            <input type="checkbox" id="statis_1" value="5" name="statis_1" checked>&nbsp;2개년 통계_1&emsp;
+                                            <input type="checkbox" id="updown_1" value="6" name="updown_1" checked>&nbsp;2개년 증감율_1&emsp;
+                                            <input type="checkbox" id="updown_2" value="7" name="updown_2" checked>&nbsp;2개년 증감율_2&emsp;
+                                            <input type="checkbox" id="tour" value="8" name="tour" checked>&nbsp;관광객수&emsp;
+                                        </li>
+                                    </ul>
+                                    <div style="text-align: center; padding-bottom: 10px;">
+                                        <input type="button" id="sub" value="feature 변경">
+                                    </div>
+                                </form>
                                 <div id="map" style="width:100%; height:600px; margin:auto;"></div>
                             </div>
                             <div class="panel-footer">
+                                <a href="http://localhost:8081/tetttt">go to Spring</a>
                                 <h3 class="panel-title" style="text-align: right">최종 수정일 : 23.03.14</h3>
                             </div>
                         </div>
@@ -76,7 +95,7 @@
         <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'vendor/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
         <script src="{% static 'scripts/klorofil-common.js' %}"></script>
-
+        <script src="{% static 'scripts/pr.js' %}"></script>
         <!-- 카카오 맵 api -->
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e033816e8f4fac437e466060be505bae&libraries=clusterer"></script>
         <script type="text/javascript">
@@ -84,7 +103,7 @@
             	center : new kakao.maps.LatLng(33.377, 126.538), // 지도의 중심좌표
             	level : 10 // 지도의 확대 레벨
             });
-
+            
             map2.setZoomable(false);
             map2.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPLEFT);
             map2.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
