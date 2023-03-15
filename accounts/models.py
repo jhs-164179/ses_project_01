@@ -20,4 +20,3 @@ class User(models.Model):
         db_table = 'community_user'
         verbose_name = '커뮤니티 사용자'
         verbose_name_plural = '커뮤니티 사용자'
-
